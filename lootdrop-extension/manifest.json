@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "LootDrop Companion",
+  "version": "1.0.0",
+  "description": "Never overpay on Steam. Instantly find cheaper PC game deals across the web.",
+  "permissions": [],
+  "host_permissions": [
+    "https://www.cheapshark.com/api/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://store.steampowered.com/app/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "icons": {
+    "128": "icon.svg"
+  }
+}
