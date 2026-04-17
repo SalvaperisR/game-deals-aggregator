@@ -4,135 +4,123 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Fanatical Deals & Sales | LootDrop</title>
-        <meta name="description" content="The live list of the absolute best discounts currently active on Fanatical.">
+        <title>Fanatical Deals | LootDrop</title>
+        <meta name="description" content="Current sales at Fanatical.">
         <meta name="google-site-verification" content="q9Fphfg84545ZHMq8phpNLIyduEW07oowLI6Njm_Cdk" />
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
-            body { font-family: 'Inter', sans-serif; }
-            .glass { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+            body { font-family: 'Inter', sans-serif; background-color: #0b1120; }
+            .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+            .ticker-wrap { animation: scroll 60s linear infinite; width: max-content; }
+            @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+            .mesh-gradient { background: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%); }
             .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         </style>
     </head>
-    <body class="bg-[#0b1120] text-slate-200 antialiased flex flex-col min-h-screen">
+    <body class="text-slate-200 antialiased flex flex-col min-h-screen mesh-gradient">
         
-        <header class="glass fixed top-0 w-full z-50 transition-all duration-300 shadow-lg shadow-black/20">
+        <div class="bg-indigo-600/10 border-b border-white/5 py-2 overflow-hidden whitespace-nowrap text-[10px] uppercase tracking-[0.2em] text-indigo-300 z-[60] relative">
+            <div class="flex ticker-wrap">
+                <span class="mx-10 font-bold">💎 ALL WILL FALL: <span class="text-emerald-400">$24.62</span></span><span class="mx-10 font-bold">💎 Truck Mechanic: Dangerous Paths: <span class="text-emerald-400">$18.68</span></span><span class="mx-10 font-bold">💎 Cthulhu: The Cosmic Abyss: <span class="text-emerald-400">$28.79</span></span><span class="mx-10 font-bold">💎 Xenonauts 2: <span class="text-emerald-400">$25.99</span></span><span class="mx-10 font-bold">💎 Xenonauts 2: <span class="text-emerald-400">$25.99</span></span><span class="mx-10 font-bold">💎 Cthulhu: The Cosmic Abyss: <span class="text-emerald-400">$27.99</span></span><span class="mx-10 font-bold">💎 The Incredible Adventures of Van Helsing Anthology: <span class="text-emerald-400">$7.50</span></span><span class="mx-10 font-bold">💎 Watch Dogs Legion - Deluxe Edition (Ubisoft): <span class="text-emerald-400">$9.45</span></span><span class="mx-10 font-bold">💎 Watch_Dogs 2 Gold Edition: <span class="text-emerald-400">$10.80</span></span><span class="mx-10 font-bold">💎 Far Cry 5 Gold Edition: <span class="text-emerald-400">$12.15</span></span><span class="mx-10 font-bold">💎 Tom Clancys Ghost Recon Wildlands Year 2 Gold Edition: <span class="text-emerald-400">$14.40</span></span><span class="mx-10 font-bold">💎 Everspace: <span class="text-emerald-400">$0.99</span></span><span class="mx-10 font-bold">💎 NBA 2K26: <span class="text-emerald-400">$15.75</span></span><span class="mx-10 font-bold">💎 NBA 2K26 Superstar Edition: <span class="text-emerald-400">$22.50</span></span><span class="mx-10 font-bold">💎 Divinity: Original Sin - Enhanced Edition: <span class="text-emerald-400">$5.99</span></span> <span class="mx-10 font-bold">💎 ALL WILL FALL: <span class="text-emerald-400">$24.62</span></span><span class="mx-10 font-bold">💎 Truck Mechanic: Dangerous Paths: <span class="text-emerald-400">$18.68</span></span><span class="mx-10 font-bold">💎 Cthulhu: The Cosmic Abyss: <span class="text-emerald-400">$28.79</span></span><span class="mx-10 font-bold">💎 Xenonauts 2: <span class="text-emerald-400">$25.99</span></span><span class="mx-10 font-bold">💎 Xenonauts 2: <span class="text-emerald-400">$25.99</span></span><span class="mx-10 font-bold">💎 Cthulhu: The Cosmic Abyss: <span class="text-emerald-400">$27.99</span></span><span class="mx-10 font-bold">💎 The Incredible Adventures of Van Helsing Anthology: <span class="text-emerald-400">$7.50</span></span><span class="mx-10 font-bold">💎 Watch Dogs Legion - Deluxe Edition (Ubisoft): <span class="text-emerald-400">$9.45</span></span><span class="mx-10 font-bold">💎 Watch_Dogs 2 Gold Edition: <span class="text-emerald-400">$10.80</span></span><span class="mx-10 font-bold">💎 Far Cry 5 Gold Edition: <span class="text-emerald-400">$12.15</span></span><span class="mx-10 font-bold">💎 Tom Clancys Ghost Recon Wildlands Year 2 Gold Edition: <span class="text-emerald-400">$14.40</span></span><span class="mx-10 font-bold">💎 Everspace: <span class="text-emerald-400">$0.99</span></span><span class="mx-10 font-bold">💎 NBA 2K26: <span class="text-emerald-400">$15.75</span></span><span class="mx-10 font-bold">💎 NBA 2K26 Superstar Edition: <span class="text-emerald-400">$22.50</span></span><span class="mx-10 font-bold">💎 Divinity: Original Sin - Enhanced Edition: <span class="text-emerald-400">$5.99</span></span>
+            </div>
+        </div>
+
+        <header class="glass fixed top-8 left-0 right-0 w-full z-50 shadow-2xl">
             <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="index.html" class="flex items-center gap-2">
-                    <div class="bg-gradient-to-tr from-indigo-600 to-purple-600 p-1.5 rounded-lg">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="bg-indigo-600 p-1.5 rounded-lg shadow-lg shadow-indigo-500/40 group-hover:scale-110 transition-transform">
                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
-                    <h1 class="text-xl font-black tracking-tight text-white">Loot<span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Drop</span></h1>
+                    <h1 class="text-xl font-black text-white tracking-tighter uppercase">LootDrop</h1>
                 </a>
-                
-                <nav class="hidden md:flex gap-6 font-bold text-sm items-center">
-                    <a href="index.html" class="text-slate-300 hover:text-white transition-colors">Home</a>
-                    <a href="browse.html" class="text-slate-300 hover:text-white transition-colors">Browse Deals</a>
-                    <a href="free.html" class="text-slate-300 hover:text-white transition-colors flex items-center gap-1">
-                        Free Drops 
-                        <span class="bg-red-500 text-white text-[9px] px-1.5 py-0.5 rounded uppercase tracking-widest animate-pulse">Live</span>
-                    </a>
-                </nav>
-
-                <nav class="flex md:hidden gap-4 font-bold text-xs items-center">
-                    <a href="index.html" class="text-slate-300 hover:text-white">Home</a>
-                    <a href="browse.html" class="text-slate-300 hover:text-white">Deals</a>
-                    <a href="free.html" class="text-slate-300 hover:text-white flex items-center gap-1">Free <span class="bg-red-500 w-2 h-2 rounded-full animate-pulse"></span></a>
+                <nav class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest">
+                    <a href="index.html" class="text-slate-300 hover:text-white hover:text-white transition-colors">Home</a>
+                    <a href="browse.html" class="text-slate-300 hover:text-white hover:text-white transition-colors">Browse</a>
+                    <a href="free.html" class="text-slate-300 hover:text-white hover:text-emerald-400 transition-colors">Free Drops</a>
                 </nav>
             </div>
         </header>
 
-        <main class="flex-grow pt-24 pb-12">
-            
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="mb-10 text-center">
-            <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Fanatical Deals & Sales</h2>
-            <p class="text-lg text-slate-400 max-w-2xl mx-auto">The live list of the absolute best discounts currently active on Fanatical.</p>
-            
-        </div>
-        <div class="flex justify-between items-center border-b border-slate-800 pb-4 mb-6">
-            <span class="text-sm font-medium text-slate-400 bg-slate-800 px-3 py-1 rounded-full">2 active deals</span>
-        </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="xenonauts 2" data-price="25.99" data-store="fanatical">
+        <main class="flex-grow pt-40 pb-20">
+            <div class="max-w-7xl mx-auto px-6"><h2 class="text-4xl font-black text-white mb-12 uppercase tracking-tighter">Fanatical Deals</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="xenonauts 2" data-price="25.99" data-store="fanatical">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Fanatical</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Fanatical</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-35%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-35%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/538030/482bba7eec0556716f0d36f9dc8858b473587f5c/capsule_231x87.jpg?t=1776359771" alt="Xenonauts 2" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/538030/482bba7eec0556716f0d36f9dc8858b473587f5c/capsule_231x87.jpg?t=1776359771" alt="Xenonauts 2" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Xenonauts 2">Xenonauts 2</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Xenonauts 2">Xenonauts 2</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$39.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$39.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$25.99</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=mNjguSzHXYAUttVkGgWc1JHaFaZGHlLYQn8n5PgPlHU%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=mNjguSzHXYAUttVkGgWc1JHaFaZGHlLYQn8n5PgPlHU%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="cthulhu: the cosmic abyss" data-price="27.99" data-store="fanatical">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="cthulhu: the cosmic abyss" data-price="27.99" data-store="fanatical">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Fanatical</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Fanatical</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-30%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-30%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2760560/41efd3e9542174167b3e751bd6ab722a96e49ee2/capsule_231x87_alt_assets_2.jpg?t=1776362065" alt="Cthulhu: The Cosmic Abyss" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2760560/41efd3e9542174167b3e751bd6ab722a96e49ee2/capsule_231x87_alt_assets_2.jpg?t=1776362065" alt="Cthulhu: The Cosmic Abyss" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Cthulhu: The Cosmic Abyss">Cthulhu: The Cosmic Abyss</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Cthulhu: The Cosmic Abyss">Cthulhu: The Cosmic Abyss</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$39.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$39.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$27.99</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=SYiij1Y5P%2FkvFqqBaPPQsaVD3YutCtB%2BC%2Fi2NM6kWYg%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=SYiij1Y5P%2FkvFqqBaPPQsaVD3YutCtB%2BC%2Fi2NM6kWYg%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
-    </div>
-    </div></div>
+    </div></div></div>
         </main>
 
-        <footer class="bg-slate-900 mt-auto pt-10">
+        <footer class="bg-slate-950/50 pt-10">
             
-    <div class="max-w-7xl mx-auto px-6 py-8 border-t border-slate-800 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div>
-            <h4 class="text-white font-black mb-4 tracking-wider">Top Storefronts</h4>
-            <ul class="space-y-2 text-sm text-slate-400">
-    <li><a href="store-steam.html" class="hover:text-indigo-400 transition-colors">Steam Deals</a></li><li><a href="store-greenmangaming.html" class="hover:text-indigo-400 transition-colors">GreenManGaming Deals</a></li><li><a href="store-fanatical.html" class="hover:text-indigo-400 transition-colors">Fanatical Deals</a></li><li><a href="store-humble-store.html" class="hover:text-indigo-400 transition-colors">Humble Store Deals</a></li><li><a href="store-gamersgate.html" class="hover:text-indigo-400 transition-colors">GamersGate Deals</a></li>
-            </ul>
+        <div class="max-w-7xl mx-auto px-6 py-12 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+                <h4 class="text-white font-black mb-4 uppercase tracking-widest text-xs">Top Storefronts</h4>
+                <ul class="space-y-2 text-sm text-slate-500">
+                    <li><a href="store-steam.html" class="hover:text-indigo-400 transition-colors">Steam Deals</a></li><li><a href="store-greenmangaming.html" class="hover:text-indigo-400 transition-colors">GreenManGaming Deals</a></li><li><a href="store-fanatical.html" class="hover:text-indigo-400 transition-colors">Fanatical Deals</a></li><li><a href="store-humble-store.html" class="hover:text-indigo-400 transition-colors">Humble Store Deals</a></li><li><a href="store-gamersgate.html" class="hover:text-indigo-400 transition-colors">GamersGate Deals</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-black mb-4 uppercase tracking-widest text-xs">Price Drops</h4>
+                <ul class="space-y-2 text-sm text-slate-500">
+                    <li><a href="under-5.html" class="hover:text-indigo-400 transition-colors">Games Under $5</a></li>
+                    <li><a href="under-10.html" class="hover:text-indigo-400 transition-colors">Games Under $10</a></li>
+                    <li><a href="free.html" class="hover:text-indigo-400 transition-colors underline decoration-emerald-500">100% Free Games</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-black mb-4 uppercase tracking-widest text-xs">LootDrop</h4>
+                <p class="text-slate-500 text-xs mb-4">Your automated engine for the best PC gaming discounts.</p>
+                <ul class="space-y-2 text-sm text-slate-400">
+                    <li><a href="browse.html" class="hover:text-indigo-400 transition-colors">All Deals</a></li>
+                    <li><a href="about.html" class="hover:text-indigo-400 transition-colors">About & Disclosure</a></li>
+                </ul>
+            </div>
         </div>
-        <div>
-            <h4 class="text-white font-black mb-4 tracking-wider">Price Drops</h4>
-            <ul class="space-y-2 text-sm text-slate-400">
-                <li><a href="under-5.html" class="hover:text-indigo-400 transition-colors">Games Under $5</a></li>
-                <li><a href="under-10.html" class="hover:text-indigo-400 transition-colors">Games Under $10</a></li>
-                <li><a href="under-20.html" class="hover:text-indigo-400 transition-colors">Games Under $20</a></li>
-                <li><a href="free.html" class="hover:text-indigo-400 transition-colors">100% Free Games</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4 class="text-white font-black mb-4 tracking-wider">LootDrop</h4>
-            <p class="text-slate-500 text-xs mb-4">Your automated engine for the best PC gaming discounts.</p>
-            <ul class="space-y-2 text-sm text-slate-400">
-                <li><a href="browse.html" class="hover:text-indigo-400 transition-colors">All Deals</a></li>
-                <li><a href="about.html" class="hover:text-indigo-400 transition-colors">About & Affiliate Disclosure</a></li>
-            </ul>
-        </div>
-    </div>
-            <div class="border-t border-slate-950 py-6 text-center bg-black/20">
-                <p class="text-slate-600 text-xs font-medium max-w-xl mx-auto px-6">
-                    &copy; 2026 LootDrop. Automated Deal Engine. We may earn an affiliate commission when you buy through links on our site.
+            <div class="border-t border-white/5 py-8 text-center bg-black/40">
+                <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest">
+                    &copy; 2026 LootDrop. Automated Deal Engine. Affiliate Disclosure: Links may earn commissions.
                 </p>
             </div>
         </footer>

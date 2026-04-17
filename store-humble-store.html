@@ -4,664 +4,698 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Humble Store Deals & Sales | LootDrop</title>
-        <meta name="description" content="The live list of the absolute best discounts currently active on Humble Store.">
+        <title>Humble Store Deals | LootDrop</title>
+        <meta name="description" content="Current sales at Humble Store.">
         <meta name="google-site-verification" content="q9Fphfg84545ZHMq8phpNLIyduEW07oowLI6Njm_Cdk" />
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
-            body { font-family: 'Inter', sans-serif; }
-            .glass { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+            body { font-family: 'Inter', sans-serif; background-color: #0b1120; }
+            .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+            .ticker-wrap { animation: scroll 60s linear infinite; width: max-content; }
+            @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+            .mesh-gradient { background: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%); }
             .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         </style>
     </head>
-    <body class="bg-[#0b1120] text-slate-200 antialiased flex flex-col min-h-screen">
+    <body class="text-slate-200 antialiased flex flex-col min-h-screen mesh-gradient">
         
-        <header class="glass fixed top-0 w-full z-50 transition-all duration-300 shadow-lg shadow-black/20">
+        <div class="bg-indigo-600/10 border-b border-white/5 py-2 overflow-hidden whitespace-nowrap text-[10px] uppercase tracking-[0.2em] text-indigo-300 z-[60] relative">
+            <div class="flex ticker-wrap">
+                <span class="mx-10 font-bold">💎 ALL WILL FALL: <span class="text-emerald-400">$24.62</span></span><span class="mx-10 font-bold">💎 Truck Mechanic: Dangerous Paths: <span class="text-emerald-400">$18.68</span></span><span class="mx-10 font-bold">💎 Cthulhu: The Cosmic Abyss: <span class="text-emerald-400">$28.79</span></span><span class="mx-10 font-bold">💎 Xenonauts 2: <span class="text-emerald-400">$25.99</span></span><span class="mx-10 font-bold">💎 Xenonauts 2: <span class="text-emerald-400">$25.99</span></span><span class="mx-10 font-bold">💎 Cthulhu: The Cosmic Abyss: <span class="text-emerald-400">$27.99</span></span><span class="mx-10 font-bold">💎 The Incredible Adventures of Van Helsing Anthology: <span class="text-emerald-400">$7.50</span></span><span class="mx-10 font-bold">💎 Watch Dogs Legion - Deluxe Edition (Ubisoft): <span class="text-emerald-400">$9.45</span></span><span class="mx-10 font-bold">💎 Watch_Dogs 2 Gold Edition: <span class="text-emerald-400">$10.80</span></span><span class="mx-10 font-bold">💎 Far Cry 5 Gold Edition: <span class="text-emerald-400">$12.15</span></span><span class="mx-10 font-bold">💎 Tom Clancys Ghost Recon Wildlands Year 2 Gold Edition: <span class="text-emerald-400">$14.40</span></span><span class="mx-10 font-bold">💎 Everspace: <span class="text-emerald-400">$0.99</span></span><span class="mx-10 font-bold">💎 NBA 2K26: <span class="text-emerald-400">$15.75</span></span><span class="mx-10 font-bold">💎 NBA 2K26 Superstar Edition: <span class="text-emerald-400">$22.50</span></span><span class="mx-10 font-bold">💎 Divinity: Original Sin - Enhanced Edition: <span class="text-emerald-400">$5.99</span></span> <span class="mx-10 font-bold">💎 ALL WILL FALL: <span class="text-emerald-400">$24.62</span></span><span class="mx-10 font-bold">💎 Truck Mechanic: Dangerous Paths: <span class="text-emerald-400">$18.68</span></span><span class="mx-10 font-bold">💎 Cthulhu: The Cosmic Abyss: <span class="text-emerald-400">$28.79</span></span><span class="mx-10 font-bold">💎 Xenonauts 2: <span class="text-emerald-400">$25.99</span></span><span class="mx-10 font-bold">💎 Xenonauts 2: <span class="text-emerald-400">$25.99</span></span><span class="mx-10 font-bold">💎 Cthulhu: The Cosmic Abyss: <span class="text-emerald-400">$27.99</span></span><span class="mx-10 font-bold">💎 The Incredible Adventures of Van Helsing Anthology: <span class="text-emerald-400">$7.50</span></span><span class="mx-10 font-bold">💎 Watch Dogs Legion - Deluxe Edition (Ubisoft): <span class="text-emerald-400">$9.45</span></span><span class="mx-10 font-bold">💎 Watch_Dogs 2 Gold Edition: <span class="text-emerald-400">$10.80</span></span><span class="mx-10 font-bold">💎 Far Cry 5 Gold Edition: <span class="text-emerald-400">$12.15</span></span><span class="mx-10 font-bold">💎 Tom Clancys Ghost Recon Wildlands Year 2 Gold Edition: <span class="text-emerald-400">$14.40</span></span><span class="mx-10 font-bold">💎 Everspace: <span class="text-emerald-400">$0.99</span></span><span class="mx-10 font-bold">💎 NBA 2K26: <span class="text-emerald-400">$15.75</span></span><span class="mx-10 font-bold">💎 NBA 2K26 Superstar Edition: <span class="text-emerald-400">$22.50</span></span><span class="mx-10 font-bold">💎 Divinity: Original Sin - Enhanced Edition: <span class="text-emerald-400">$5.99</span></span>
+            </div>
+        </div>
+
+        <header class="glass fixed top-8 left-0 right-0 w-full z-50 shadow-2xl">
             <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="index.html" class="flex items-center gap-2">
-                    <div class="bg-gradient-to-tr from-indigo-600 to-purple-600 p-1.5 rounded-lg">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="bg-indigo-600 p-1.5 rounded-lg shadow-lg shadow-indigo-500/40 group-hover:scale-110 transition-transform">
                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
-                    <h1 class="text-xl font-black tracking-tight text-white">Loot<span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Drop</span></h1>
+                    <h1 class="text-xl font-black text-white tracking-tighter uppercase">LootDrop</h1>
                 </a>
-                
-                <nav class="hidden md:flex gap-6 font-bold text-sm items-center">
-                    <a href="index.html" class="text-slate-300 hover:text-white transition-colors">Home</a>
-                    <a href="browse.html" class="text-slate-300 hover:text-white transition-colors">Browse Deals</a>
-                    <a href="free.html" class="text-slate-300 hover:text-white transition-colors flex items-center gap-1">
-                        Free Drops 
-                        <span class="bg-red-500 text-white text-[9px] px-1.5 py-0.5 rounded uppercase tracking-widest animate-pulse">Live</span>
-                    </a>
-                </nav>
-
-                <nav class="flex md:hidden gap-4 font-bold text-xs items-center">
-                    <a href="index.html" class="text-slate-300 hover:text-white">Home</a>
-                    <a href="browse.html" class="text-slate-300 hover:text-white">Deals</a>
-                    <a href="free.html" class="text-slate-300 hover:text-white flex items-center gap-1">Free <span class="bg-red-500 w-2 h-2 rounded-full animate-pulse"></span></a>
+                <nav class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest">
+                    <a href="index.html" class="text-slate-300 hover:text-white hover:text-white transition-colors">Home</a>
+                    <a href="browse.html" class="text-slate-300 hover:text-white hover:text-white transition-colors">Browse</a>
+                    <a href="free.html" class="text-slate-300 hover:text-white hover:text-emerald-400 transition-colors">Free Drops</a>
                 </nav>
             </div>
         </header>
 
-        <main class="flex-grow pt-24 pb-12">
-            
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="mb-10 text-center">
-            <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Humble Store Deals & Sales</h2>
-            <p class="text-lg text-slate-400 max-w-2xl mx-auto">The live list of the absolute best discounts currently active on Humble Store.</p>
-            
-        </div>
-        <div class="flex justify-between items-center border-b border-slate-800 pb-4 mb-6">
-            <span class="text-sm font-medium text-slate-400 bg-slate-800 px-3 py-1 rounded-full">25 active deals</span>
-        </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="xenonauts 2" data-price="25.99" data-store="humble store">
+        <main class="flex-grow pt-40 pb-20">
+            <div class="max-w-7xl mx-auto px-6"><h2 class="text-4xl font-black text-white mb-12 uppercase tracking-tighter">Humble Store Deals</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="xenonauts 2" data-price="25.99" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-35%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-35%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/538030/482bba7eec0556716f0d36f9dc8858b473587f5c/capsule_231x87.jpg?t=1776359771" alt="Xenonauts 2" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/538030/482bba7eec0556716f0d36f9dc8858b473587f5c/capsule_231x87.jpg?t=1776359771" alt="Xenonauts 2" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Xenonauts 2">Xenonauts 2</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Xenonauts 2">Xenonauts 2</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$39.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$39.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$25.99</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=NqBZLaSRpVT2ceRIbkm9HhKveFr54StkBVZIglUdYgE%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=NqBZLaSRpVT2ceRIbkm9HhKveFr54StkBVZIglUdYgE%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="everspace" data-price="0.99" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="everspace" data-price="0.99" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-95%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-95%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/396750/capsule_231x87.jpg?t=1762910991" alt="Everspace" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/396750/capsule_231x87.jpg?t=1762910991" alt="Everspace" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Everspace">Everspace</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Everspace">Everspace</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$19.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$19.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$0.99</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=vZVUcG6XDKSaAYtJRXn8bEEFjGJQddbssUVgYMMd8M8%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=vZVUcG6XDKSaAYtJRXn8bEEFjGJQddbssUVgYMMd8M8%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="anarcute" data-price="1.49" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="anarcute" data-price="1.49" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-90%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/390720/capsule_231x87.jpg?t=1750429312" alt="Anarcute" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/390720/capsule_231x87.jpg?t=1750429312" alt="Anarcute" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Anarcute">Anarcute</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Anarcute">Anarcute</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$14.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$14.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$1.49</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=gcDE0s%2BG5gRNc13UpqfKInuSCV%2FhQtaVrNZX4Ldugfo%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=gcDE0s%2BG5gRNc13UpqfKInuSCV%2FhQtaVrNZX4Ldugfo%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="metro 2033 redux" data-price="1.99" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="metro 2033 redux" data-price="1.99" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-90%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/286690/capsule_231x87.jpg?t=1741110084" alt="Metro 2033 Redux" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/286690/capsule_231x87.jpg?t=1741110084" alt="Metro 2033 Redux" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Metro 2033 Redux">Metro 2033 Redux</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Metro 2033 Redux">Metro 2033 Redux</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$19.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$19.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$1.99</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=4N8lwdp8b3fG3Qg1qY2nABPCJ8rgTczjiXluOg3TPBk%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=4N8lwdp8b3fG3Qg1qY2nABPCJ8rgTczjiXluOg3TPBk%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="afterimage" data-price="2.49" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="afterimage" data-price="2.49" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-90%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1701520/capsule_231x87.jpg?t=1725487708" alt="Afterimage" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1701520/capsule_231x87.jpg?t=1725487708" alt="Afterimage" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Afterimage">Afterimage</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Afterimage">Afterimage</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$24.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$24.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$2.49</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=zhPK%2Blndh67lRwPC9i%2BigZYLZRvjwjJ3MchQlUeywHk%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=zhPK%2Blndh67lRwPC9i%2BigZYLZRvjwjJ3MchQlUeywHk%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="wrc 9 fia world rally championship" data-price="3.99" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="wrc 9 fia world rally championship" data-price="3.99" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-90%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1267540/capsule_231x87.jpg?t=1725354407" alt="WRC 9 FIA World Rally Championship" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1267540/capsule_231x87.jpg?t=1725354407" alt="WRC 9 FIA World Rally Championship" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="WRC 9 FIA World Rally Championship">WRC 9 FIA World Rally Championship</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="WRC 9 FIA World Rally Championship">WRC 9 FIA World Rally Championship</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$39.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$39.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$3.99</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=aAG1yqYRX9Pg4XHmA54aJRIoHvKPY%2BDvdrKXAv%2BaQEc%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=aAG1yqYRX9Pg4XHmA54aJRIoHvKPY%2BDvdrKXAv%2BaQEc%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="nine noir lives" data-price="1.99" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="nine noir lives" data-price="1.99" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-90%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/914890/capsule_231x87.jpg?t=1670340575" alt="Nine Noir Lives" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/914890/capsule_231x87.jpg?t=1670340575" alt="Nine Noir Lives" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Nine Noir Lives">Nine Noir Lives</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Nine Noir Lives">Nine Noir Lives</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$19.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$19.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$1.99</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=dBxmtpG3vCzJJg4ApagoUwCDp4loMuKo5mFkHAr9res%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=dBxmtpG3vCzJJg4ApagoUwCDp4loMuKo5mFkHAr9res%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="world splitter" data-price="0.79" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="rebel galaxy" data-price="1.99" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-90%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://sttc.gamersgate.com/images/product/world-splitter/cover-180-e510da.jpg" alt="World Splitter" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/290300/capsule_231x87.jpg?t=1774446939" alt="Rebel Galaxy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="World Splitter">World Splitter</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Rebel Galaxy">Rebel Galaxy</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$7.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$19.99</span>
+                    <span class="text-lg font-black leading-none text-emerald-400">$1.99</span>
+                </div>
+                <a href="https://www.cheapshark.com/redirect?dealID=yPc0XTXNmZz8xHd9JtdNmJFnaYHbxaypYGxTzaeewX0%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
+            </div>
+        </div>
+    </div>
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="world splitter" data-price="0.79" data-store="humble store">
+        <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
+            <div class="flex flex-col gap-1 items-start">
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
+            </div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
+        </div>
+        <div class="h-40 overflow-hidden bg-slate-900 relative">
+            <img src="https://sttc.gamersgate.com/images/product/world-splitter/cover-180-e510da.jpg" alt="World Splitter" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="World Splitter">World Splitter</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
+                <div class="flex flex-col">
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$7.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$0.79</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=BFlvarG1vDCeybm26lWerdRcMErzg6zybCOrMQmmLiY%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=BFlvarG1vDCeybm26lWerdRcMErzg6zybCOrMQmmLiY%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="spiritfarer" data-price="4.49" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="spiritfarer" data-price="4.49" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-85%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-85%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://hb.imgix.net/95285e01875b7edb3eda01c6e8c76e284d4ff441.jpg?auto=compress,format&fit=crop&h=84&w=135&s=c1e1ca75b937694c8d19271c80b64263" alt="Spiritfarer" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://hb.imgix.net/95285e01875b7edb3eda01c6e8c76e284d4ff441.jpg?auto=compress,format&fit=crop&h=84&w=135&s=c1e1ca75b937694c8d19271c80b64263" alt="Spiritfarer" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Spiritfarer">Spiritfarer</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Spiritfarer">Spiritfarer</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$29.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$29.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$4.49</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=N8d69%2FFQ7Ekhr1bLSBcdlXhlYmLJneG0eUEk2l9hwCc%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=N8d69%2FFQ7Ekhr1bLSBcdlXhlYmLJneG0eUEk2l9hwCc%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="chorus" data-price="2.49" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="chorus" data-price="2.49" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-90%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1153640/capsule_231x87.jpg?t=1730478689" alt="Chorus" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1153640/capsule_231x87.jpg?t=1730478689" alt="Chorus" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Chorus">Chorus</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Chorus">Chorus</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$24.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$24.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$2.49</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=ZjYaTAqf3%2BQvDqpKvzkDuViooexUZzdavMZtaECnzp4%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=ZjYaTAqf3%2BQvDqpKvzkDuViooexUZzdavMZtaECnzp4%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="figment 2: creed valley" data-price="2.49" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="figment 2: creed valley" data-price="2.49" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-90%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1085220/capsule_231x87.jpg?t=1729500878" alt="Figment 2: Creed Valley" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1085220/capsule_231x87.jpg?t=1729500878" alt="Figment 2: Creed Valley" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Figment 2: Creed Valley">Figment 2: Creed Valley</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Figment 2: Creed Valley">Figment 2: Creed Valley</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$24.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$24.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$2.49</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=DyWXvCjq8o3oHEVG2pLJCJ%2FKkFrr%2FaIutmfaIbYCrms%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=DyWXvCjq8o3oHEVG2pLJCJ%2FKkFrr%2FaIutmfaIbYCrms%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="kaze and the wild masks" data-price="2.24" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="kaze and the wild masks" data-price="2.24" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-85%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-85%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/829280/capsule_231x87.jpg?t=1751537005" alt="Kaze and the Wild Masks" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/829280/capsule_231x87.jpg?t=1751537005" alt="Kaze and the Wild Masks" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Kaze and the Wild Masks">Kaze and the Wild Masks</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Kaze and the Wild Masks">Kaze and the Wild Masks</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$14.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$14.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$2.24</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=ydmOXyT%2FAvX4Q%2FboPVxvckuJr1%2FOUWIy6WNdJo%2FZKvU%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=ydmOXyT%2FAvX4Q%2FboPVxvckuJr1%2FOUWIy6WNdJo%2FZKvU%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="phantom doctrine" data-price="3.99" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="phantom doctrine" data-price="3.99" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-90%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/559100/capsule_231x87.jpg?t=1728639836" alt="Phantom Doctrine" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/559100/capsule_231x87.jpg?t=1728639836" alt="Phantom Doctrine" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Phantom Doctrine">Phantom Doctrine</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Phantom Doctrine">Phantom Doctrine</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$39.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$39.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$3.99</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=wrOWSsxGyW37Mdc8cuCxZSc8yXoKMo1AqjT8T6VJc%2Bc%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=wrOWSsxGyW37Mdc8cuCxZSc8yXoKMo1AqjT8T6VJc%2Bc%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="styx: master of shadows" data-price="1.99" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="styx: master of shadows" data-price="1.99" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-90%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/242640/capsule_231x87.jpg?t=1768301777" alt="Styx: Master of Shadows" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/242640/capsule_231x87.jpg?t=1768301777" alt="Styx: Master of Shadows" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Styx: Master of Shadows">Styx: Master of Shadows</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Styx: Master of Shadows">Styx: Master of Shadows</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$19.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$19.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$1.99</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=%2BdjFNfDzNI3xKwp5zaPYSIfgve6gnkDPuXCX78mTBHA%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=%2BdjFNfDzNI3xKwp5zaPYSIfgve6gnkDPuXCX78mTBHA%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="mordheim: city of the damned" data-price="1.99" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="mordheim: city of the damned" data-price="1.99" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-90%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/276810/capsule_231x87.jpg?t=1726153222" alt="Mordheim: City of the Damned" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/276810/capsule_231x87.jpg?t=1726153222" alt="Mordheim: City of the Damned" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Mordheim: City of the Damned">Mordheim: City of the Damned</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Mordheim: City of the Damned">Mordheim: City of the Damned</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$19.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$19.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$1.99</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=cEUiNQaNHtFy1f40lbV8afycurV9ExZcr95rl0hFvoI%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=cEUiNQaNHtFy1f40lbV8afycurV9ExZcr95rl0hFvoI%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="this way madness lies" data-price="1.99" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="this way madness lies" data-price="1.99" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-80%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-80%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1318970/capsule_231x87.jpg?t=1678762520" alt="This Way Madness Lies" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1318970/capsule_231x87.jpg?t=1678762520" alt="This Way Madness Lies" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="This Way Madness Lies">This Way Madness Lies</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="This Way Madness Lies">This Way Madness Lies</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$9.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$9.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$1.99</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=dFPMToCy2MFIX51hPLAsQXmACXtdUhH5Lwb73XOovxA%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=dFPMToCy2MFIX51hPLAsQXmACXtdUhH5Lwb73XOovxA%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="narcosis" data-price="1.49" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="narcosis" data-price="1.49" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-90%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/366870/capsule_231x87.jpg?t=1698437323" alt="Narcosis" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/366870/capsule_231x87.jpg?t=1698437323" alt="Narcosis" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Narcosis">Narcosis</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Narcosis">Narcosis</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$14.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$14.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$1.49</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=4PBsM5BY338aownQJfL92MagAGlTL3CM2EVx%2Fk%2FYeQI%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=4PBsM5BY338aownQJfL92MagAGlTL3CM2EVx%2Fk%2FYeQI%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="the survivalists" data-price="2.49" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="wrc 6 fia world rally championship" data-price="1.49" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-90%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/897450/capsule_231x87.jpg?t=1773329009" alt="The Survivalists" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/458770/capsule_231x87.jpg?t=1725354005" alt="WRC 6 FIA World Rally Championship" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="The Survivalists">The Survivalists</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="WRC 6 FIA World Rally Championship">WRC 6 FIA World Rally Championship</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$24.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$14.99</span>
+                    <span class="text-lg font-black leading-none text-emerald-400">$1.49</span>
+                </div>
+                <a href="https://www.cheapshark.com/redirect?dealID=RXAoA5pbmTD3BcgkvmD2EGygE20ckg1IarHG7ATw8z0%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
+            </div>
+        </div>
+    </div>
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="the survivalists" data-price="2.49" data-store="humble store">
+        <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
+            <div class="flex flex-col gap-1 items-start">
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
+            </div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
+        </div>
+        <div class="h-40 overflow-hidden bg-slate-900 relative">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/897450/capsule_231x87.jpg?t=1773329009" alt="The Survivalists" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="The Survivalists">The Survivalists</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
+                <div class="flex flex-col">
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$24.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$2.49</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=E530vCwkx%2FFEXLiKCBzFvi5bwwGROgXncy8JYOty71c%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=E530vCwkx%2FFEXLiKCBzFvi5bwwGROgXncy8JYOty71c%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400" data-title="for honor year 8 ultimate edition" data-price="13.49" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="for honor year 8 ultimate edition" data-price="13.49" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-85%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-85%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://images.greenmangaming.com/f6af9f2dcf394f3baed307615e8e8434/9e90ef09574d4bd092fdd998007a444b.jpg" alt="FOR HONOR Year 8 Ultimate Edition" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://images.greenmangaming.com/f6af9f2dcf394f3baed307615e8e8434/9e90ef09574d4bd092fdd998007a444b.jpg" alt="FOR HONOR Year 8 Ultimate Edition" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="FOR HONOR Year 8 Ultimate Edition">FOR HONOR Year 8 Ultimate Edition</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="FOR HONOR Year 8 Ultimate Edition">FOR HONOR Year 8 Ultimate Edition</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$89.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$89.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$13.49</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=8MZpMcP3kmGqUZl9LtM3LP4TPCgCR1lwLrIVKNpZzPA%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=8MZpMcP3kmGqUZl9LtM3LP4TPCgCR1lwLrIVKNpZzPA%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-purple-500/50 shadow-[0_0_10px_rgba(168,85,247,0.1)] hover:shadow-[0_0_20px_rgba(168,85,247,0.25)] hover:border-purple-500" data-title="neo cab" data-price="2.24" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-amber-400/60 shadow-lg shadow-amber-400/10 hover:-translate-y-1"
+         data-title="warhammer: chaosbane" data-price="2.99" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-purple-600 text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-purple-400">A-Tier</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase">S-Tier</span>
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-85%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/794540/f0570c9ffd1afa4dde25eb6df09fba0d16274c6e/capsule_231x87.jpg?t=1757056423" alt="Neo Cab" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/774241/capsule_231x87.jpg?t=1764149291" alt="Warhammer: Chaosbane" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Neo Cab">Neo Cab</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Warhammer: Chaosbane">Warhammer: Chaosbane</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$14.99</span>
-                    <span class="text-lg font-black leading-none text-emerald-400">$2.24</span>
-                </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=aHy0Hwau4jSjJCMLN%2BkimP%2Bc10uGaRDBZMmYmMu6E%2F0%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-purple-500/50 shadow-[0_0_10px_rgba(168,85,247,0.1)] hover:shadow-[0_0_20px_rgba(168,85,247,0.25)] hover:border-purple-500" data-title="fia european truck racing championship" data-price="2.99" data-store="humble store">
-        <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
-            <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-purple-600 text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-purple-400">A-Tier</span>
-            </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-90%</div>
-        </div>
-        <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/940580/capsule_231x87.jpg?t=1725351040" alt="FIA European Truck Racing Championship" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
-        </div>
-        <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="FIA European Truck Racing Championship">FIA European Truck Racing Championship</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
-                <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$29.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$29.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$2.99</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=I8oOsqqRba%2F14radqLXyYh0MUY5ldG82hNPcVtUpzDc%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=mBO%2FO%2B0slcQYR7lQYqLrSIZ9HisytSmDDuXEk3E9WNo%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-purple-500/50 shadow-[0_0_10px_rgba(168,85,247,0.1)] hover:shadow-[0_0_20px_rgba(168,85,247,0.25)] hover:border-purple-500" data-title="huntdown" data-price="3.99" data-store="humble store">
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-slate-700/50 hover:border-indigo-500/50 hover:-translate-y-1"
+         data-title="neo cab" data-price="2.24" data-store="humble store">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-purple-600 text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-purple-400">A-Tier</span>
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                
             </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-80%</div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-85%</div>
         </div>
         <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/598550/capsule_231x87.jpg?t=1723637797" alt="Huntdown" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/794540/f0570c9ffd1afa4dde25eb6df09fba0d16274c6e/capsule_231x87.jpg?t=1757056423" alt="Neo Cab" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
         <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Huntdown">Huntdown</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Neo Cab">Neo Cab</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$19.99</span>
-                    <span class="text-lg font-black leading-none text-emerald-400">$3.99</span>
-                </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=warK%2FuPBFkfYzW8LEZiF8liZaP8g2a%2FU52rvH2qNUVM%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-purple-500/50 shadow-[0_0_10px_rgba(168,85,247,0.1)] hover:shadow-[0_0_20px_rgba(168,85,247,0.25)] hover:border-purple-500" data-title="far cry 5 and far cry new dawn deluxe edition bundle" data-price="14.99" data-store="humble store">
-        <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
-            <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-purple-600 text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-purple-400">A-Tier</span>
-            </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-85%</div>
-        </div>
-        <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://hb.imgix.net/85970297dbcd85c44bd2112f2e33292144559ef1.png?auto=compress,format&fit=crop&h=84&w=135&s=9a058466977c86a2265106f68949bee5" alt="Far Cry 5 and Far Cry New Dawn Deluxe Edition Bundle" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
-        </div>
-        <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Far Cry 5 and Far Cry New Dawn Deluxe Edition Bundle">Far Cry 5 and Far Cry New Dawn Deluxe Edition Bundle</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
-                <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$99.99</span>
-                    <span class="text-lg font-black leading-none text-emerald-400">$14.99</span>
-                </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=VInMhsJ%2F5VKKxv1MJWk5lvGgKiq9HjcIiewGo%2FPmGcs%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-purple-500/50 shadow-[0_0_10px_rgba(168,85,247,0.1)] hover:shadow-[0_0_20px_rgba(168,85,247,0.25)] hover:border-purple-500" data-title="dragons dogma: dark arisen" data-price="4.79" data-store="humble store">
-        <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
-            <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-purple-600 text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-purple-400">A-Tier</span>
-            </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-84%</div>
-        </div>
-        <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367500/capsule_231x87.jpg?t=1768870344" alt="Dragons Dogma: Dark Arisen" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
-        </div>
-        <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Dragons Dogma: Dark Arisen">Dragons Dogma: Dark Arisen</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
-                <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$29.99</span>
-                    <span class="text-lg font-black leading-none text-emerald-400">$4.79</span>
-                </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=vwgkjksdLURVDJOlbF8W0QQy7qyntzCL5cmVhA7Bhgg%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-purple-500/50 shadow-[0_0_10px_rgba(168,85,247,0.1)] hover:shadow-[0_0_20px_rgba(168,85,247,0.25)] hover:border-purple-500" data-title="chroma squad" data-price="2.24" data-store="humble store">
-        <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
-            <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-                <span class="bg-purple-600 text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-purple-400">A-Tier</span>
-            </div>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">-85%</div>
-        </div>
-        <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/251130/capsule_231x87.jpg?t=1663081542" alt="Chroma Squad" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
-        </div>
-        <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Chroma Squad">Chroma Squad</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
-                <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$14.99</span>
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$14.99</span>
                     <span class="text-lg font-black leading-none text-emerald-400">$2.24</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=bonsvqWBNlJD%2FalDtAumTPgJY1q5GLlrwIeBTgs9V68%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=aHy0Hwau4jSjJCMLN%2BkimP%2Bc10uGaRDBZMmYmMu6E%2F0%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
             </div>
         </div>
     </div>
-    </div></div>
-        </main>
-
-        <footer class="bg-slate-900 mt-auto pt-10">
-            
-    <div class="max-w-7xl mx-auto px-6 py-8 border-t border-slate-800 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div>
-            <h4 class="text-white font-black mb-4 tracking-wider">Top Storefronts</h4>
-            <ul class="space-y-2 text-sm text-slate-400">
-    <li><a href="store-steam.html" class="hover:text-indigo-400 transition-colors">Steam Deals</a></li><li><a href="store-greenmangaming.html" class="hover:text-indigo-400 transition-colors">GreenManGaming Deals</a></li><li><a href="store-fanatical.html" class="hover:text-indigo-400 transition-colors">Fanatical Deals</a></li><li><a href="store-humble-store.html" class="hover:text-indigo-400 transition-colors">Humble Store Deals</a></li><li><a href="store-gamersgate.html" class="hover:text-indigo-400 transition-colors">GamersGate Deals</a></li>
-            </ul>
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-slate-700/50 hover:border-indigo-500/50 hover:-translate-y-1"
+         data-title="fia european truck racing championship" data-price="2.99" data-store="humble store">
+        <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
+            <div class="flex flex-col gap-1 items-start">
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                
+            </div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
         </div>
-        <div>
-            <h4 class="text-white font-black mb-4 tracking-wider">Price Drops</h4>
-            <ul class="space-y-2 text-sm text-slate-400">
-                <li><a href="under-5.html" class="hover:text-indigo-400 transition-colors">Games Under $5</a></li>
-                <li><a href="under-10.html" class="hover:text-indigo-400 transition-colors">Games Under $10</a></li>
-                <li><a href="under-20.html" class="hover:text-indigo-400 transition-colors">Games Under $20</a></li>
-                <li><a href="free.html" class="hover:text-indigo-400 transition-colors">100% Free Games</a></li>
-            </ul>
+        <div class="h-40 overflow-hidden bg-slate-900 relative">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/940580/capsule_231x87.jpg?t=1725351040" alt="FIA European Truck Racing Championship" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
         </div>
-        <div>
-            <h4 class="text-white font-black mb-4 tracking-wider">LootDrop</h4>
-            <p class="text-slate-500 text-xs mb-4">Your automated engine for the best PC gaming discounts.</p>
-            <ul class="space-y-2 text-sm text-slate-400">
-                <li><a href="browse.html" class="hover:text-indigo-400 transition-colors">All Deals</a></li>
-                <li><a href="about.html" class="hover:text-indigo-400 transition-colors">About & Affiliate Disclosure</a></li>
-            </ul>
+        <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="FIA European Truck Racing Championship">FIA European Truck Racing Championship</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
+                <div class="flex flex-col">
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$29.99</span>
+                    <span class="text-lg font-black leading-none text-emerald-400">$2.99</span>
+                </div>
+                <a href="https://www.cheapshark.com/redirect?dealID=I8oOsqqRba%2F14radqLXyYh0MUY5ldG82hNPcVtUpzDc%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
+            </div>
         </div>
     </div>
-            <div class="border-t border-slate-950 py-6 text-center bg-black/20">
-                <p class="text-slate-600 text-xs font-medium max-w-xl mx-auto px-6">
-                    &copy; 2026 LootDrop. Automated Deal Engine. We may earn an affiliate commission when you buy through links on our site.
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-slate-700/50 hover:border-indigo-500/50 hover:-translate-y-1"
+         data-title="huntdown" data-price="3.99" data-store="humble store">
+        <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
+            <div class="flex flex-col gap-1 items-start">
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                
+            </div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-80%</div>
+        </div>
+        <div class="h-40 overflow-hidden bg-slate-900 relative">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/598550/capsule_231x87.jpg?t=1723637797" alt="Huntdown" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Huntdown">Huntdown</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
+                <div class="flex flex-col">
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$19.99</span>
+                    <span class="text-lg font-black leading-none text-emerald-400">$3.99</span>
+                </div>
+                <a href="https://www.cheapshark.com/redirect?dealID=warK%2FuPBFkfYzW8LEZiF8liZaP8g2a%2FU52rvH2qNUVM%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
+            </div>
+        </div>
+    </div>
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-slate-700/50 hover:border-indigo-500/50 hover:-translate-y-1"
+         data-title="astria ascending" data-price="3.49" data-store="humble store">
+        <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
+            <div class="flex flex-col gap-1 items-start">
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                
+            </div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
+        </div>
+        <div class="h-40 overflow-hidden bg-slate-900 relative">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1121780/capsule_231x87.jpg?t=1744981699" alt="Astria Ascending" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Astria Ascending">Astria Ascending</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
+                <div class="flex flex-col">
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$34.99</span>
+                    <span class="text-lg font-black leading-none text-emerald-400">$3.49</span>
+                </div>
+                <a href="https://www.cheapshark.com/redirect?dealID=5l9T5KjOHCl04c1TB4J3vCOk44PAQqEoHsZ%2BVKt81HA%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
+            </div>
+        </div>
+    </div>
+    <div class="deal-card relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-slate-700/50 hover:border-indigo-500/50 hover:-translate-y-1"
+         data-title="far cry 5 and far cry new dawn deluxe edition bundle" data-price="14.99" data-store="humble store">
+        <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
+            <div class="flex flex-col gap-1 items-start">
+                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5">Humble Store</span>
+                
+            </div>
+            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-85%</div>
+        </div>
+        <div class="h-40 overflow-hidden bg-slate-900 relative">
+            <img src="https://hb.imgix.net/85970297dbcd85c44bd2112f2e33292144559ef1.png?auto=compress,format&fit=crop&h=84&w=135&s=9a058466977c86a2265106f68949bee5" alt="Far Cry 5 and Far Cry New Dawn Deluxe Edition Bundle" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" loading="lazy">
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
+            <h3 class="text-sm font-bold text-white mb-3 line-clamp-2 leading-tight" title="Far Cry 5 and Far Cry New Dawn Deluxe Edition Bundle">Far Cry 5 and Far Cry New Dawn Deluxe Edition Bundle</h3>
+            <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-center">
+                <div class="flex flex-col">
+                    <span class="text-[10px] text-slate-500 line-through leading-none mb-1">$99.99</span>
+                    <span class="text-lg font-black leading-none text-emerald-400">$14.99</span>
+                </div>
+                <a href="https://www.cheapshark.com/redirect?dealID=VInMhsJ%2F5VKKxv1MJWk5lvGgKiq9HjcIiewGo%2FPmGcs%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition-all shadow-md">Claim</a>
+            </div>
+        </div>
+    </div></div></div>
+        </main>
+
+        <footer class="bg-slate-950/50 pt-10">
+            
+        <div class="max-w-7xl mx-auto px-6 py-12 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+                <h4 class="text-white font-black mb-4 uppercase tracking-widest text-xs">Top Storefronts</h4>
+                <ul class="space-y-2 text-sm text-slate-500">
+                    <li><a href="store-steam.html" class="hover:text-indigo-400 transition-colors">Steam Deals</a></li><li><a href="store-greenmangaming.html" class="hover:text-indigo-400 transition-colors">GreenManGaming Deals</a></li><li><a href="store-fanatical.html" class="hover:text-indigo-400 transition-colors">Fanatical Deals</a></li><li><a href="store-humble-store.html" class="hover:text-indigo-400 transition-colors">Humble Store Deals</a></li><li><a href="store-gamersgate.html" class="hover:text-indigo-400 transition-colors">GamersGate Deals</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-black mb-4 uppercase tracking-widest text-xs">Price Drops</h4>
+                <ul class="space-y-2 text-sm text-slate-500">
+                    <li><a href="under-5.html" class="hover:text-indigo-400 transition-colors">Games Under $5</a></li>
+                    <li><a href="under-10.html" class="hover:text-indigo-400 transition-colors">Games Under $10</a></li>
+                    <li><a href="free.html" class="hover:text-indigo-400 transition-colors underline decoration-emerald-500">100% Free Games</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-black mb-4 uppercase tracking-widest text-xs">LootDrop</h4>
+                <p class="text-slate-500 text-xs mb-4">Your automated engine for the best PC gaming discounts.</p>
+                <ul class="space-y-2 text-sm text-slate-400">
+                    <li><a href="browse.html" class="hover:text-indigo-400 transition-colors">All Deals</a></li>
+                    <li><a href="about.html" class="hover:text-indigo-400 transition-colors">About & Disclosure</a></li>
+                </ul>
+            </div>
+        </div>
+            <div class="border-t border-white/5 py-8 text-center bg-black/40">
+                <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest">
+                    &copy; 2026 LootDrop. Automated Deal Engine. Affiliate Disclosure: Links may earn commissions.
                 </p>
             </div>
         </footer>
