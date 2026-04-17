@@ -1,47 +1,48 @@
+// Utility to ask our secure background script to fetch data for us
+async function fetchFromBackground(url) {
+    return new Promise((resolve, reject) => {
+        chrome.runtime.sendMessage({ action: "fetchDealData", url: url }, (response) => {
+            if (response && response.success) {
+                resolve(response.data);
+            } else {
+                reject(response ? response.error : 'Unknown error');
+            }
+        });
+    });
+}
+
 // Configuration
-const AFFILIATE_ID = 'YOUR_AFFILIATE_ID_HERE'; // Replace with your actual CJ or Humble ID before publishing
+const AFFILIATE_ID = 'default_tracker';
 const AFFILIATE_PARAM = `&affiliate_id=${AFFILIATE_ID}`;
 
-const STORES_API_URL = 'https://www.cheapshark.com/api/1.0/stores';
-
 async function init() {
-    // 1. Extract the Steam App ID from the current URL
     const match = window.location.pathname.match(/\/app\/(\d+)/);
     if (!match) return;
     const steamAppId = match[1];
 
     try {
-        // 2. Lookup the game in the CheapShark database
-        const gamesRes = await fetch(`https://www.cheapshark.com/api/1.0/games?steamAppID=${steamAppId}`);
-        const gamesData = await gamesRes.json();
-        
-        // If the game isn't tracked, stop execution
+        // 1. Lookup the game (via background worker)
+        const gamesData = await fetchFromBackground(`https://www.cheapshark.com/api/1.0/games?steamAppID=${steamAppId}`);
         if (!gamesData || gamesData.length === 0) return; 
         
         const gameId = gamesData[0].gameID;
 
-        // 3. Fetch all active deals for this specific game
-        const dealsRes = await fetch(`https://www.cheapshark.com/api/1.0/games?id=${gameId}`);
-        const dealsData = await dealsRes.json();
-
+        // 2. Fetch all active deals
+        const dealsData = await fetchFromBackground(`https://www.cheapshark.com/api/1.0/games?id=${gameId}`);
         if (!dealsData || !dealsData.deals || dealsData.deals.length === 0) return;
 
-        // 4. Find the absolute cheapest active deal right now
+        // 3. Find the absolute cheapest active deal right now
         const cheapestDeal = dealsData.deals.reduce((min, deal) => parseFloat(deal.price) < parseFloat(min.price) ? deal : min, dealsData.deals[0]);
 
-        // 5. Logic Check: If the cheapest place is Steam itself (Store ID 1), do nothing.
-        if (cheapestDeal.storeID === '1') return;
+        if (cheapestDeal.storeID === '1') return; // If Steam is cheapest, do nothing
+        if (parseFloat(cheapestDeal.savings) <= 0) return; // If no savings, do nothing
 
-        // Logic Check: If there are no actual savings, do nothing.
-        if (parseFloat(cheapestDeal.savings) <= 0) return;
-
-        // 6. Fetch store names to translate the ID into a readable name
-        const storesRes = await fetch(STORES_API_URL);
-        const storesData = await storesRes.json();
+        // 4. Fetch store names
+        const storesData = await fetchFromBackground('https://www.cheapshark.com/api/1.0/stores');
         const store = storesData.find(s => s.storeID === cheapestDeal.storeID);
         const storeName = store ? store.storeName : 'Another Store';
 
-        // 7. Inject the Affiliate Banner
+        // 5. Inject the Banner
         injectBanner(cheapestDeal, storeName, dealsData.info.title);
 
     } catch (error) {
@@ -53,23 +54,13 @@ function injectBanner(deal, storeName, gameTitle) {
     const dealUrl = `https://www.cheapshark.com/redirect?dealID=${deal.dealID}${AFFILIATE_PARAM}`;
     const savings = Math.round(deal.savings);
 
-    // Create the banner element
     const banner = document.createElement('div');
     banner.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background: linear-gradient(90deg, #1e1b4b 0%, #312e81 100%);
-        color: #fff;
-        z-index: 9999999;
-        padding: 16px 32px;
-        font-family: 'Motiva Sans', Arial, Helvetica, sans-serif;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        border-bottom: 2px solid #8b5cf6;
+        position: fixed; top: 0; left: 0; width: 100%;
+        background: linear-gradient(90deg, #1e1b4b 0%, #312e81 100%); color: #fff;
+        z-index: 9999999; padding: 16px 32px; font-family: 'Motiva Sans', Arial, Helvetica, sans-serif;
+        display: flex; justify-content: space-between; align-items: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-bottom: 2px solid #8b5cf6;
     `;
 
     banner.innerHTML = `
@@ -89,17 +80,14 @@ function injectBanner(deal, storeName, gameTitle) {
         </div>
     `;
 
-    // Inject into the DOM and push Steam's content down so it doesn't overlap their navbar
     document.body.appendChild(banner);
     document.body.style.transition = 'margin-top 0.3s ease';
     document.body.style.marginTop = '70px'; 
 
-    // Handle closing the banner
     document.getElementById('lootdrop-close').addEventListener('click', () => {
         banner.remove();
         document.body.style.marginTop = '0';
     });
 }
 
-// Start the engine
 init();

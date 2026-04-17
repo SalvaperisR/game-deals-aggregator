@@ -5,8 +5,11 @@
   "description": "Never overpay on Steam. Instantly find cheaper PC game deals across the web.",
   "permissions": [],
   "host_permissions": [
-    "https://www.cheapshark.com/api/*"
+    "https://www.cheapshark.com/*"
   ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
       "matches": ["*://store.steampowered.com/app/*"],
