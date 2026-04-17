@@ -12,7 +12,6 @@ const AFFILIATE_PARAM = `&affiliate_id=${AFFILIATE_ID}`;
 async function fetchData() {
     try {
         console.log('Fetching stores, standard deals, and hunting for 100% FREE drops...');
-        // Added a dedicated API call with upperPrice=0 to strictly find 100% free games
         const [storesRes, dealsPage1, dealsPage2, freeDealsRes] = await Promise.all([
             axios.get(STORES_API_URL),
             axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1,2,3,4,8,11,15&upperPrice=30&sortBy=Deal Rating&pageNumber=0'),
@@ -26,8 +25,6 @@ async function fetchData() {
         });
 
         const allDeals = [...dealsPage1.data, ...dealsPage2.data];
-        
-        // Ensure free deals are unique and truly 0.00
         const freeDeals = freeDealsRes.data.filter(deal => parseFloat(deal.salePrice) === 0.00);
         
         return { deals: allDeals, freeDeals, storeMap };
@@ -39,7 +36,6 @@ async function fetchData() {
 
 // --- TEMPLATE ENGINE ---
 
-// 1. Master Layout (Applies to all pages)
 function renderLayout(title, content, activePage) {
     const year = new Date().getFullYear();
     const isHome = activePage === 'home' ? 'text-indigo-400' : 'text-slate-300 hover:text-white';
@@ -107,18 +103,33 @@ function renderLayout(title, content, activePage) {
     `;
 }
 
-// 2. Component: Generate a Single Deal Card HTML
+// 2. Component: Generate a Single Deal Card HTML with LOOT SCORE logic
 function generateCard(deal, storeMap, isFree = false) {
     const dealUrl = `https://www.cheapshark.com/redirect?dealID=${deal.dealID}${AFFILIATE_PARAM}`;
     const savings = Math.round(deal.savings);
     const storeName = storeMap[deal.storeID] || 'Store';
+    const rating = parseFloat(deal.dealRating);
     
-    // Apply special styling if the deal is 100% free
-    const badgeBg = isFree ? 'bg-emerald-500' : 'bg-red-500';
-    const badgeText = isFree ? '100% OFF' : `-${savings}%`;
-    const priceColor = isFree ? 'text-emerald-400 animate-pulse' : 'text-emerald-400';
-    const cardBorder = isFree ? 'border-emerald-500/50 shadow-[0_0_15px_rgba(16,185,129,0.2)]' : 'border-slate-700/50 hover:border-indigo-500/50';
-    const buttonStyle = isFree ? 'bg-emerald-600 hover:bg-emerald-500' : 'bg-indigo-600 hover:bg-indigo-500';
+    // Default Styling
+    let badgeBg = isFree ? 'bg-emerald-500' : 'bg-red-500';
+    let badgeText = isFree ? '100% OFF' : `-${savings}%`;
+    let priceColor = isFree ? 'text-emerald-400 animate-pulse' : 'text-emerald-400';
+    let cardBorder = isFree ? 'border-emerald-500/50 shadow-[0_0_15px_rgba(16,185,129,0.2)]' : 'border-slate-700/50 hover:border-indigo-500/50';
+    let buttonStyle = isFree ? 'bg-emerald-600 hover:bg-emerald-500' : 'bg-indigo-600 hover:bg-indigo-500';
+    let tierBadge = '';
+
+    // LOOT SCORE ALGORITHM (Only apply tier visuals to paid games to not override Free visuals)
+    if (!isFree) {
+        if (rating >= 9.0) {
+            // S-Tier: God Roll
+            cardBorder = 'border-amber-400/80 shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)] hover:border-amber-400';
+            tierBadge = `<span class="bg-amber-500 text-slate-900 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-amber-300">S-Tier Deal</span>`;
+        } else if (rating >= 8.0) {
+            // A-Tier: Epic
+            cardBorder = 'border-purple-500/50 shadow-[0_0_10px_rgba(168,85,247,0.1)] hover:shadow-[0_0_20px_rgba(168,85,247,0.25)] hover:border-purple-500';
+            tierBadge = `<span class="bg-purple-600 text-white text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg tracking-wide border border-purple-400">A-Tier</span>`;
+        }
+    }
 
     return `
     <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col ${cardBorder}" 
@@ -127,8 +138,11 @@ function generateCard(deal, storeMap, isFree = false) {
          data-store="${storeName.toLowerCase()}">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
-            <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">${storeName}</span>
-            <div class="${badgeBg} text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide">${badgeText}</div>
+            <div class="flex flex-col gap-1 items-start">
+                <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">${storeName}</span>
+                ${tierBadge}
+            </div>
+            <div class="${badgeBg} text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide border border-white/20">${badgeText}</div>
         </div>
 
         <div class="h-40 overflow-hidden bg-slate-900 relative">
@@ -151,7 +165,6 @@ function generateCard(deal, storeMap, isFree = false) {
     `;
 }
 
-// 3. Page Generator: Home
 function generateHomePage(deals, storeMap) {
     const topDeals = deals.slice(0, 8); 
     
@@ -184,7 +197,6 @@ function generateHomePage(deals, storeMap) {
     return renderLayout('Home', content, 'home');
 }
 
-// 4. Page Generator: Free Drops (Viral Traffic Page)
 function generateFreePage(freeDeals, storeMap) {
     let content = `
     <div class="max-w-7xl mx-auto px-6">
@@ -206,9 +218,7 @@ function generateFreePage(freeDeals, storeMap) {
         `;
     } else {
         content += `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">`;
-        freeDeals.forEach(deal => {
-            content += generateCard(deal, storeMap, true);
-        });
+        freeDeals.forEach(deal => content += generateCard(deal, storeMap, true));
         content += `</div>`;
     }
 
@@ -216,7 +226,6 @@ function generateFreePage(freeDeals, storeMap) {
     return renderLayout('100% Free Drops', content, 'free');
 }
 
-// 5. Page Generator: Browse (With Interactive Filters)
 function generateBrowsePage(deals, storeMap) {
     const availableStores = [...new Set(deals.map(d => storeMap[d.storeID] || 'Store'))].sort();
 
@@ -334,7 +343,6 @@ function generateBrowsePage(deals, storeMap) {
     return renderLayout('Browse Deals', content, 'browse');
 }
 
-// 6. Page Generator: About
 function generateAboutPage() {
     const content = `
     <div class="max-w-3xl mx-auto px-6 py-12 text-slate-300">
@@ -342,42 +350,30 @@ function generateAboutPage() {
         
         <div class="prose prose-invert prose-indigo max-w-none space-y-6">
             <p class="text-lg">Welcome to LootDrop, your automated engine for discovering the best PC game deals.</p>
-            
             <h3 class="text-2xl font-bold text-white mt-8">How it Works</h3>
-            <p>Our servers scan multiple digital storefronts (including Steam, Fanatical, Green Man Gaming, and Humble Bundle) every single day. We aggregate the highest discounts and present them in a lightning-fast, ad-free environment.</p>
-            
+            <p>Our servers scan multiple digital storefronts every single day. We aggregate the highest discounts and present them in a lightning-fast, ad-free environment.</p>
             <h3 class="text-2xl font-bold text-white mt-8">Affiliate Disclosure</h3>
             <p class="p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 italic">
-                LootDrop is a participant in various affiliate marketing programs. This means we may earn a commission on purchases made through our links to retailer sites. <strong>This comes at absolutely no extra cost to you</strong>, and helps keep our servers running.
+                LootDrop is a participant in various affiliate marketing programs. This means we may earn a commission on purchases made through our links to retailer sites. <strong>This comes at absolutely no extra cost to you</strong>.
             </p>
-
-            <h3 class="text-2xl font-bold text-white mt-8">Contact</h3>
-            <p>For inquiries, partnerships, or support, please reach out via our GitHub repository.</p>
         </div>
     </div>
     `;
     return renderLayout('About Us', content, 'about');
 }
 
-// --- MAIN BUILD PIPELINE ---
 async function build() {
     const data = await fetchData();
-    
-    console.log('Generating Multi-Page Site including Viral Free Page...');
-    const htmlHome = generateHomePage(data.deals, data.storeMap);
-    const htmlBrowse = generateBrowsePage(data.deals, data.storeMap);
-    const htmlFree = generateFreePage(data.freeDeals, data.storeMap);
-    const htmlAbout = generateAboutPage();
+    console.log('Generating Site with Loot Score Algorithm...');
     
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR);
     }
     
-    // Write all pages to the public folder
-    fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), htmlHome);
-    fs.writeFileSync(path.join(OUTPUT_DIR, 'browse.html'), htmlBrowse);
-    fs.writeFileSync(path.join(OUTPUT_DIR, 'free.html'), htmlFree);
-    fs.writeFileSync(path.join(OUTPUT_DIR, 'about.html'), htmlAbout);
+    fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), generateHomePage(data.deals, data.storeMap));
+    fs.writeFileSync(path.join(OUTPUT_DIR, 'browse.html'), generateBrowsePage(data.deals, data.storeMap));
+    fs.writeFileSync(path.join(OUTPUT_DIR, 'free.html'), generateFreePage(data.freeDeals, data.storeMap));
+    fs.writeFileSync(path.join(OUTPUT_DIR, 'about.html'), generateAboutPage());
     
     console.log('Success! Full application built.');
 }
