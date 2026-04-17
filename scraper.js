@@ -5,8 +5,6 @@ import path from 'path';
 // Configuration
 const STORES_API_URL = 'https://www.cheapshark.com/api/1.0/stores';
 const OUTPUT_DIR = './public';
-
-// Replace this with your actual GitHub Pages URL to generate the correct sitemap
 const SITE_DOMAIN = 'https://SalvaperisR.github.io/game-deals-aggregator'; 
 
 const AFFILIATE_ID = process.env.AFFILIATE_ID || 'default_tracker';
@@ -14,7 +12,7 @@ const AFFILIATE_PARAM = `&affiliate_id=${AFFILIATE_ID}`;
 
 async function fetchData() {
     try {
-        console.log('Fetching data for Programmatic SEO Engine...');
+        console.log('Fetching multi-page data...');
         const [storesRes, dealsPage1, dealsPage2, freeDealsRes] = await Promise.all([
             axios.get(STORES_API_URL),
             axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1,2,3,4,8,11,15&upperPrice=30&sortBy=Deal Rating&pageNumber=0'),
@@ -23,9 +21,7 @@ async function fetchData() {
         ]);
         
         const storeMap = {};
-        storesRes.data.forEach(store => {
-            storeMap[store.storeID] = store.storeName;
-        });
+        storesRes.data.forEach(store => storeMap[store.storeID] = store.storeName);
 
         const allDeals = [...dealsPage1.data, ...dealsPage2.data];
         const freeDeals = freeDealsRes.data.filter(deal => parseFloat(deal.salePrice) === 0.00);
@@ -37,9 +33,8 @@ async function fetchData() {
     }
 }
 
-// --- TEMPLATE ENGINE ---
+// --- TEMPLATES ---
 
-// Dynamically builds the SEO footer links based on available data
 function generateSEOFooter(storeMap, availableStoreIDs) {
     let footerHtml = `
     <div class="max-w-7xl mx-auto px-6 py-8 border-t border-slate-800 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -47,13 +42,11 @@ function generateSEOFooter(storeMap, availableStoreIDs) {
             <h4 class="text-white font-black mb-4 tracking-wider">Top Storefronts</h4>
             <ul class="space-y-2 text-sm text-slate-400">
     `;
-    
     availableStoreIDs.forEach(id => {
         const storeName = storeMap[id];
         const slug = `store-${storeName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.html`;
         footerHtml += `<li><a href="${slug}" class="hover:text-indigo-400 transition-colors">${storeName} Deals</a></li>`;
     });
-
     footerHtml += `
             </ul>
         </div>
@@ -68,14 +61,13 @@ function generateSEOFooter(storeMap, availableStoreIDs) {
         </div>
         <div>
             <h4 class="text-white font-black mb-4 tracking-wider">LootDrop</h4>
-            <p class="text-slate-500 text-xs mb-4">Your automated engine for the best PC gaming discounts. Updated daily across major digital storefronts.</p>
+            <p class="text-slate-500 text-xs mb-4">Your automated engine for the best PC gaming discounts.</p>
             <ul class="space-y-2 text-sm text-slate-400">
                 <li><a href="browse.html" class="hover:text-indigo-400 transition-colors">All Deals</a></li>
                 <li><a href="about.html" class="hover:text-indigo-400 transition-colors">About & Affiliate Disclosure</a></li>
             </ul>
         </div>
     </div>`;
-    
     return footerHtml;
 }
 
@@ -85,7 +77,8 @@ function renderLayout(title, description, content, activePage, storeMap, availab
     const isBrowse = activePage === 'browse' ? 'text-indigo-400' : 'text-slate-300 hover:text-white';
     const isFree = activePage === 'free' ? 'text-emerald-400' : 'text-slate-300 hover:text-white';
     
-    const seoFooter = generateSEOFooter(storeMap, availableStoreIDs);
+    // Fallback empty array if availableStoreIDs isn't passed (for About page)
+    const seoFooter = availableStoreIDs ? generateSEOFooter(storeMap, availableStoreIDs) : '';
 
     return `
     <!DOCTYPE html>
@@ -95,9 +88,7 @@ function renderLayout(title, description, content, activePage, storeMap, availab
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>${title} | LootDrop</title>
         <meta name="description" content="${description}">
-        
         <meta name="google-site-verification" content="q9Fphfg84545ZHMq8phpNLIyduEW07oowLI6Njm_Cdk" />
-        
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
@@ -175,7 +166,7 @@ function generateCard(deal, storeMap, isFree = false) {
     }
 
     return `
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col ${cardBorder}">
+    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col ${cardBorder}" data-title="${deal.title.toLowerCase()}" data-price="${deal.salePrice}" data-store="${storeName.toLowerCase()}">
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">${storeName}</span>
@@ -193,22 +184,24 @@ function generateCard(deal, storeMap, isFree = false) {
                     <span class="text-xs text-slate-500 line-through leading-none mb-1">$${deal.normalPrice}</span>
                     <span class="text-lg font-black leading-none ${priceColor}">$${deal.salePrice}</span>
                 </div>
-                <a href="${dealUrl}" target="_blank" rel="noopener noreferrer" class="${buttonStyle} text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">
-                    Claim
-                </a>
+                <a href="${dealUrl}" target="_blank" rel="noopener noreferrer" class="${buttonStyle} text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">Claim</a>
             </div>
         </div>
     </div>
     `;
 }
 
-// Generates generic SEO grid pages (for specific stores or specific price points)
-function generateCollectionPage(title, description, deals, storeMap, availableStoreIDs) {
+// Generates generic SEO grid pages (for Home, Free, Store pages)
+function generateCollectionPage(title, description, deals, storeMap, availableStoreIDs, activePage) {
     let content = `
     <div class="max-w-7xl mx-auto px-6">
         <div class="mb-10 text-center">
             <h2 class="text-4xl md:text-5xl font-black text-white mb-4">${title}</h2>
             <p class="text-lg text-slate-400 max-w-2xl mx-auto">${description}</p>
+            ${activePage === 'home' ? `
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-6">
+                <a href="browse.html" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-6 rounded-xl transition-colors shadow-lg shadow-indigo-500/30">Explore All Deals</a>
+            </div>` : ''}
         </div>
         <div class="flex justify-between items-center border-b border-slate-800 pb-4 mb-6">
             <span class="text-sm font-medium text-slate-400 bg-slate-800 px-3 py-1 rounded-full">${deals.length} active deals</span>
@@ -219,23 +212,158 @@ function generateCollectionPage(title, description, deals, storeMap, availableSt
         content += `<div class="text-center py-20"><h3 class="text-xl text-slate-400">No deals found for this criteria today.</h3></div>`;
     } else {
         content += `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">`;
-        deals.forEach(deal => content += generateCard(deal, storeMap));
+        deals.forEach(deal => content += generateCard(deal, storeMap, activePage === 'free'));
         content += `</div>`;
     }
 
     content += `</div>`;
-    return renderLayout(title, description, content, 'seo', storeMap, availableStoreIDs);
+    return renderLayout(title, description, content, activePage, storeMap, availableStoreIDs);
+}
+
+// BROWSE PAGE GENERATOR
+function generateBrowsePage(deals, storeMap, availableStoreIDs) {
+    const availableStores = [...new Set(deals.map(d => storeMap[d.storeID] || 'Store'))].sort();
+
+    let content = `
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row gap-8">
+            <aside class="w-full md:w-64 flex-shrink-0">
+                <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 sticky top-28">
+                    <h3 class="text-lg font-black text-white mb-4">Filters</h3>
+                    
+                    <div class="mb-6">
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Search</label>
+                        <input type="text" id="searchInput" placeholder="Find a game..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none">
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Max Price</label>
+                        <input type="range" id="priceSlider" min="0" max="30" step="1" value="30" class="w-full accent-indigo-500">
+                        <div class="flex justify-between text-sm font-bold text-emerald-400 mt-2">
+                            <span>$0</span>
+                            <span id="priceValue">Under $30</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Storefronts</label>
+                        <div class="space-y-2" id="storeFilters">
+    `;
+
+    availableStores.forEach(store => {
+        content += `
+                            <label class="flex items-center gap-2 text-sm text-slate-300 cursor-pointer hover:text-white transition-colors">
+                                <input type="checkbox" value="${store.toLowerCase()}" class="store-checkbox rounded border-slate-600 text-indigo-500 focus:ring-indigo-500 bg-slate-900 w-4 h-4" checked>
+                                ${store}
+                            </label>
+        `;
+    });
+
+    content += `
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="flex-grow">
+                <div class="flex justify-between items-center border-b border-slate-800 pb-4 mb-6">
+                    <h2 class="text-2xl font-bold text-white">All Deals</h2>
+                    <span class="text-sm font-medium text-slate-400 bg-slate-800 px-3 py-1 rounded-full" id="resultsCount">${deals.length} results</span>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="dealsGrid">
+    `;
+
+    deals.forEach(deal => content += generateCard(deal, storeMap));
+
+    content += `
+                </div>
+                <div id="noResults" class="hidden text-center py-20">
+                    <h3 class="text-xl font-bold text-slate-400">No deals match your filters.</h3>
+                    <button onclick="resetFilters()" class="mt-4 text-indigo-400 hover:text-indigo-300 underline font-bold">Reset Filters</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const priceSlider = document.getElementById('priceSlider');
+        const priceValue = document.getElementById('priceValue');
+        const storeCheckboxes = document.querySelectorAll('.store-checkbox');
+        const cards = document.querySelectorAll('.deal-card');
+        const resultsCount = document.getElementById('resultsCount');
+        const noResults = document.getElementById('noResults');
+
+        function applyFilters() {
+            const term = searchInput.value.toLowerCase();
+            const maxPrice = parseFloat(priceSlider.value);
+            const checkedStores = Array.from(storeCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title');
+                const price = parseFloat(card.getAttribute('data-price'));
+                const store = card.getAttribute('data-store');
+
+                if (title.includes(term) && price <= maxPrice && checkedStores.includes(store)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            resultsCount.innerText = visibleCount + (visibleCount === 1 ? ' result' : ' results');
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        searchInput.addEventListener('input', applyFilters);
+        priceSlider.addEventListener('input', (e) => {
+            priceValue.innerText = 'Under $' + e.target.value;
+            applyFilters();
+        });
+        storeCheckboxes.forEach(cb => cb.addEventListener('change', applyFilters));
+
+        window.resetFilters = function() {
+            searchInput.value = '';
+            priceSlider.value = 30;
+            priceValue.innerText = 'Under $30';
+            storeCheckboxes.forEach(cb => cb.checked = true);
+            applyFilters();
+        };
+    </script>
+    `;
+
+    return renderLayout('Browse All Deals', 'Filter and search through the top 100 PC game deals right now.', content, 'browse', storeMap, availableStoreIDs);
+}
+
+// ABOUT PAGE GENERATOR
+function generateAboutPage(storeMap, availableStoreIDs) {
+    const content = `
+    <div class="max-w-3xl mx-auto px-6 py-12 text-slate-300">
+        <h2 class="text-4xl font-black text-white mb-6 border-b border-slate-800 pb-4">About LootDrop</h2>
+        <div class="prose prose-invert prose-indigo max-w-none space-y-6">
+            <p class="text-lg">Welcome to LootDrop, your automated engine for discovering the best PC game deals.</p>
+            <h3 class="text-2xl font-bold text-white mt-8">How it Works</h3>
+            <p>Our servers scan multiple digital storefronts every single day. We aggregate the highest discounts and present them in a lightning-fast, ad-free environment.</p>
+            <h3 class="text-2xl font-bold text-white mt-8">Affiliate Disclosure</h3>
+            <p class="p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 italic">
+                LootDrop is a participant in various affiliate marketing programs. This means we may earn a commission on purchases made through our links to retailer sites. <strong>This comes at absolutely no extra cost to you</strong>.
+            </p>
+        </div>
+    </div>
+    `;
+    return renderLayout('About Us', 'Learn how LootDrop works and read our affiliate disclosure.', content, 'about', storeMap, availableStoreIDs);
 }
 
 // XML Sitemap Generator
 function generateSitemap(urls) {
     const today = new Date().toISOString().split('T')[0];
     let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
-    
     urls.forEach(url => {
         xml += `  <url>\n    <loc>${SITE_DOMAIN}/${url.path}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>${url.priority}</priority>\n  </url>\n`;
     });
-    
     xml += `</urlset>`;
     return xml;
 }
@@ -245,51 +373,44 @@ async function build() {
     const data = await fetchData();
     const availableStoreIDs = [...new Set(data.deals.map(d => d.storeID))];
     
-    console.log('Generating Core Pages...');
+    console.log('Generating Full Architecture (SEO + Browse/About)...');
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
     
-    // 1. Core Pages
     const sitemapUrls = [];
-    
     const writePage = (filename, html, priority) => {
         fs.writeFileSync(path.join(OUTPUT_DIR, filename), html);
         sitemapUrls.push({ path: filename, priority });
     };
 
-    // Re-use Collection Generator for Home/Free to save code lines
-    const homeHtml = generateCollectionPage('Top PC Game Deals', 'Your automated radar for the absolute best PC gaming deals across the entire internet.', data.deals.slice(0, 16), data.storeMap, availableStoreIDs);
-    writePage('index.html', homeHtml, '1.0');
-
-    const freeHtml = generateCollectionPage('100% Free Game Drops', 'Games currently completely free to claim and keep forever.', data.freeDeals, data.storeMap, availableStoreIDs);
-    writePage('free.html', freeHtml, '0.9');
+    // 1. Core Pages (Including the missing Browse & About)
+    writePage('index.html', generateCollectionPage('Top PC Game Deals', 'Your automated radar for the absolute best PC gaming deals across the entire internet.', data.deals.slice(0, 16), data.storeMap, availableStoreIDs, 'home'), '1.0');
+    writePage('free.html', generateCollectionPage('100% Free Game Drops', 'Games currently completely free to claim and keep forever.', data.freeDeals, data.storeMap, availableStoreIDs, 'free'), '0.9');
+    
+    // --> RESTORED BROWSE & ABOUT PAGES
+    writePage('browse.html', generateBrowsePage(data.deals, data.storeMap, availableStoreIDs), '0.9');
+    writePage('about.html', generateAboutPage(data.storeMap, availableStoreIDs), '0.5');
 
     // 2. Programmatic SEO: Price Bracket Pages
     const under5 = data.deals.filter(d => parseFloat(d.salePrice) < 5.00);
-    writePage('under-5.html', generateCollectionPage('Best PC Games Under $5', 'Massive discounts on top-rated games, all under 5 dollars.', under5, data.storeMap, availableStoreIDs), '0.8');
+    writePage('under-5.html', generateCollectionPage('Best PC Games Under $5', 'Massive discounts on top-rated games, all under 5 dollars.', under5, data.storeMap, availableStoreIDs, 'seo'), '0.8');
 
     const under10 = data.deals.filter(d => parseFloat(d.salePrice) < 10.00);
-    writePage('under-10.html', generateCollectionPage('Best PC Games Under $10', 'Incredible gaming experiences that won\'t break the bank. All under $10.', under10, data.storeMap, availableStoreIDs), '0.8');
+    writePage('under-10.html', generateCollectionPage('Best PC Games Under $10', 'Incredible gaming experiences that won\'t break the bank. All under $10.', under10, data.storeMap, availableStoreIDs, 'seo'), '0.8');
 
     const under20 = data.deals.filter(d => parseFloat(d.salePrice) < 20.00);
-    writePage('under-20.html', generateCollectionPage('Best PC Games Under $20', 'Premium games and massive AAA discounts under 20 dollars.', under20, data.storeMap, availableStoreIDs), '0.8');
+    writePage('under-20.html', generateCollectionPage('Best PC Games Under $20', 'Premium games and massive AAA discounts under 20 dollars.', under20, data.storeMap, availableStoreIDs, 'seo'), '0.8');
 
     // 3. Programmatic SEO: Storefront Pages
-    console.log('Generating SEO Storefront Matrix...');
     availableStoreIDs.forEach(id => {
         const storeName = data.storeMap[id];
         const storeDeals = data.deals.filter(d => d.storeID === id);
         const slug = `store-${storeName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.html`;
-        
-        const html = generateCollectionPage(`${storeName} Deals & Sales`, `The live list of the absolute best discounts currently active on ${storeName}.`, storeDeals, data.storeMap, availableStoreIDs);
-        writePage(slug, html, '0.7');
+        writePage(slug, generateCollectionPage(`${storeName} Deals & Sales`, `The live list of the absolute best discounts currently active on ${storeName}.`, storeDeals, data.storeMap, availableStoreIDs, 'seo'), '0.7');
     });
 
-    // 4. Generate Sitemap.xml
-    console.log('Generating sitemap.xml...');
-    const sitemapXML = generateSitemap(sitemapUrls);
-    fs.writeFileSync(path.join(OUTPUT_DIR, 'sitemap.xml'), sitemapXML);
-
-    console.log(`Success! Programmatic SEO Matrix built with ${sitemapUrls.length} fully indexed pages.`);
+    // 4. Sitemap
+    fs.writeFileSync(path.join(OUTPUT_DIR, 'sitemap.xml'), generateSitemap(sitemapUrls));
+    console.log(`Success! Built ${sitemapUrls.length} pages total.`);
 }
 
 build();
