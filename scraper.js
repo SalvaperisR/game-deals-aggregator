@@ -3,7 +3,6 @@ import fs from 'fs';
 import path from 'path';
 
 // Configuration
-// We fetch more deals now (page 0 and 1) to make the Browse page robust
 const STORES_API_URL = 'https://www.cheapshark.com/api/1.0/stores';
 const OUTPUT_DIR = './public';
 
@@ -12,11 +11,13 @@ const AFFILIATE_PARAM = `&affiliate_id=${AFFILIATE_ID}`;
 
 async function fetchData() {
     try {
-        console.log('Fetching stores and multiple pages of deals...');
-        const [storesRes, dealsPage1, dealsPage2] = await Promise.all([
+        console.log('Fetching stores, standard deals, and hunting for 100% FREE drops...');
+        // Added a dedicated API call with upperPrice=0 to strictly find 100% free games
+        const [storesRes, dealsPage1, dealsPage2, freeDealsRes] = await Promise.all([
             axios.get(STORES_API_URL),
             axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1,2,3,4,8,11,15&upperPrice=30&sortBy=Deal Rating&pageNumber=0'),
-            axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1,2,3,4,8,11,15&upperPrice=30&sortBy=Deal Rating&pageNumber=1')
+            axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1,2,3,4,8,11,15&upperPrice=30&sortBy=Deal Rating&pageNumber=1'),
+            axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1,2,3,4,8,11,15&upperPrice=0')
         ]);
         
         const storeMap = {};
@@ -24,10 +25,12 @@ async function fetchData() {
             storeMap[store.storeID] = store.storeName;
         });
 
-        // Combine deals and remove duplicates if any
         const allDeals = [...dealsPage1.data, ...dealsPage2.data];
         
-        return { deals: allDeals, storeMap };
+        // Ensure free deals are unique and truly 0.00
+        const freeDeals = freeDealsRes.data.filter(deal => parseFloat(deal.salePrice) === 0.00);
+        
+        return { deals: allDeals, freeDeals, storeMap };
     } catch (error) {
         console.error('Error fetching data:', error.message);
         process.exit(1);
@@ -42,6 +45,7 @@ function renderLayout(title, content, activePage) {
     const isHome = activePage === 'home' ? 'text-indigo-400' : 'text-slate-300 hover:text-white';
     const isBrowse = activePage === 'browse' ? 'text-indigo-400' : 'text-slate-300 hover:text-white';
     const isAbout = activePage === 'about' ? 'text-indigo-400' : 'text-slate-300 hover:text-white';
+    const isFree = activePage === 'free' ? 'text-emerald-400' : 'text-slate-300 hover:text-white';
 
     return `
     <!DOCTYPE html>
@@ -70,10 +74,19 @@ function renderLayout(title, content, activePage) {
                     <h1 class="text-xl font-black tracking-tight text-white">Loot<span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Drop</span></h1>
                 </a>
                 
-                <nav class="flex gap-6 font-bold text-sm">
+                <nav class="hidden md:flex gap-6 font-bold text-sm items-center">
                     <a href="index.html" class="${isHome} transition-colors">Home</a>
                     <a href="browse.html" class="${isBrowse} transition-colors">Browse Deals</a>
+                    <a href="free.html" class="${isFree} transition-colors flex items-center gap-1">
+                        Free Drops 
+                        <span class="bg-red-500 text-white text-[9px] px-1.5 py-0.5 rounded uppercase tracking-widest animate-pulse">Live</span>
+                    </a>
                     <a href="about.html" class="${isAbout} transition-colors">About</a>
+                </nav>
+
+                <nav class="flex md:hidden gap-4 font-bold text-xs items-center">
+                    <a href="browse.html" class="${isBrowse}">Deals</a>
+                    <a href="free.html" class="${isFree} flex items-center gap-1">Free <span class="bg-red-500 w-2 h-2 rounded-full animate-pulse"></span></a>
                 </nav>
             </div>
         </header>
@@ -95,21 +108,27 @@ function renderLayout(title, content, activePage) {
 }
 
 // 2. Component: Generate a Single Deal Card HTML
-function generateCard(deal, storeMap) {
+function generateCard(deal, storeMap, isFree = false) {
     const dealUrl = `https://www.cheapshark.com/redirect?dealID=${deal.dealID}${AFFILIATE_PARAM}`;
     const savings = Math.round(deal.savings);
     const storeName = storeMap[deal.storeID] || 'Store';
     
-    // Data attributes used by the Vanilla JS filter engine
+    // Apply special styling if the deal is 100% free
+    const badgeBg = isFree ? 'bg-emerald-500' : 'bg-red-500';
+    const badgeText = isFree ? '100% OFF' : `-${savings}%`;
+    const priceColor = isFree ? 'text-emerald-400 animate-pulse' : 'text-emerald-400';
+    const cardBorder = isFree ? 'border-emerald-500/50 shadow-[0_0_15px_rgba(16,185,129,0.2)]' : 'border-slate-700/50 hover:border-indigo-500/50';
+    const buttonStyle = isFree ? 'bg-emerald-600 hover:bg-emerald-500' : 'bg-indigo-600 hover:bg-indigo-500';
+
     return `
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-indigo-500/50 transition-all duration-300 flex flex-col" 
+    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col ${cardBorder}" 
          data-title="${deal.title.toLowerCase()}" 
          data-price="${deal.salePrice}" 
          data-store="${storeName.toLowerCase()}">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">${storeName}</span>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg">-${savings}%</div>
+            <div class="${badgeBg} text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide">${badgeText}</div>
         </div>
 
         <div class="h-40 overflow-hidden bg-slate-900 relative">
@@ -121,10 +140,10 @@ function generateCard(deal, storeMap) {
             <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
                 <div class="flex flex-col">
                     <span class="text-xs text-slate-500 line-through leading-none mb-1">$${deal.normalPrice}</span>
-                    <span class="text-lg font-black text-emerald-400 leading-none">$${deal.salePrice}</span>
+                    <span class="text-lg font-black leading-none ${priceColor}">$${deal.salePrice}</span>
                 </div>
-                <a href="${dealUrl}" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">
-                    Get Deal
+                <a href="${dealUrl}" target="_blank" rel="noopener noreferrer" class="${buttonStyle} text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">
+                    Claim
                 </a>
             </div>
         </div>
@@ -134,17 +153,22 @@ function generateCard(deal, storeMap) {
 
 // 3. Page Generator: Home
 function generateHomePage(deals, storeMap) {
-    const heroDeal = deals[0];
-    const topDeals = deals.slice(1, 9); // Only show top 8 on home
+    const topDeals = deals.slice(0, 8); 
     
     let content = `
     <div class="max-w-7xl mx-auto px-6">
         <div class="text-center py-12 md:py-20">
             <h2 class="text-5xl md:text-6xl font-black text-white mb-6">Play More. <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Pay Less.</span></h2>
             <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10">Your automated radar for the absolute best PC gaming deals across the entire internet.</p>
-            <a href="browse.html" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 px-8 rounded-xl transition-colors text-lg shadow-lg shadow-indigo-500/30">
-                Explore All Deals
-            </a>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="browse.html" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 px-8 rounded-xl transition-colors text-lg shadow-lg shadow-indigo-500/30">
+                    Explore All Deals
+                </a>
+                <a href="free.html" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-4 px-8 rounded-xl transition-colors text-lg flex items-center justify-center gap-2">
+                    View Free Drops
+                    <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                </a>
+            </div>
         </div>
         
         <h3 class="text-2xl font-bold text-white border-b border-slate-800 pb-4 mb-6">Top Trending Right Now</h3>
@@ -160,15 +184,45 @@ function generateHomePage(deals, storeMap) {
     return renderLayout('Home', content, 'home');
 }
 
-// 4. Page Generator: Browse (With Interactive Filters)
+// 4. Page Generator: Free Drops (Viral Traffic Page)
+function generateFreePage(freeDeals, storeMap) {
+    let content = `
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="bg-emerald-900/20 border border-emerald-500/30 rounded-3xl p-8 md:p-12 mb-10 text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent"></div>
+            <h2 class="text-4xl md:text-5xl font-black text-white mb-4">100% Free <span class="text-emerald-400">Game Drops</span></h2>
+            <p class="text-lg text-emerald-100/70 max-w-2xl mx-auto">These games are currently completely free to claim and keep forever. Hurry, before the promotion expires!</p>
+        </div>
+    `;
+
+    if (freeDeals.length === 0) {
+        content += `
+        <div class="text-center py-20 bg-slate-800/30 rounded-2xl border border-slate-800">
+            <svg class="w-16 h-16 text-slate-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <h3 class="text-2xl font-bold text-slate-400">No Free Drops Active</h3>
+            <p class="text-slate-500 mt-2">The storefronts aren't giving away any free games right now. Check back tomorrow!</p>
+            <a href="browse.html" class="inline-block mt-6 text-indigo-400 hover:text-indigo-300 font-bold underline">Check out deals under $5 instead</a>
+        </div>
+        `;
+    } else {
+        content += `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">`;
+        freeDeals.forEach(deal => {
+            content += generateCard(deal, storeMap, true);
+        });
+        content += `</div>`;
+    }
+
+    content += `</div>`;
+    return renderLayout('100% Free Drops', content, 'free');
+}
+
+// 5. Page Generator: Browse (With Interactive Filters)
 function generateBrowsePage(deals, storeMap) {
-    // Extract unique stores from the actual deals we fetched
     const availableStores = [...new Set(deals.map(d => storeMap[d.storeID] || 'Store'))].sort();
 
     let content = `
     <div class="max-w-7xl mx-auto px-6">
         <div class="flex flex-col md:flex-row gap-8">
-            
             <aside class="w-full md:w-64 flex-shrink-0">
                 <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 sticky top-28">
                     <h3 class="text-lg font-black text-white mb-4">Filters</h3>
@@ -240,12 +294,7 @@ function generateBrowsePage(deals, storeMap) {
         function applyFilters() {
             const term = searchInput.value.toLowerCase();
             const maxPrice = parseFloat(priceSlider.value);
-            
-            // Get array of checked store values
-            const checkedStores = Array.from(storeCheckboxes)
-                                     .filter(cb => cb.checked)
-                                     .map(cb => cb.value);
-
+            const checkedStores = Array.from(storeCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
             let visibleCount = 0;
 
             cards.forEach(card => {
@@ -253,11 +302,7 @@ function generateBrowsePage(deals, storeMap) {
                 const price = parseFloat(card.getAttribute('data-price'));
                 const store = card.getAttribute('data-store');
 
-                const matchesSearch = title.includes(term);
-                const matchesPrice = price <= maxPrice;
-                const matchesStore = checkedStores.includes(store);
-
-                if (matchesSearch && matchesPrice && matchesStore) {
+                if (title.includes(term) && price <= maxPrice && checkedStores.includes(store)) {
                     card.style.display = 'flex';
                     visibleCount++;
                 } else {
@@ -269,7 +314,6 @@ function generateBrowsePage(deals, storeMap) {
             noResults.style.display = visibleCount === 0 ? 'block' : 'none';
         }
 
-        // Event Listeners
         searchInput.addEventListener('input', applyFilters);
         priceSlider.addEventListener('input', (e) => {
             priceValue.innerText = 'Under $' + e.target.value;
@@ -277,7 +321,6 @@ function generateBrowsePage(deals, storeMap) {
         });
         storeCheckboxes.forEach(cb => cb.addEventListener('change', applyFilters));
 
-        // Global Reset Function for the empty state
         window.resetFilters = function() {
             searchInput.value = '';
             priceSlider.value = 30;
@@ -291,7 +334,7 @@ function generateBrowsePage(deals, storeMap) {
     return renderLayout('Browse Deals', content, 'browse');
 }
 
-// 5. Page Generator: About
+// 6. Page Generator: About
 function generateAboutPage() {
     const content = `
     <div class="max-w-3xl mx-auto px-6 py-12 text-slate-300">
@@ -320,18 +363,20 @@ function generateAboutPage() {
 async function build() {
     const data = await fetchData();
     
-    console.log('Generating Multi-Page Site...');
+    console.log('Generating Multi-Page Site including Viral Free Page...');
     const htmlHome = generateHomePage(data.deals, data.storeMap);
     const htmlBrowse = generateBrowsePage(data.deals, data.storeMap);
+    const htmlFree = generateFreePage(data.freeDeals, data.storeMap);
     const htmlAbout = generateAboutPage();
     
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR);
     }
     
-    // Write all three files to the public folder
+    // Write all pages to the public folder
     fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), htmlHome);
     fs.writeFileSync(path.join(OUTPUT_DIR, 'browse.html'), htmlBrowse);
+    fs.writeFileSync(path.join(OUTPUT_DIR, 'free.html'), htmlFree);
     fs.writeFileSync(path.join(OUTPUT_DIR, 'about.html'), htmlAbout);
     
     console.log('Success! Full application built.');
