@@ -25,10 +25,19 @@
                     <h1 class="text-xl font-black tracking-tight text-white">Loot<span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Drop</span></h1>
                 </a>
                 
-                <nav class="flex gap-6 font-bold text-sm">
+                <nav class="hidden md:flex gap-6 font-bold text-sm items-center">
                     <a href="index.html" class="text-indigo-400 transition-colors">Home</a>
                     <a href="browse.html" class="text-slate-300 hover:text-white transition-colors">Browse Deals</a>
+                    <a href="free.html" class="text-slate-300 hover:text-white transition-colors flex items-center gap-1">
+                        Free Drops 
+                        <span class="bg-red-500 text-white text-[9px] px-1.5 py-0.5 rounded uppercase tracking-widest animate-pulse">Live</span>
+                    </a>
                     <a href="about.html" class="text-slate-300 hover:text-white transition-colors">About</a>
+                </nav>
+
+                <nav class="flex md:hidden gap-4 font-bold text-xs items-center">
+                    <a href="browse.html" class="text-slate-300 hover:text-white">Deals</a>
+                    <a href="free.html" class="text-slate-300 hover:text-white flex items-center gap-1">Free <span class="bg-red-500 w-2 h-2 rounded-full animate-pulse"></span></a>
                 </nav>
             </div>
         </header>
@@ -39,22 +48,56 @@
         <div class="text-center py-12 md:py-20">
             <h2 class="text-5xl md:text-6xl font-black text-white mb-6">Play More. <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Pay Less.</span></h2>
             <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10">Your automated radar for the absolute best PC gaming deals across the entire internet.</p>
-            <a href="browse.html" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 px-8 rounded-xl transition-colors text-lg shadow-lg shadow-indigo-500/30">
-                Explore All Deals
-            </a>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="browse.html" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 px-8 rounded-xl transition-colors text-lg shadow-lg shadow-indigo-500/30">
+                    Explore All Deals
+                </a>
+                <a href="free.html" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-4 px-8 rounded-xl transition-colors text-lg flex items-center justify-center gap-2">
+                    View Free Drops
+                    <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                </a>
+            </div>
         </div>
         
         <h3 class="text-2xl font-bold text-white border-b border-slate-800 pb-4 mb-6">Top Trending Right Now</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-indigo-500/50 transition-all duration-300 flex flex-col" 
+    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-slate-700/50 hover:border-indigo-500/50" 
+         data-title="all will fall" 
+         data-price="24.62" 
+         data-store="steam">
+        
+        <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
+            <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Steam</span>
+            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide">-49%</div>
+        </div>
+
+        <div class="h-40 overflow-hidden bg-slate-900 relative">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2706020/e92418f9e13e0def8c74e386f07f1fef6d08972a/capsule_231x87.jpg?t=1776161425" alt="ALL WILL FALL" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+        </div>
+        
+        <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
+            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="ALL WILL FALL">ALL WILL FALL</h3>
+            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
+                <div class="flex flex-col">
+                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$48.38</span>
+                    <span class="text-lg font-black leading-none text-emerald-400">$24.62</span>
+                </div>
+                <a href="https://www.cheapshark.com/redirect?dealID=eOl5K%2ButZW%2F%2FbJfzHlISruNdJiF4Qib3arBv8Vi6OZA%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">
+                    Claim
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-slate-700/50 hover:border-indigo-500/50" 
          data-title="truck mechanic: dangerous paths" 
          data-price="18.68" 
          data-store="steam">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Steam</span>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg">-45%</div>
+            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide">-45%</div>
         </div>
 
         <div class="h-40 overflow-hidden bg-slate-900 relative">
@@ -66,23 +109,23 @@
             <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
                 <div class="flex flex-col">
                     <span class="text-xs text-slate-500 line-through leading-none mb-1">$33.98</span>
-                    <span class="text-lg font-black text-emerald-400 leading-none">$18.68</span>
+                    <span class="text-lg font-black leading-none text-emerald-400">$18.68</span>
                 </div>
                 <a href="https://www.cheapshark.com/redirect?dealID=hUoAa4ZKG2W3f5M7RDtQD5lIyOXlRT0hS3oUlmpzWPQ%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">
-                    Get Deal
+                    Claim
                 </a>
             </div>
         </div>
     </div>
     
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-indigo-500/50 transition-all duration-300 flex flex-col" 
+    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-slate-700/50 hover:border-indigo-500/50" 
          data-title="cthulhu: the cosmic abyss" 
          data-price="28.79" 
          data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">GreenManGaming</span>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg">-28%</div>
+            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide">-28%</div>
         </div>
 
         <div class="h-40 overflow-hidden bg-slate-900 relative">
@@ -94,23 +137,23 @@
             <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
                 <div class="flex flex-col">
                     <span class="text-xs text-slate-500 line-through leading-none mb-1">$39.99</span>
-                    <span class="text-lg font-black text-emerald-400 leading-none">$28.79</span>
+                    <span class="text-lg font-black leading-none text-emerald-400">$28.79</span>
                 </div>
                 <a href="https://www.cheapshark.com/redirect?dealID=Nd76BZjk2ySkLKvjMYu0gKKKkm%2F%2B1eV0BcBRO%2F33FpY%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">
-                    Get Deal
+                    Claim
                 </a>
             </div>
         </div>
     </div>
     
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-indigo-500/50 transition-all duration-300 flex flex-col" 
+    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-slate-700/50 hover:border-indigo-500/50" 
          data-title="xenonauts 2" 
          data-price="25.99" 
          data-store="fanatical">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Fanatical</span>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg">-35%</div>
+            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide">-35%</div>
         </div>
 
         <div class="h-40 overflow-hidden bg-slate-900 relative">
@@ -122,23 +165,23 @@
             <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
                 <div class="flex flex-col">
                     <span class="text-xs text-slate-500 line-through leading-none mb-1">$39.99</span>
-                    <span class="text-lg font-black text-emerald-400 leading-none">$25.99</span>
+                    <span class="text-lg font-black leading-none text-emerald-400">$25.99</span>
                 </div>
                 <a href="https://www.cheapshark.com/redirect?dealID=mNjguSzHXYAUttVkGgWc1JHaFaZGHlLYQn8n5PgPlHU%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">
-                    Get Deal
+                    Claim
                 </a>
             </div>
         </div>
     </div>
     
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-indigo-500/50 transition-all duration-300 flex flex-col" 
+    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-slate-700/50 hover:border-indigo-500/50" 
          data-title="xenonauts 2" 
          data-price="25.99" 
          data-store="humble store">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Humble Store</span>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg">-35%</div>
+            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide">-35%</div>
         </div>
 
         <div class="h-40 overflow-hidden bg-slate-900 relative">
@@ -150,23 +193,23 @@
             <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
                 <div class="flex flex-col">
                     <span class="text-xs text-slate-500 line-through leading-none mb-1">$39.99</span>
-                    <span class="text-lg font-black text-emerald-400 leading-none">$25.99</span>
+                    <span class="text-lg font-black leading-none text-emerald-400">$25.99</span>
                 </div>
                 <a href="https://www.cheapshark.com/redirect?dealID=NqBZLaSRpVT2ceRIbkm9HhKveFr54StkBVZIglUdYgE%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">
-                    Get Deal
+                    Claim
                 </a>
             </div>
         </div>
     </div>
     
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-indigo-500/50 transition-all duration-300 flex flex-col" 
+    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-slate-700/50 hover:border-indigo-500/50" 
          data-title="cthulhu: the cosmic abyss" 
          data-price="27.99" 
          data-store="fanatical">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">Fanatical</span>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg">-30%</div>
+            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide">-30%</div>
         </div>
 
         <div class="h-40 overflow-hidden bg-slate-900 relative">
@@ -178,23 +221,23 @@
             <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
                 <div class="flex flex-col">
                     <span class="text-xs text-slate-500 line-through leading-none mb-1">$39.99</span>
-                    <span class="text-lg font-black text-emerald-400 leading-none">$27.99</span>
+                    <span class="text-lg font-black leading-none text-emerald-400">$27.99</span>
                 </div>
                 <a href="https://www.cheapshark.com/redirect?dealID=SYiij1Y5P%2FkvFqqBaPPQsaVD3YutCtB%2BC%2Fi2NM6kWYg%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">
-                    Get Deal
+                    Claim
                 </a>
             </div>
         </div>
     </div>
     
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-indigo-500/50 transition-all duration-300 flex flex-col" 
+    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-slate-700/50 hover:border-indigo-500/50" 
          data-title="the incredible adventures of van helsing anthology" 
          data-price="7.50" 
          data-store="gamersgate">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">GamersGate</span>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg">-90%</div>
+            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide">-90%</div>
         </div>
 
         <div class="h-40 overflow-hidden bg-slate-900 relative">
@@ -206,23 +249,23 @@
             <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
                 <div class="flex flex-col">
                     <span class="text-xs text-slate-500 line-through leading-none mb-1">$74.99</span>
-                    <span class="text-lg font-black text-emerald-400 leading-none">$7.50</span>
+                    <span class="text-lg font-black leading-none text-emerald-400">$7.50</span>
                 </div>
                 <a href="https://www.cheapshark.com/redirect?dealID=UsyUd%2F5VFScDiQul3Y7qU7Zz%2BN9Ljqck3lJuldY20bw%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">
-                    Get Deal
+                    Claim
                 </a>
             </div>
         </div>
     </div>
     
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-indigo-500/50 transition-all duration-300 flex flex-col" 
+    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col border-slate-700/50 hover:border-indigo-500/50" 
          data-title="watch dogs legion - deluxe edition (ubisoft)" 
          data-price="9.45" 
          data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">GreenManGaming</span>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg">-86%</div>
+            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg tracking-wide">-86%</div>
         </div>
 
         <div class="h-40 overflow-hidden bg-slate-900 relative">
@@ -234,38 +277,10 @@
             <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
                 <div class="flex flex-col">
                     <span class="text-xs text-slate-500 line-through leading-none mb-1">$69.99</span>
-                    <span class="text-lg font-black text-emerald-400 leading-none">$9.45</span>
+                    <span class="text-lg font-black leading-none text-emerald-400">$9.45</span>
                 </div>
                 <a href="https://www.cheapshark.com/redirect?dealID=0lF%2BFktIUm7kcxRmUBoLBcTOwImEZX34GBDiw6vGI8w%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">
-                    Get Deal
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="deal-card relative bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50 hover:border-indigo-500/50 transition-all duration-300 flex flex-col" 
-         data-title="watch_dogs 2 gold edition" 
-         data-price="10.80" 
-         data-store="greenmangaming">
-        
-        <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
-            <span class="bg-slate-900/80 text-slate-300 text-[10px] font-black uppercase px-2 py-1 rounded shadow-lg">GreenManGaming</span>
-            <div class="bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg">-86%</div>
-        </div>
-
-        <div class="h-40 overflow-hidden bg-slate-900 relative">
-            <img src="https://images.greenmangaming.com/b862c5cae355443f879809fc20eec404/e1d34e22dd2e4d3196a8e0c77b07c778.jpg" alt="Watch_Dogs 2 Gold Edition" loading="lazy" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
-        </div>
-        
-        <div class="p-4 flex-1 flex flex-col justify-between relative z-10">
-            <h3 class="text-base font-bold text-white mb-3 line-clamp-2 leading-tight" title="Watch_Dogs 2 Gold Edition">Watch_Dogs 2 Gold Edition</h3>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex justify-between items-center">
-                <div class="flex flex-col">
-                    <span class="text-xs text-slate-500 line-through leading-none mb-1">$79.99</span>
-                    <span class="text-lg font-black text-emerald-400 leading-none">$10.80</span>
-                </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=yWC3u%2F4NAUAHNPA%2FSt3cyl4oFeF9qgFlY%2Blb9aVZzC8%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1.5 px-3 rounded-lg text-sm transition-colors shadow-md">
-                    Get Deal
+                    Claim
                 </a>
             </div>
         </div>
