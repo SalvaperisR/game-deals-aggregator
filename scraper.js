@@ -95,6 +95,9 @@ function renderLayout(title, description, content, activePage, storeMap, availab
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>${title} | LootDrop</title>
         <meta name="description" content="${description}">
+        
+        <meta name="google-site-verification" content="q9Fphfg84545ZHMq8phpNLIyduEW07oowLI6Njm_Cdk" />
+        
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
