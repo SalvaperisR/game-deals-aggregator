@@ -36,12 +36,22 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://SalvaperisR.github.io/game-deals-aggregator/store-epic-games-store.html</loc>
+    <lastmod>2026-04-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://SalvaperisR.github.io/game-deals-aggregator/store-fanatical.html</loc>
     <lastmod>2026-04-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://SalvaperisR.github.io/game-deals-aggregator/store-humble-store.html</loc>
+    <lastmod>2026-04-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://SalvaperisR.github.io/game-deals-aggregator/store-gog.html</loc>
     <lastmod>2026-04-20</lastmod>
     <priority>0.8</priority>
   </url>
