@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "LootDrop Companion Protocol",
+  "version": "1.0",
+  "description": "Scans Steam for better deals across the data-grid.",
+  "content_scripts": [
+    {
+      "matches": ["*://store.steampowered.com/app/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
