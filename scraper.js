@@ -136,7 +136,10 @@ function renderLayout(title, description, content, activePage, storeMap, availab
                     <input type="email" name="EMAIL" placeholder="ENTER VALID EMAIL ADDRESS..." class="flex-1 bg-black/40 border-2 border-slate-700 rounded-lg px-4 py-4 text-white focus:outline-none focus:border-indigo-500 placeholder-slate-600 font-medium shadow-inner tracking-wide text-sm uppercase" required>
                     <button type="submit" class="bg-indigo-600 hover:bg-white text-white hover:text-slate-900 font-black py-4 px-8 rounded-lg transition-all shadow-lg shadow-indigo-500/30 uppercase tracking-widest text-xs">Authorize Subscribe</button>
                 </form>
-                <p class="text-emerald-400 text-[10px] mt-5 uppercase tracking-widest font-black animate-pulse">🔒 Zero spam. Unsubscribe anytime. 🔒</p>
+                <div class="flex items-center justify-center gap-2 mt-5 text-[10px] font-black text-emerald-400 uppercase tracking-widest animate-pulse">
+    <span>🔒</span>
+    <span>Zero spam. Unsubscribe anytime.</span>
+</div>
             </div>
         </div>
     </div>`;
@@ -619,7 +622,7 @@ async function build() {
         const sName = data.storeMap[id];
         const storeDeals = data.deals.filter(d => d.storeID === id);
         const slug = `store-${sName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.html`;
-        const html = renderLayout(`${sName} Deals`, `Current sales at ${sName}.`, `<div class="max-w-7xl mx-auto px-6"><h2 class="text-5xl font-black text-white mb-12 uppercase tracking-tighter">Transmission Node: ${sName}</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">${storeDeals.map(d => generateCard(d, data.storeMap)).join('')}</div></div>`, 'seo', data.storeMap, availableStoreIDs, data.deals);
+        const html = renderLayout(`${sName} Deals`, `Current sales at ${sName}.`, `<div class="max-w-7xl mx-auto px-6"><h2 class="text-5xl font-black text-white mb-12 uppercase tracking-tighter">Discount: ${sName}</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">${storeDeals.map(d => generateCard(d, data.storeMap)).join('')}</div></div>`, 'seo', data.storeMap, availableStoreIDs, data.deals);
         fs.writeFileSync(path.join(OUTPUT_DIR, slug), html);
     });
     // --- LEGAL COMPLIANCE HUB GENERATOR ---
