@@ -7,6 +7,22 @@
         <title>GOG Deals | LootDrop</title>
         <meta name="description" content="Current sales at GOG.">
         <meta name="google-site-verification" content="q9Fphfg84545ZHMq8phpNLIyduEW07oowLI6Njm_Cdk" />
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-4FJBRK0ENM"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          
+          // Default consent to 'denied' to comply with EU laws
+          gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied'
+          });
+
+          gtag('js', new Date());
+          gtag('config', 'G-4FJBRK0ENM');
+        </script>
+
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
@@ -496,21 +512,50 @@
             </div>
         </footer>
 
-        <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-slate-900 border-t border-emerald-500/50 p-4 z-50 transform translate-y-0 transition-transform duration-300">
+        <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-slate-900 border-t border-emerald-500/50 p-4 z-50 transform translate-y-0 transition-transform duration-300" style="display: none;">
             <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div class="text-sm text-slate-300 text-center sm:text-left">
                     <span class="text-emerald-400 font-bold">ALERTA DEL SISTEMA:</span> Usamos cookies de rastreo y afiliación para mejorar tu experiencia y mantener la web gratuita. <a href="legal.html#cookies" class="text-indigo-400 underline hover:text-indigo-300">Más info</a>.
                 </div>
                 <div class="flex gap-3 justify-center sm:justify-start">
-                    <button onclick="document.getElementById('cookie-banner').style.display='none'" class="px-4 py-2 text-sm text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded font-bold uppercase tracking-widest">
+                    <button onclick="handleConsent(false)" class="px-4 py-2 text-sm text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded font-bold uppercase tracking-widest">
                         Rechazar
                     </button>
-                    <button onclick="document.getElementById('cookie-banner').style.display='none'" class="px-4 py-2 text-sm text-slate-900 bg-emerald-500 hover:bg-emerald-400 font-black rounded uppercase tracking-widest shadow-[0_0_15px_rgba(16,185,129,0.4)]">
+                    <button onclick="handleConsent(true)" class="px-4 py-2 text-sm text-slate-900 bg-emerald-500 hover:bg-emerald-400 font-black rounded uppercase tracking-widest shadow-[0_0_15px_rgba(16,185,129,0.4)]">
                         Aceptar Todo
                     </button>
                 </div>
             </div>
         </div>
+
+        <script>
+            // Check previous consent
+            const consentGiven = localStorage.getItem('lootdrop_cookie_consent');
+            
+            if (consentGiven === 'granted') {
+                // If they already accepted, turn radar on
+                gtag('consent', 'update', {
+                    'analytics_storage': 'granted',
+                    'ad_storage': 'granted'
+                });
+            } else if (!consentGiven) {
+                // If no choice made yet, show banner
+                document.getElementById('cookie-banner').style.display = 'block';
+            }
+
+            function handleConsent(accepted) {
+                document.getElementById('cookie-banner').style.display = 'none';
+                if (accepted) {
+                    localStorage.setItem('lootdrop_cookie_consent', 'granted');
+                    gtag('consent', 'update', {
+                        'analytics_storage': 'granted',
+                        'ad_storage': 'granted'
+                    });
+                } else {
+                    localStorage.setItem('lootdrop_cookie_consent', 'denied');
+                }
+            }
+        </script>
 
     </body>
     </html>
