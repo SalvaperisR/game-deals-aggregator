@@ -39,9 +39,9 @@ async function fetchData() {
 function generateCard(deal, storeMap, isFree = false) {
     const dealUrl = `https://www.cheapshark.com/redirect?dealID=${deal.dealID}${AFFILIATE_PARAM}`;
     const storeName = storeMap[deal.storeID] || 'Store';
-    const rating = parseFloat(deal.dealRating);
     const savings = Math.round(deal.savings);
     
+    // Data Badges
     let metaBadge = '';
     if (deal.metacriticScore && deal.metacriticScore > 0) {
         let mColor = deal.metacriticScore >= 80 ? 'text-emerald-400 border-emerald-500/30' : (deal.metacriticScore >= 65 ? 'text-amber-400 border-amber-500/30' : 'text-red-400 border-red-500/30');
@@ -54,14 +54,23 @@ function generateCard(deal, storeMap, isFree = false) {
         steamBadge = `<div class="bg-slate-900/80 px-2 py-0.5 rounded text-[9px] font-black border ${sColor} tracking-wider shadow-lg">STEAM ${deal.steamRatingPercent}%</div>`;
     }
 
-    let cardStyle = 'border-slate-700/50 hover:border-indigo-500 hover:shadow-[0_0_30px_rgba(99,102,241,0.2)]';
-    let badge = `<div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-${savings}%</div>`;
+    // RPG Rarity Logic
+    let cardStyle = 'border-blue-500/30 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] shadow-lg shadow-blue-500/5';
+    let badge = `<div class="bg-blue-600 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg border border-blue-400/50">-${savings}%</div>`;
+    let rarityName = `<span class="text-blue-400 text-[8px] font-black uppercase tracking-widest">Rare Drop</span>`;
 
     if (isFree) {
-        cardStyle = 'border-emerald-500/50 hover:border-emerald-400 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)] shadow-lg shadow-emerald-500/10';
-        badge = `<div class="bg-emerald-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg animate-pulse text-center">FREE</div>`;
-    } else if (rating >= 9.0) {
-        cardStyle = 'border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10';
+        cardStyle = 'border-emerald-500/60 hover:border-emerald-400 hover:shadow-[0_0_40px_rgba(16,185,129,0.4)] shadow-lg shadow-emerald-500/20';
+        badge = `<div class="bg-emerald-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg animate-pulse text-center border border-emerald-300">FREE</div>`;
+        rarityName = `<span class="text-emerald-400 text-[8px] font-black uppercase tracking-widest animate-pulse">God Tier</span>`;
+    } else if (savings >= 85) {
+        cardStyle = 'border-amber-400/60 hover:border-amber-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] shadow-lg shadow-amber-500/10';
+        badge = `<div class="bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-1 rounded shadow-lg border border-amber-300">-${savings}%</div>`;
+        rarityName = `<span class="text-amber-400 text-[8px] font-black uppercase tracking-widest">Mythic Drop</span>`;
+    } else if (savings >= 70) {
+        cardStyle = 'border-fuchsia-500/50 hover:border-fuchsia-400 hover:shadow-[0_0_30px_rgba(217,70,239,0.3)] shadow-lg shadow-fuchsia-500/10';
+        badge = `<div class="bg-fuchsia-600 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg border border-fuchsia-400">-${savings}%</div>`;
+        rarityName = `<span class="text-fuchsia-400 text-[8px] font-black uppercase tracking-widest">Epic Drop</span>`;
     }
 
     return `
@@ -71,7 +80,7 @@ function generateCard(deal, storeMap, isFree = false) {
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">${storeName}</span>
-                ${rating >= 9.0 && !isFree ? '<span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>' : ''}
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg">${rarityName}</div>
             </div>
             ${badge}
         </div>
@@ -91,9 +100,9 @@ function generateCard(deal, storeMap, isFree = false) {
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$${deal.normalPrice}</span>
-                    <span class="text-xl font-black leading-none ${isFree ? 'text-emerald-400 animate-pulse' : 'text-emerald-400'}">$${deal.salePrice}</span>
+                    <span class="text-xl font-black leading-none ${isFree ? 'text-emerald-400' : 'text-slate-200 group-hover:text-white'} transition-colors">$${deal.salePrice}</span>
                 </div>
-                <a href="${dealUrl}" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="${dealUrl}" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>`;
@@ -115,8 +124,8 @@ function renderLayout(title, description, content, activePage, storeMap, availab
             <div class="absolute inset-0 bg-indigo-500/5 group-hover:bg-indigo-500/10 transition-colors duration-500"></div>
             <div class="relative z-10 max-w-2xl mx-auto">
                 <span class="bg-indigo-500 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest mb-6 inline-block shadow-lg shadow-indigo-500/40">Join The Army</span>
-                <h3 class="text-3xl md:text-5xl font-black text-white mb-4 uppercase tracking-tighter">Never Miss A Glitched Price</h3>
-                <p class="text-slate-300 mb-8 text-lg">Algorithms hide the best deals. We email them directly to you. Join the LootDrop list and get the top 5 S-Tier price drops sent to your inbox every Friday.</p>
+                <h3 class="text-3xl md:text-5xl font-black text-white mb-4 uppercase tracking-tighter">Never Miss A Mythic Drop</h3>
+                <p class="text-slate-300 mb-8 text-lg">Algorithms hide the best deals. We email them directly to you. Join the LootDrop list and get the top 5 price drops sent to your inbox every Friday.</p>
                 <form action="#" method="POST" id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" target="_blank">
                     <input type="email" name="EMAIL" placeholder="Enter your email address..." class="flex-1 bg-slate-900/80 border border-slate-600 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-indigo-400 placeholder-slate-500 font-medium shadow-inner" required>
                     <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-lg shadow-indigo-500/30 uppercase tracking-widest hover:scale-105 active:scale-95">Subscribe</button>
@@ -175,6 +184,8 @@ function renderLayout(title, description, content, activePage, storeMap, availab
             .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
             .ticker-wrap { animation: scroll 60s linear infinite; width: max-content; }
             @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+            @keyframes pulse-slow { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .8; transform: scale(1.02); } }
+            .animate-pulse-slow { animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
             .mesh-gradient { background: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%); }
         </style>
     </head>
@@ -237,11 +248,11 @@ function generateHomePage(deals, storeMap, freeDeals, availableStoreIDs) {
         </div>
 
         <h3 class="text-xl font-black text-amber-400 mb-6 uppercase tracking-widest flex items-center gap-2"><svg class="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> Deal of the Day</h3>
-        <div class="bg-gradient-to-br from-amber-500/20 to-orange-600/10 border-2 border-amber-500/50 rounded-[2rem] overflow-hidden flex flex-col md:flex-row items-center gap-8 mb-16 shadow-[0_0_50px_rgba(245,158,11,0.15)] group relative">
+        <div class="animate-pulse-slow bg-gradient-to-br from-amber-500/20 to-orange-600/10 border-2 border-amber-500/50 rounded-[2rem] overflow-hidden flex flex-col md:flex-row items-center gap-8 mb-16 shadow-[0_0_50px_rgba(245,158,11,0.2)] group relative">
             <div class="w-full md:w-1/2 h-64 md:h-80 overflow-hidden relative">
                 <div class="absolute inset-0 bg-gradient-to-r from-transparent to-slate-900/90 md:block hidden z-10"></div>
                 <img src="${heroDeal.thumb}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                <div class="absolute top-4 left-4 z-20 bg-amber-500 text-slate-900 font-black px-4 py-1 rounded-full text-xs uppercase tracking-widest shadow-lg">Highest Rated Drop</div>
+                <div class="absolute top-4 left-4 z-20 bg-amber-500 text-slate-900 font-black px-4 py-1 rounded-full text-xs uppercase tracking-widest shadow-lg">Mythic Drop</div>
             </div>
             <div class="w-full md:w-1/2 p-8 md:p-12 md:pl-0 relative z-20">
                 <span class="text-amber-400 text-xs font-bold uppercase tracking-widest mb-2 block">${heroStore}</span>
@@ -277,7 +288,7 @@ function generateHomePage(deals, storeMap, freeDeals, availableStoreIDs) {
         </div>
 
         <div class="flex items-center justify-between mb-8 border-l-4 border-indigo-500 pl-6">
-            <h3 class="text-2xl font-black text-white uppercase tracking-tighter">S-Tier Drops</h3>
+            <h3 class="text-2xl font-black text-white uppercase tracking-tighter">Live Drops</h3>
             <a href="browse.html" class="text-indigo-400 font-bold text-xs uppercase tracking-widest hover:text-white transition-colors">View All Deals →</a>
         </div>
         
@@ -385,7 +396,7 @@ async function build() {
     const data = await fetchData();
     const availableStoreIDs = [...new Set(data.deals.map(d => d.storeID))];
     
-    console.log('🏗️ Building Full Static Matrix with Visual Upgrades...');
+    console.log('🏗️ Building Full Static Matrix with RPG Visuals...');
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
     
     fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), generateHomePage(data.deals, data.storeMap, data.freeDeals, availableStoreIDs));
@@ -432,7 +443,7 @@ async function build() {
     xml += `</urlset>`;
     fs.writeFileSync(path.join(OUTPUT_DIR, 'sitemap.xml'), xml);
 
-    console.log('✅ Success! Premium Visuals & Data Cards injected.');
+    console.log('✅ Success! Premium Visuals & RPG Cards injected.');
 }
 
 build();
