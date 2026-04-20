@@ -42,17 +42,16 @@ function generateCard(deal, storeMap, isFree = false) {
     const rating = parseFloat(deal.dealRating);
     const savings = Math.round(deal.savings);
     
-    // VISUAL UPGRADE: Dynamic Review Badges
     let metaBadge = '';
     if (deal.metacriticScore && deal.metacriticScore > 0) {
         let mColor = deal.metacriticScore >= 80 ? 'text-emerald-400 border-emerald-500/30' : (deal.metacriticScore >= 65 ? 'text-amber-400 border-amber-500/30' : 'text-red-400 border-red-500/30');
-        metaBadge = `<div class="bg-slate-900/80 px-2 py-0.5 rounded text-[9px] font-black border ${mColor} tracking-wider">META ${deal.metacriticScore}</div>`;
+        metaBadge = `<div class="bg-slate-900/80 px-2 py-0.5 rounded text-[9px] font-black border ${mColor} tracking-wider shadow-lg">META ${deal.metacriticScore}</div>`;
     }
 
     let steamBadge = '';
     if (deal.steamRatingPercent && deal.steamRatingPercent > 0) {
         let sColor = deal.steamRatingPercent >= 80 ? 'text-blue-400 border-blue-500/30' : 'text-slate-400 border-slate-500/30';
-        steamBadge = `<div class="bg-slate-900/80 px-2 py-0.5 rounded text-[9px] font-black border ${sColor} tracking-wider">STEAM ${deal.steamRatingPercent}%</div>`;
+        steamBadge = `<div class="bg-slate-900/80 px-2 py-0.5 rounded text-[9px] font-black border ${sColor} tracking-wider shadow-lg">STEAM ${deal.steamRatingPercent}%</div>`;
     }
 
     let cardStyle = 'border-slate-700/50 hover:border-indigo-500 hover:shadow-[0_0_30px_rgba(99,102,241,0.2)]';
@@ -80,7 +79,6 @@ function generateCard(deal, storeMap, isFree = false) {
         <div class="h-44 overflow-hidden bg-slate-900 relative">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10 opacity-80"></div>
             <img src="${deal.thumb}" alt="${deal.title}" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" loading="lazy">
-            
             <div class="absolute bottom-2 left-3 z-20 flex gap-2">
                 ${steamBadge}
                 ${metaBadge}
@@ -225,7 +223,6 @@ function renderLayout(title, description, content, activePage, storeMap, availab
 // --- PAGE GENERATORS ---
 
 function generateHomePage(deals, storeMap, freeDeals, availableStoreIDs) {
-    // VISUAL UPGRADE: The "God-Tier" Hero Deal. We pull the absolute best deal for the spotlight.
     const heroDeal = deals[0]; 
     const heroStore = storeMap[heroDeal.storeID] || 'Store';
     const heroUrl = `https://www.cheapshark.com/redirect?dealID=${heroDeal.dealID}${AFFILIATE_PARAM}`;
@@ -240,7 +237,7 @@ function generateHomePage(deals, storeMap, freeDeals, availableStoreIDs) {
         </div>
 
         <h3 class="text-xl font-black text-amber-400 mb-6 uppercase tracking-widest flex items-center gap-2"><svg class="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> Deal of the Day</h3>
-        <div class="bg-gradient-to-br from-amber-500/20 to-orange-600/10 border-2 border-amber-500/50 rounded-[2rem] overflow-hidden flex flex-col md:flex-row items-center gap-8 mb-20 shadow-[0_0_50px_rgba(245,158,11,0.15)] group relative">
+        <div class="bg-gradient-to-br from-amber-500/20 to-orange-600/10 border-2 border-amber-500/50 rounded-[2rem] overflow-hidden flex flex-col md:flex-row items-center gap-8 mb-16 shadow-[0_0_50px_rgba(245,158,11,0.15)] group relative">
             <div class="w-full md:w-1/2 h-64 md:h-80 overflow-hidden relative">
                 <div class="absolute inset-0 bg-gradient-to-r from-transparent to-slate-900/90 md:block hidden z-10"></div>
                 <img src="${heroDeal.thumb}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
@@ -260,6 +257,25 @@ function generateHomePage(deals, storeMap, freeDeals, availableStoreIDs) {
             </div>
         </div>
 
+        <div class="bg-gradient-to-r from-violet-900/60 to-fuchsia-900/30 border border-fuchsia-500/30 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 mb-20 shadow-[0_0_40px_rgba(217,70,239,0.1)] relative overflow-hidden group">
+            <div class="absolute inset-0 bg-fuchsia-500/5 group-hover:bg-fuchsia-500/10 transition-colors duration-500"></div>
+            <div class="flex-1 relative z-10">
+                <span class="bg-fuchsia-600 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest mb-4 inline-block shadow-lg shadow-fuchsia-500/40">Browser Powerup</span>
+                <h3 class="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">Steal Steam's Traffic.<br>Find Cheaper Prices Instantly.</h3>
+                <p class="text-slate-300 mb-8 leading-relaxed text-lg">Install the LootDrop Companion. It secretly scans background prices while you browse Steam and drops a glowing banner if a game is cheaper on another store.</p>
+                <a href="https://github.com/SalvaperisR/game-deals-aggregator/archive/refs/heads/main.zip" class="inline-block bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-black py-4 px-10 rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] uppercase tracking-widest">Download Extension</a>
+            </div>
+            <div class="w-full md:w-1/3 relative z-10 hidden md:block">
+                <div class="bg-slate-900/80 p-6 rounded-2xl border border-white/10 shadow-2xl rotate-3 group-hover:rotate-0 transition-transform duration-500 backdrop-blur-sm">
+                    <div class="h-4 bg-slate-800 rounded w-1/2 mb-4"></div>
+                    <div class="bg-gradient-to-r from-fuchsia-600 to-violet-600 text-white text-xs font-black p-3 rounded-lg shadow-lg text-center animate-pulse border border-fuchsia-400/50">
+                        ⚠️ ALERT: CHEAPER ON GOG FOR $9.99
+                    </div>
+                    <div class="h-20 bg-slate-800 rounded mt-4"></div>
+                </div>
+            </div>
+        </div>
+
         <div class="flex items-center justify-between mb-8 border-l-4 border-indigo-500 pl-6">
             <h3 class="text-2xl font-black text-white uppercase tracking-tighter">S-Tier Drops</h3>
             <a href="browse.html" class="text-indigo-400 font-bold text-xs uppercase tracking-widest hover:text-white transition-colors">View All Deals →</a>
@@ -272,7 +288,7 @@ function generateHomePage(deals, storeMap, freeDeals, availableStoreIDs) {
     return renderLayout('Home', 'The ultimate PC game deal aggregator.', content, 'home', storeMap, availableStoreIDs, deals);
 }
 
-// BROWSE PAGE & OTHER PAGES REMAIN THE SAME, THEY JUST USE THE NEW GENERATECARD
+// BROWSE PAGE GENERATOR
 function generateBrowsePage(deals, storeMap, availableStoreIDs) {
     const availableStores = [...new Set(deals.map(d => storeMap[d.storeID] || 'Store'))].sort();
     let content = `
