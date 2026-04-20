@@ -370,7 +370,7 @@ function generateHomePage(deals, storeMap, freeDeals, availableStoreIDs) {
                     <div class="bg-red-600 text-white font-black text-2xl px-5 py-3 rounded border-2 border-red-400 shadow-xl shadow-red-500/20">-${Math.round(heroDeal.savings)}%</div>
                     <div>
                         <div class="text-slate-500 line-through text-base font-bold">$${heroDeal.normalPrice} USD</div>
-                        <div class="text-2xl md:text-3xl font-black text-emerald-400 leading-none truncate max-w-full"> $${d.salePrice}
+                        <div class="text-2xl md:text-3xl font-black text-emerald-400 leading-none truncate max-w-full"> $${heroDeal.salePrice}
                </div>
                 </div>
                 <a href="${heroUrl}" target="_blank" class="inline-block bg-amber-500 hover:bg-white text-slate-900 font-black py-4 px-10 rounded hover:scale-105 transition-all shadow-[0_0_30px_rgba(245,158,11,0.3)] uppercase tracking-widest text-sm">CLAIM SPOTLIGHT LOOT</a>
