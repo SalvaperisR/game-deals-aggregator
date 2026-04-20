@@ -66,18 +66,29 @@
         </div>
 
         <header class="glass sticky top-0 w-full z-50 shadow-2xl transition-all duration-300">
-            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
                 <a href="index.html" class="flex items-center gap-3 group">
                     <div class="bg-indigo-600 p-1.5 rounded w-8 h-8 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:scale-110 transition-transform">
                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
                     <h1 class="text-xl font-black text-white tracking-tighter uppercase">LootDrop</h1>
                 </a>
-               <nav class="flex gap-6 overflow-x-auto no-scrollbar font-bold text-[10px] uppercase tracking-widest ml-4 pb-1 md:pb-0">
-    <a href="index.html" class="text-slate-300 hover:text-white whitespace-nowrap transition-colors">Home_Base</a>
-    <a href="browse.html" class="text-slate-300 hover:text-white whitespace-nowrap transition-colors">Browse_All</a>
-    <a href="free.html" class="text-slate-300 hover:text-white whitespace-nowrap transition-colors">Free_Transmission</a>
-</nav>
+                
+                <nav class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest">
+                    <a href="index.html" class="text-slate-300 hover:text-white hover:text-white transition-colors">Home_Base</a>
+                    <a href="browse.html" class="text-slate-300 hover:text-white hover:text-white transition-colors">Browse_All</a>
+                    <a href="free.html" class="text-slate-300 hover:text-white hover:text-emerald-400 transition-colors">Free_Transmission</a>
+                </nav>
+
+                <button id="mobile-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full glass border-b border-indigo-500/30 flex-col items-center py-6 gap-6 font-bold text-xs uppercase tracking-widest shadow-2xl">
+                <a href="index.html" class="text-slate-300 hover:text-white hover:text-white transition-colors">Home_Base</a>
+                <a href="browse.html" class="text-slate-300 hover:text-white hover:text-white transition-colors">Browse_All</a>
+                <a href="free.html" class="text-slate-300 hover:text-white hover:text-emerald-400 transition-colors">Free_Transmission</a>
             </div>
         </header>
 
@@ -306,7 +317,15 @@
                 }
             }
         </script>
-
+       <script>
+            // Mobile Menu Logic
+            const mobileBtn = document.getElementById('mobile-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+            });
+        </script>
     </body>
     </html>
     
