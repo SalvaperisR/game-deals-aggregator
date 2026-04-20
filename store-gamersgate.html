@@ -35,6 +35,8 @@
                 background-size: 50px 50px;
                 background-attachment: fixed;
             }
+                .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
             .glass { background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
             .ticker-wrap { animation: scroll 60s linear infinite; width: max-content; }
             @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -71,11 +73,11 @@
                     </div>
                     <h1 class="text-xl font-black text-white tracking-tighter uppercase">LootDrop</h1>
                 </a>
-                <nav class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest">
-                    <a href="index.html" class="text-slate-300 hover:text-white hover:text-white transition-colors">Home_Base</a>
-                    <a href="browse.html" class="text-slate-300 hover:text-white hover:text-white transition-colors">Browse_All</a>
-                    <a href="free.html" class="text-slate-300 hover:text-white hover:text-emerald-400 transition-colors">Free_Transmission</a>
-                </nav>
+               <nav class="flex gap-6 overflow-x-auto no-scrollbar font-bold text-[10px] uppercase tracking-widest ml-4 pb-1 md:pb-0">
+    <a href="index.html" class="text-slate-300 hover:text-white whitespace-nowrap transition-colors">Home_Base</a>
+    <a href="browse.html" class="text-slate-300 hover:text-white whitespace-nowrap transition-colors">Browse_All</a>
+    <a href="free.html" class="text-slate-300 hover:text-white whitespace-nowrap transition-colors">Free_Transmission</a>
+</nav>
             </div>
         </header>
 

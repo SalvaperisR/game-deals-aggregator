@@ -35,6 +35,8 @@
                 background-size: 50px 50px;
                 background-attachment: fixed;
             }
+                .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
             .glass { background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
             .ticker-wrap { animation: scroll 60s linear infinite; width: max-content; }
             @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -71,11 +73,11 @@
                     </div>
                     <h1 class="text-xl font-black text-white tracking-tighter uppercase">LootDrop</h1>
                 </a>
-                <nav class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest">
-                    <a href="index.html" class="text-indigo-400 hover:text-white transition-colors">Home_Base</a>
-                    <a href="browse.html" class="text-slate-300 hover:text-white hover:text-white transition-colors">Browse_All</a>
-                    <a href="free.html" class="text-slate-300 hover:text-white hover:text-emerald-400 transition-colors">Free_Transmission</a>
-                </nav>
+               <nav class="flex gap-6 overflow-x-auto no-scrollbar font-bold text-[10px] uppercase tracking-widest ml-4 pb-1 md:pb-0">
+    <a href="index.html" class="text-indigo-400 whitespace-nowrap transition-colors">Home_Base</a>
+    <a href="browse.html" class="text-slate-300 hover:text-white whitespace-nowrap transition-colors">Browse_All</a>
+    <a href="free.html" class="text-slate-300 hover:text-white whitespace-nowrap transition-colors">Free_Transmission</a>
+</nav>
             </div>
         </header>
 
@@ -110,8 +112,8 @@
                     <div class="bg-red-600 text-white font-black text-2xl px-5 py-3 rounded border-2 border-red-400 shadow-xl shadow-red-500/20">-41%</div>
                     <div>
                         <div class="text-slate-500 line-through text-base font-bold">$48.38 USD</div>
-                        <div class="text-emerald-400 text-5xl font-black drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">$28.58</div>
-                    </div>
+                        <div class="text-2xl md:text-3xl font-black text-emerald-400 leading-none truncate max-w-full"> $28.58
+               </div>
                 </div>
                 <a href="https://www.cheapshark.com/redirect?dealID=eOl5K%2ButZW%2F%2FbJfzHlISruNdJiF4Qib3arBv8Vi6OZA%3D&affiliate_id=default_tracker" target="_blank" class="inline-block bg-amber-500 hover:bg-white text-slate-900 font-black py-4 px-10 rounded hover:scale-105 transition-all shadow-[0_0_30px_rgba(245,158,11,0.3)] uppercase tracking-widest text-sm">CLAIM SPOTLIGHT LOOT</a>
             </div>
