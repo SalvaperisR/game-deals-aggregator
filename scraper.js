@@ -11,20 +11,23 @@ const AFFILIATE_ID = process.env.AFFILIATE_ID || 'default_tracker';
 const AFFILIATE_PARAM = `&affiliate_id=${AFFILIATE_ID}`;
 
 // --- DATA ENGINE ---
+// --- DATA ENGINE ---
 async function fetchData() {
     try {
         console.log('🚀 Fetching multi-page data and store mappings...');
+        // Added Store 25 (Epic Games) and Store 7 (GOG) to the scanner!
         const [storesRes, dealsPage1, dealsPage2, freeDealsRes] = await Promise.all([
             axios.get(STORES_API_URL),
-            axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1,2,3,4,8,11,15&upperPrice=30&sortBy=Deal Rating&pageNumber=0'),
-            axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1,2,3,4,8,11,15&upperPrice=30&sortBy=Deal Rating&pageNumber=1'),
-            axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1,2,3,4,8,11,15&upperPrice=0')
+            axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1,2,3,4,7,8,11,15,25&upperPrice=30&sortBy=Deal Rating&pageNumber=0'),
+            axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1,2,3,4,7,8,11,15,25&upperPrice=30&sortBy=Deal Rating&pageNumber=1'),
+            axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1,2,3,4,7,8,11,15,25&upperPrice=0')
         ]);
         
         const storeMap = {};
         storesRes.data.forEach(store => storeMap[store.storeID] = store.storeName);
 
         const allDeals = [...dealsPage1.data, ...dealsPage2.data];
+        // Ensure it strictly catches completely free games
         const freeDeals = freeDealsRes.data.filter(deal => parseFloat(deal.salePrice) === 0.00);
         
         return { deals: allDeals, freeDeals, storeMap };
@@ -33,7 +36,6 @@ async function fetchData() {
         process.exit(1);
     }
 }
-
 // --- UI COMPONENTS ---
 
 function generateCard(deal, storeMap, isFree = false) {
