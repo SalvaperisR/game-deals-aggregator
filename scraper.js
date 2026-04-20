@@ -89,34 +89,34 @@ function renderLayout(title, description, content, activePage, storeMap, availab
     // Live Ticker Generation
     const tickerItems = (deals || []).slice(0, 15).map(d => `<span class="mx-10 font-bold">💎 ${d.title}: <span class="text-emerald-400">$${d.salePrice}</span></span>`).join('');
 
-    let seoFooter = '';
+   let seoFooter = '';
     if (availableStoreIDs && storeMap) {
         seoFooter = `
-        <div class="max-w-7xl mx-auto px-6 py-12 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="max-w-7xl mx-auto px-6 py-12 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
                 <h4 class="text-white font-black mb-4 uppercase tracking-widest text-xs">Top Storefronts</h4>
-                <ul class="space-y-2 text-sm text-slate-500">
+                <ul class="space-y-2 text-sm text-slate-300">
                     ${availableStoreIDs.map(id => {
                         const sName = storeMap[id];
                         const slug = `store-${sName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.html`;
-                        return `<li><a href="${slug}" class="hover:text-indigo-400 transition-colors">${sName} Deals</a></li>`;
+                        return `<li><a href="${slug}" class="hover:text-white transition-colors">${sName} Deals</a></li>`;
                     }).join('')}
                 </ul>
             </div>
             <div>
                 <h4 class="text-white font-black mb-4 uppercase tracking-widest text-xs">Price Drops</h4>
-                <ul class="space-y-2 text-sm text-slate-500">
-                    <li><a href="under-5.html" class="hover:text-indigo-400 transition-colors">Games Under $5</a></li>
-                    <li><a href="under-10.html" class="hover:text-indigo-400 transition-colors">Games Under $10</a></li>
-                    <li><a href="free.html" class="hover:text-indigo-400 transition-colors underline decoration-emerald-500">100% Free Games</a></li>
+                <ul class="space-y-2 text-sm text-slate-300">
+                    <li><a href="under-5.html" class="hover:text-white transition-colors">Games Under $5</a></li>
+                    <li><a href="under-10.html" class="hover:text-white transition-colors">Games Under $10</a></li>
+                    <li><a href="free.html" class="hover:text-white transition-colors underline decoration-emerald-400">100% Free Games</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="text-white font-black mb-4 uppercase tracking-widest text-xs">LootDrop</h4>
-                <p class="text-slate-500 text-xs mb-4">Your automated engine for the best PC gaming discounts.</p>
-                <ul class="space-y-2 text-sm text-slate-400">
-                    <li><a href="browse.html" class="hover:text-indigo-400 transition-colors">All Deals</a></li>
-                    <li><a href="about.html" class="hover:text-indigo-400 transition-colors">About & Disclosure</a></li>
+                <p class="text-slate-300 text-xs mb-4">Your automated engine for the best PC gaming discounts.</p>
+                <ul class="space-y-2 text-sm text-slate-300">
+                    <li><a href="browse.html" class="hover:text-white transition-colors">All Deals</a></li>
+                    <li><a href="about.html" class="hover:text-white transition-colors">About & Disclosure</a></li>
                 </ul>
             </div>
         </div>`;
@@ -172,10 +172,10 @@ function renderLayout(title, description, content, activePage, storeMap, availab
             ${content}
         </main>
 
-        <footer class="bg-slate-950/50 pt-10 mt-auto">
+        <footer class="bg-slate-950/80 pt-10 mt-auto">
             ${seoFooter}
-            <div class="border-t border-white/5 py-8 text-center bg-black/40">
-                <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest">
+            <div class="border-t border-white/10 py-8 text-center bg-black/60">
+                <p class="text-slate-400 text-[10px] font-bold uppercase tracking-widest">
                     &copy; ${year} LootDrop. Automated Deal Engine. Affiliate Disclosure: Links may earn commissions.
                 </p>
             </div>
