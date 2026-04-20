@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://SalvaperisR.github.io/game-deals-aggregator/sitemap.xml
