@@ -5,7 +5,7 @@ import path from 'path';
 // --- CONFIGURATION ---
 const STORES_API_URL = 'https://www.cheapshark.com/api/1.0/stores';
 const OUTPUT_DIR = './public';
-const SITE_DOMAIN = 'https://SalvaperisR.github.io/game-deals-aggregator'; 
+const SITE_DOMAIN = 'https://SalvaperisR.github.io/game-deals-aggregator';
 
 const AFFILIATE_ID = process.env.AFFILIATE_ID || 'default_tracker';
 const AFFILIATE_PARAM = `&affiliate_id=${AFFILIATE_ID}`;
@@ -20,13 +20,13 @@ async function fetchData() {
             axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1,2,3,4,7,8,11,15,25&upperPrice=30&sortBy=Deal Rating&pageNumber=1'),
             axios.get('https://www.cheapshark.com/api/1.0/deals?storeID=1,2,3,4,7,8,11,15,25&upperPrice=0')
         ]);
-        
+
         const storeMap = {};
         storesRes.data.forEach(store => storeMap[store.storeID] = store.storeName);
 
         const allDeals = [...dealsPage1.data, ...dealsPage2.data];
         const freeDeals = freeDealsRes.data.filter(deal => parseFloat(deal.salePrice) === 0.00);
-        
+
         return { deals: allDeals, freeDeals, storeMap };
     } catch (error) {
         console.error('❌ Error fetching data:', error.message);
@@ -50,7 +50,7 @@ function generateCard(deal, storeMap, isFree = false) {
     const dealUrl = `https://www.cheapshark.com/redirect?dealID=${deal.dealID}${AFFILIATE_PARAM}`;
     const storeName = storeMap[deal.storeID] || 'Store';
     const savings = Math.round(deal.savings);
-    
+
     // VISUAL V3 UPGRADE: Store Brand Colors
     let storeTextColor = 'text-slate-400';
     if (storeName === 'Steam') storeTextColor = 'text-sky-400';
@@ -58,7 +58,7 @@ function generateCard(deal, storeMap, isFree = false) {
     else if (storeName === 'GOG') storeTextColor = 'text-white font-medium';
     else if (storeName === 'Humble Store') storeTextColor = 'text-red-400';
     else if (storeName === 'Fanatical') storeTextColor = 'text-orange-400';
-    
+
     // RPG Rarity Logic
     let cardStyle = 'border-blue-500/30 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] shadow-lg shadow-blue-500/5';
     let badge = `<div class="bg-blue-600 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg border border-blue-400/50">-${savings}%</div>`;
@@ -118,7 +118,7 @@ function renderLayout(title, description, content, activePage, storeMap, availab
     const isHome = activePage === 'home' ? 'text-indigo-400' : 'text-slate-300 hover:text-white';
     const isBrowse = activePage === 'browse' ? 'text-indigo-400' : 'text-slate-300 hover:text-white';
     const isFree = activePage === 'free' ? 'text-emerald-400' : 'text-slate-300 hover:text-white';
-    
+
     const tickerItems = (deals || []).slice(0, 15).map(d => `<span class="mx-10 font-bold">💎 ${d.title}: <span class="text-emerald-400">$${d.salePrice}</span></span>`).join('');
 
     const newsletterSection = `
@@ -149,10 +149,10 @@ function renderLayout(title, description, content, activePage, storeMap, availab
                 <h4 class="text-white font-black mb-5 uppercase tracking-widest text-xs flex items-center gap-2 justify-center md:justify-start"><span class="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-pulse"></span> Network Nodes</h4>
                 <ul class="space-y-2 text-sm text-slate-400 font-medium">
                     ${availableStoreIDs.slice(0, 8).map(id => {
-                        const sName = storeMap[id];
-                        const slug = `store-${sName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.html`;
-                        return `<li><a href="${slug}" class="hover:text-white transition-colors">${sName} Discounts</a></li>`;
-                    }).join('')}
+            const sName = storeMap[id];
+            const slug = `store-${sName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.html`;
+            return `<li><a href="${slug}" class="hover:text-white transition-colors">${sName} Discounts</a></li>`;
+        }).join('')}
                 </ul>
             </div>
             <div>
@@ -211,6 +211,8 @@ function renderLayout(title, description, content, activePage, storeMap, availab
                 background-size: 50px 50px;
                 background-attachment: fixed;
             }
+                .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
             .glass { background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
             .ticker-wrap { animation: scroll 60s linear infinite; width: max-content; }
             @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -247,11 +249,11 @@ function renderLayout(title, description, content, activePage, storeMap, availab
                     </div>
                     <h1 class="text-xl font-black text-white tracking-tighter uppercase">LootDrop</h1>
                 </a>
-                <nav class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest">
-                    <a href="index.html" class="${isHome} hover:text-white transition-colors">Home_Base</a>
-                    <a href="browse.html" class="${isBrowse} hover:text-white transition-colors">Browse_All</a>
-                    <a href="free.html" class="${isFree} hover:text-emerald-400 transition-colors">Free_Transmission</a>
-                </nav>
+               <nav class="flex gap-6 overflow-x-auto no-scrollbar font-bold text-[10px] uppercase tracking-widest ml-4 pb-1 md:pb-0">
+    <a href="index.html" class="${isHome} whitespace-nowrap transition-colors">Home_Base</a>
+    <a href="browse.html" class="${isBrowse} whitespace-nowrap transition-colors">Browse_All</a>
+    <a href="free.html" class="${isFree} whitespace-nowrap transition-colors">Free_Transmission</a>
+</nav>
             </div>
         </header>
 
@@ -330,7 +332,7 @@ function renderLayout(title, description, content, activePage, storeMap, availab
 // --- PAGE GENERATORS ---
 
 function generateHomePage(deals, storeMap, freeDeals, availableStoreIDs) {
-    const heroDeal = deals[0]; 
+    const heroDeal = deals[0];
     const heroStore = storeMap[heroDeal.storeID] || 'Store';
     const heroUrl = `https://www.cheapshark.com/redirect?dealID=${heroDeal.dealID}${AFFILIATE_PARAM}`;
 
@@ -368,8 +370,8 @@ function generateHomePage(deals, storeMap, freeDeals, availableStoreIDs) {
                     <div class="bg-red-600 text-white font-black text-2xl px-5 py-3 rounded border-2 border-red-400 shadow-xl shadow-red-500/20">-${Math.round(heroDeal.savings)}%</div>
                     <div>
                         <div class="text-slate-500 line-through text-base font-bold">$${heroDeal.normalPrice} USD</div>
-                        <div class="text-emerald-400 text-5xl font-black drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">$${heroDeal.salePrice}</div>
-                    </div>
+                        <div class="text-2xl md:text-3xl font-black text-emerald-400 leading-none truncate max-w-full"> $${deal.salePrice}
+</div>                </div>
                 </div>
                 <a href="${heroUrl}" target="_blank" class="inline-block bg-amber-500 hover:bg-white text-slate-900 font-black py-4 px-10 rounded hover:scale-105 transition-all shadow-[0_0_30px_rgba(245,158,11,0.3)] uppercase tracking-widest text-sm">CLAIM SPOTLIGHT LOOT</a>
             </div>
@@ -565,13 +567,13 @@ function generateBrowsePage(deals, storeMap, availableStoreIDs) {
 async function build() {
     const data = await fetchData();
     const availableStoreIDs = [...new Set(data.deals.map(d => d.storeID))];
-    
+
     console.log('🏗️ Building Static Matrix V3.0 (Elite Visuals Enabled)...');
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
-    
+
     fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), generateHomePage(data.deals, data.storeMap, data.freeDeals, availableStoreIDs));
     fs.writeFileSync(path.join(OUTPUT_DIR, 'browse.html'), generateBrowsePage(data.deals, data.storeMap, availableStoreIDs));
-    
+
     const freeContent = `<div class="max-w-7xl mx-auto px-6"><h2 class="text-5xl font-black text-emerald-400 mb-12 uppercase tracking-tighter drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">God Tier Transmissions (100% Free)</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">${data.freeDeals.length > 0 ? data.freeDeals.map(d => generateCard(d, data.storeMap, true)).join('') : '<p class="text-slate-500 font-bold uppercase tracking-widest text-sm py-10">No God Tier drops detected in current cycle.</p>'}</div></div>`;
     fs.writeFileSync(path.join(OUTPUT_DIR, 'free.html'), renderLayout('Free Drops', '100% Free PC games.', freeContent, 'free', data.storeMap, availableStoreIDs, data.deals));
 
