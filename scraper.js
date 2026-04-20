@@ -36,23 +36,30 @@ async function fetchData() {
 
 // --- UI COMPONENTS ---
 
+// VISUAL V3 UPGRADE: Corner Bracket Component
+function generateCorners(color = 'border-indigo-500/30') {
+    return `
+    <div class="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 ${color} z-20 pointer-events-none group-hover:border-white transition-colors duration-300"></div>
+    <div class="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 ${color} z-20 pointer-events-none group-hover:border-white transition-colors duration-300"></div>
+    <div class="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 ${color} z-20 pointer-events-none group-hover:border-white transition-colors duration-300"></div>
+    <div class="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 ${color} z-20 pointer-events-none group-hover:border-white transition-colors duration-300"></div>
+    `;
+}
+
 function generateCard(deal, storeMap, isFree = false) {
     const dealUrl = `https://www.cheapshark.com/redirect?dealID=${deal.dealID}${AFFILIATE_PARAM}`;
     const storeName = storeMap[deal.storeID] || 'Store';
     const savings = Math.round(deal.savings);
     
-    let metaBadge = '';
-    if (deal.metacriticScore && deal.metacriticScore > 0) {
-        let mColor = deal.metacriticScore >= 80 ? 'text-emerald-400 border-emerald-500/30' : (deal.metacriticScore >= 65 ? 'text-amber-400 border-amber-500/30' : 'text-red-400 border-red-500/30');
-        metaBadge = `<div class="bg-slate-900/80 px-2 py-0.5 rounded text-[9px] font-black border ${mColor} tracking-wider shadow-lg">META ${deal.metacriticScore}</div>`;
-    }
-
-    let steamBadge = '';
-    if (deal.steamRatingPercent && deal.steamRatingPercent > 0) {
-        let sColor = deal.steamRatingPercent >= 80 ? 'text-blue-400 border-blue-500/30' : 'text-slate-400 border-slate-500/30';
-        steamBadge = `<div class="bg-slate-900/80 px-2 py-0.5 rounded text-[9px] font-black border ${sColor} tracking-wider shadow-lg">STEAM ${deal.steamRatingPercent}%</div>`;
-    }
-
+    // VISUAL V3 UPGRADE: Store Brand Colors
+    let storeTextColor = 'text-slate-400';
+    if (storeName === 'Steam') storeTextColor = 'text-sky-400';
+    else if (storeName === 'Epic Games Store') storeTextColor = 'text-emerald-400 font-bold';
+    else if (storeName === 'GOG') storeTextColor = 'text-white font-medium';
+    else if (storeName === 'Humble Store') storeTextColor = 'text-red-400';
+    else if (storeName === 'Fanatical') storeTextColor = 'text-orange-400';
+    
+    // RPG Rarity Logic
     let cardStyle = 'border-blue-500/30 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] shadow-lg shadow-blue-500/5';
     let badge = `<div class="bg-blue-600 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg border border-blue-400/50">-${savings}%</div>`;
     let rarityName = `<span class="text-blue-400 text-[8px] font-black uppercase tracking-widest">Rare Drop</span>`;
@@ -72,28 +79,31 @@ function generateCard(deal, storeMap, isFree = false) {
     }
 
     return `
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col ${cardStyle} hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/20 rounded-xl overflow-hidden border transition-all duration-500 flex flex-col ${cardStyle} hover:-translate-y-2"
          data-title="${deal.title.toLowerCase()}" data-price="${deal.salePrice}" data-store="${storeName.toLowerCase()}">
+        
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
-                <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">${storeName}</span>
+                <span class="bg-slate-900/90 ${storeTextColor} text-[9px] font-black uppercase px-2 py-1 rounded border border-white/5 shadow-lg">${storeName}</span>
                 <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg">${rarityName}</div>
             </div>
             ${badge}
         </div>
+
         <div class="h-44 overflow-hidden bg-slate-900 relative">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10 opacity-80"></div>
             <img src="${deal.thumb}" alt="${deal.title}" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" loading="lazy">
-            <div class="absolute bottom-2 left-3 z-20 flex gap-2">${steamBadge}${metaBadge}</div>
         </div>
-        <div class="p-5 flex-1 flex flex-col justify-between relative z-10 bg-gradient-to-b from-slate-900/50 to-transparent">
-            <h3 class="text-sm font-bold text-white mb-4 line-clamp-2 leading-snug group-hover:text-indigo-300 transition-colors" title="${deal.title}">${deal.title}</h3>
+
+        <div class="p-5 flex-1 flex flex-col justify-between relative z-10 bg-slate-950">
+            <h3 class="text-sm font-bold text-slate-200 mb-4 line-clamp-2 leading-snug group-hover:text-white transition-colors" title="${deal.title}">${deal.title}</h3>
+            
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$${deal.normalPrice}</span>
                     <span class="text-xl font-black leading-none ${isFree ? 'text-emerald-400' : 'text-slate-200 group-hover:text-white'} transition-colors">$${deal.salePrice}</span>
                 </div>
-                <a href="${dealUrl}" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
+                <a href="${dealUrl}" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-lg text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>`;
@@ -106,21 +116,24 @@ function renderLayout(title, description, content, activePage, storeMap, availab
     const isHome = activePage === 'home' ? 'text-indigo-400' : 'text-slate-300 hover:text-white';
     const isBrowse = activePage === 'browse' ? 'text-indigo-400' : 'text-slate-300 hover:text-white';
     const isFree = activePage === 'free' ? 'text-emerald-400' : 'text-slate-300 hover:text-white';
+    
     const tickerItems = (deals || []).slice(0, 15).map(d => `<span class="mx-10 font-bold">💎 ${d.title}: <span class="text-emerald-400">$${d.salePrice}</span></span>`).join('');
 
     const newsletterSection = `
-    <div class="max-w-7xl mx-auto px-6 py-16">
-        <div class="bg-gradient-to-r from-indigo-900/60 to-purple-900/60 border border-indigo-500/30 rounded-3xl p-10 md:p-16 text-center shadow-2xl relative overflow-hidden group">
-            <div class="absolute inset-0 bg-indigo-500/5 group-hover:bg-indigo-500/10 transition-colors duration-500"></div>
+    <div class="max-w-7xl mx-auto px-6 py-16 relative">
+        <div class="absolute inset-0 bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36z8gAFWNhYfEfi4+PjwFmAlSNEwCK8RMN/Rby+wAAAABJRU5ErkJggg==')] opacity-10"></div>
+        <div class="bg-gradient-to-r from-indigo-950 to-slate-950 border border-indigo-500/20 rounded-2xl p-10 md:p-16 text-center shadow-2xl relative overflow-hidden group">
+            ${generateCorners('border-indigo-500/40')}
+            <div class="absolute inset-0 bg-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
             <div class="relative z-10 max-w-2xl mx-auto">
-                <span class="bg-indigo-500 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest mb-6 inline-block shadow-lg shadow-indigo-500/40">Join The Army</span>
-                <h3 class="text-3xl md:text-5xl font-black text-white mb-4 uppercase tracking-tighter">Never Miss A Mythic Drop</h3>
-                <p class="text-slate-300 mb-8 text-lg">Algorithms hide the best deals. We email them directly to you. Join the LootDrop list and get the top 5 price drops sent to your inbox every Friday.</p>
+                <span class="bg-indigo-600 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest mb-6 inline-block shadow-lg shadow-indigo-500/40 border border-indigo-400/50">Frequency: Weekly</span>
+                <h3 class="text-3xl md:text-5xl font-black text-white mb-4 uppercase tracking-tighter leading-none">Join The<br>Transmission Army</h3>
+                <p class="text-slate-400 mb-10 text-lg leading-relaxed max-w-lg mx-auto">Algorithms hide the best drops. We email them directly to your data-pad. Get the top 5 price drops sent to your inbox every Friday.</p>
                 <form action="#" method="POST" id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" target="_blank">
-                    <input type="email" name="EMAIL" placeholder="Enter your email address..." class="flex-1 bg-slate-900/80 border border-slate-600 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-indigo-400 placeholder-slate-500 font-medium shadow-inner" required>
-                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-lg shadow-indigo-500/30 uppercase tracking-widest hover:scale-105 active:scale-95">Subscribe</button>
+                    <input type="email" name="EMAIL" placeholder="ENTER VALID EMAIL ADDRESS..." class="flex-1 bg-black/40 border-2 border-slate-700 rounded-lg px-4 py-4 text-white focus:outline-none focus:border-indigo-500 placeholder-slate-600 font-medium shadow-inner tracking-wide text-sm uppercase" required>
+                    <button type="submit" class="bg-indigo-600 hover:bg-white text-white hover:text-slate-900 font-black py-4 px-8 rounded-lg transition-all shadow-lg shadow-indigo-500/30 uppercase tracking-widest text-xs">Authorize Subscribe</button>
                 </form>
-               <p class="text-slate-300 text-xs mt-4">100% Free. Zero spam. Unsubscribe anytime.</p>
+                <p class="text-emerald-400 text-[10px] mt-5 uppercase tracking-widest font-black animate-pulse">🔒 Zero spam. Unsubscribe anytime. 🔒</p>
             </div>
         </div>
     </div>`;
@@ -128,31 +141,31 @@ function renderLayout(title, description, content, activePage, storeMap, availab
     let seoFooter = '';
     if (availableStoreIDs && storeMap) {
         seoFooter = `
-        <div class="max-w-7xl mx-auto px-6 py-12 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="max-w-7xl mx-auto px-6 py-12 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
             <div>
-                <h4 class="text-white font-black mb-4 uppercase tracking-widest text-xs">Top Storefronts</h4>
-                <ul class="space-y-2 text-sm text-slate-300">
+                <h4 class="text-white font-black mb-5 uppercase tracking-widest text-xs flex items-center gap-2 justify-center md:justify-start"><span class="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-pulse"></span> Network Nodes</h4>
+                <ul class="space-y-2 text-sm text-slate-400 font-medium">
                     ${availableStoreIDs.slice(0, 8).map(id => {
                         const sName = storeMap[id];
                         const slug = `store-${sName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.html`;
-                        return `<li><a href="${slug}" class="hover:text-white hover:underline transition-colors">${sName} Deals</a></li>`;
+                        return `<li><a href="${slug}" class="hover:text-white transition-colors">${sName} Access Node</a></li>`;
                     }).join('')}
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-black mb-4 uppercase tracking-widest text-xs">Price Drops</h4>
-                <ul class="space-y-2 text-sm text-slate-300">
-                    <li><a href="under-5.html" class="hover:text-white transition-colors">Games Under $5</a></li>
-                    <li><a href="under-10.html" class="hover:text-white transition-colors">Games Under $10</a></li>
-                    <li><a href="free.html" class="hover:text-white transition-colors underline decoration-emerald-400 font-bold">100% Free Games</a></li>
+                <h4 class="text-white font-black mb-5 uppercase tracking-widest text-xs flex items-center gap-2 justify-center md:justify-start"><span class="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-pulse"></span> Value Filters</h4>
+                <ul class="space-y-2 text-sm text-slate-400 font-medium">
+                    <li><a href="under-5.html" class="hover:text-white transition-colors">Games < $5 USD</a></li>
+                    <li><a href="under-10.html" class="hover:text-white transition-colors">Games < $10 USD</a></li>
+                    <li><a href="free.html" class="hover:text-emerald-400 transition-colors font-black uppercase tracking-widest text-[11px]">God Tier (100% Free)</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-black mb-4 uppercase tracking-widest text-xs">LootDrop</h4>
-                <p class="text-slate-300 text-xs mb-4">Your automated engine for the best PC gaming discounts.</p>
-                <ul class="space-y-2 text-sm text-slate-300">
-                    <li><a href="browse.html" class="hover:text-white transition-colors">All Deals</a></li>
-                    <li><a href="about.html" class="hover:text-white transition-colors">About & Disclosure</a></li>
+                <h4 class="text-white font-black mb-5 uppercase tracking-widest text-xs flex items-center gap-2 justify-center md:justify-start"><span class="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-pulse"></span> Engine Status</h4>
+                <p class="text-slate-400 text-xs mb-4 leading-relaxed">Automated scanner active. All systems nominal. Scraping target nodes every 24 hours.</p>
+                <ul class="space-y-2 text-sm text-slate-400 font-medium">
+                    <li><a href="browse.html" class="hover:text-white transition-colors">View All Transmissions</a></li>
+                    <li><a href="about.html" class="hover:text-white transition-colors">System Disclosure</a></li>
                 </ul>
             </div>
         </div>`;
@@ -170,20 +183,40 @@ function renderLayout(title, description, content, activePage, storeMap, availab
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
-            body { font-family: 'Inter', sans-serif; background-color: #0b1120; }
-            .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+            body { 
+                font-family: 'Inter', sans-serif; 
+                background-color: #030712; 
+                /* VISUAL V3 UPGRADE: Background CRT Pattern Overlay */
+                background-image: 
+                    linear-gradient(rgba(100, 100, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(100, 100, 255, 0.03) 1px, transparent 1px);
+                background-size: 50px 50px;
+                background-attachment: fixed;
+            }
+            .glass { background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
             .ticker-wrap { animation: scroll 60s linear infinite; width: max-content; }
             @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
             @keyframes pulse-slow { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .8; transform: scale(1.02); } }
             .animate-pulse-slow { animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
             @keyframes loot-shake { 0% { transform: rotate(0deg); } 25% { transform: rotate(-5deg) scale(1.05); } 50% { transform: rotate(5deg) scale(1.05); } 75% { transform: rotate(-5deg) scale(1.05); } 100% { transform: rotate(0deg); } }
             .loot-shaking { animation: loot-shake 0.3s ease-in-out infinite; }
-            .mesh-gradient { background: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%); }
+            .mesh-gradient { background: radial-gradient(at 0% 0%, hsla(250, 40%, 10%, 1) 0, transparent 60%), radial-gradient(at 50% 0%, hsla(220, 40%, 15%, 1) 0, transparent 60%), radial-gradient(at 100% 0%, hsla(330, 40%, 15%, 1) 0, transparent 60%); }
+            .hero-mesh { background: radial-gradient(at 50% 0%, hsla(250, 60%, 20%, 0.4) 0, transparent 70%); }
+            
+            /* VISUAL V3 UPGRADE: CRT Line Overlay and subtle glow */
+            body::after {
+                content: "";
+                position: fixed; inset: 0;
+                background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+                background-size: 100% 4px;
+                z-index: 100; pointer-events: none;
+                opacity: 0.15;
+            }
         </style>
     </head>
-    <body class="text-slate-200 antialiased flex flex-col min-h-screen mesh-gradient">
+    <body class="text-slate-300 antialiased flex flex-col min-h-screen mesh-gradient relative">
         
-        <div class="bg-indigo-600/10 border-b border-white/5 py-2 overflow-hidden whitespace-nowrap text-[10px] uppercase tracking-[0.2em] text-indigo-300 z-[60] relative">
+        <div class="bg-indigo-600/10 border-b border-white/5 py-2 overflow-hidden whitespace-nowrap text-[9px] uppercase font-bold tracking-[0.3em] text-indigo-300 z-[60] relative">
             <div class="flex ticker-wrap">
                 ${tickerItems} ${tickerItems}
             </div>
@@ -192,15 +225,15 @@ function renderLayout(title, description, content, activePage, storeMap, availab
         <header class="glass sticky top-0 w-full z-50 shadow-2xl transition-all duration-300">
             <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                 <a href="index.html" class="flex items-center gap-3 group">
-                    <div class="bg-indigo-600 p-1.5 rounded-lg shadow-lg shadow-indigo-500/40 group-hover:scale-110 transition-transform">
+                    <div class="bg-indigo-600 p-1.5 rounded w-8 h-8 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:scale-110 transition-transform">
                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
                     <h1 class="text-xl font-black text-white tracking-tighter uppercase">LootDrop</h1>
                 </a>
                 <nav class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest">
-                    <a href="index.html" class="${isHome} hover:text-white transition-colors">Home</a>
-                    <a href="browse.html" class="${isBrowse} hover:text-white transition-colors">Browse</a>
-                    <a href="free.html" class="${isFree} hover:text-emerald-400 transition-colors">Free Drops</a>
+                    <a href="index.html" class="${isHome} hover:text-white transition-colors">Home_Base</a>
+                    <a href="browse.html" class="${isBrowse} hover:text-white transition-colors">Browse_All</a>
+                    <a href="free.html" class="${isFree} hover:text-emerald-400 transition-colors">Free_Transmission</a>
                 </nav>
             </div>
         </header>
@@ -210,11 +243,11 @@ function renderLayout(title, description, content, activePage, storeMap, availab
             ${activePage !== 'about' ? newsletterSection : ''}
         </main>
 
-        <footer class="bg-slate-950/80 pt-10 mt-auto">
+        <footer class="bg-black/60 pt-10 mt-auto border-t border-white/5 backdrop-blur-sm relative">
             ${seoFooter}
-            <div class="border-t border-white/10 py-8 text-center bg-black/60">
-                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">
-                    &copy; ${year} LootDrop. Automated Deal Engine. Affiliate Links Included.
+            <div class="border-t border-white/5 py-8 text-center bg-black/80">
+                <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest max-w-lg mx-auto leading-relaxed">
+                    &copy; ${year} LootDrop Core Engine. Automated Deal Aggregator V3.1. Affiliation Protocol Active: links may generate dynamic commission data.
                 </p>
             </div>
         </footer>
@@ -223,12 +256,13 @@ function renderLayout(title, description, content, activePage, storeMap, availab
     `;
 }
 
+// --- PAGE GENERATORS ---
+
 function generateHomePage(deals, storeMap, freeDeals, availableStoreIDs) {
     const heroDeal = deals[0]; 
     const heroStore = storeMap[heroDeal.storeID] || 'Store';
     const heroUrl = `https://www.cheapshark.com/redirect?dealID=${heroDeal.dealID}${AFFILIATE_PARAM}`;
 
-    // NEW: Injecting Top 20 deals into the DOM for the Client-Side Lootbox to use
     const topDealsJSON = JSON.stringify(deals.slice(1, 21).map(d => ({
         title: d.title,
         price: d.salePrice,
@@ -239,58 +273,62 @@ function generateHomePage(deals, storeMap, freeDeals, availableStoreIDs) {
     })));
 
     let content = `
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-7xl mx-auto px-6 relative">
+        <div class="absolute inset-0 -z-10 bg-indigo-500/10 blur-[150px] rounded-full w-1/2 mx-auto"></div>
         
-        <div class="text-center py-16 relative">
-            <div class="absolute inset-0 -z-10 bg-indigo-500/10 blur-[120px] rounded-full w-1/2 mx-auto"></div>
-            <h2 class="text-6xl md:text-8xl font-black text-white mb-6 tracking-tighter leading-none">THE BEST <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">DEALS</span><br>FOR GAMERS.</h2>
-            <p class="text-slate-400 max-w-xl mx-auto mb-10 text-lg font-medium leading-relaxed">Stop overpaying. We track the price drops across the internet so you don't have to.</p>
+        <div class="text-center py-20 relative hero-mesh rounded-full">
+            <span class="bg-black/60 border border-white/10 text-slate-400 text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-widest mb-6 inline-block shadow-lg">SCANNER STATUS: ONLINE</span>
+            <h2 class="text-6xl md:text-8xl font-black text-white mb-6 tracking-tighter leading-none uppercase">THE BEST <span class="text-transparent bg-clip-text bg-gradient-to-b from-indigo-300 to-indigo-600 drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]">Loot</span><br>For Gamers.</h2>
+            <p class="text-slate-400 max-w-xl mx-auto mb-10 text-lg font-medium leading-relaxed">System-wide scan completed. Displaying elite price drops across all known target storefronts. Authorized claim protocols active.</p>
         </div>
 
-        <h3 class="text-xl font-black text-amber-400 mb-6 uppercase tracking-widest flex items-center gap-2"><svg class="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> Deal of the Day</h3>
-        <div class="animate-pulse-slow bg-gradient-to-br from-amber-500/20 to-orange-600/10 border-2 border-amber-500/50 rounded-[2rem] overflow-hidden flex flex-col md:flex-row items-center gap-8 mb-16 shadow-[0_0_50px_rgba(245,158,11,0.2)] group relative">
+        <h3 class="text-xs font-black text-amber-400 mb-6 uppercase tracking-[0.3em] flex items-center gap-3justify-center"><span class="w-1.5 h-1.5 bg-amber-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(251,191,36,1)]"></span> Spotlight Transmission</h3>
+        <div class="animate-pulse-slow bg-slate-950/60 border-2 border-amber-500 rounded-3xl overflow-hidden flex flex-col md:flex-row items-center gap-8 mb-16 shadow-[0_0_60px_rgba(245,158,11,0.15)] group relative">
+            ${generateCorners('border-amber-500/40')}
             <div class="w-full md:w-1/2 h-64 md:h-80 overflow-hidden relative">
-                <div class="absolute inset-0 bg-gradient-to-r from-transparent to-slate-900/90 md:block hidden z-10"></div>
-                <img src="${heroDeal.thumb}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                <div class="absolute top-4 left-4 z-20 bg-amber-500 text-slate-900 font-black px-4 py-1 rounded-full text-xs uppercase tracking-widest shadow-lg">Mythic Drop</div>
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent to-slate-950 md:block hidden z-10"></div>
+                <img src="${heroDeal.thumb}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
+                <div class="absolute top-5 left-5 z-20 bg-amber-500 text-slate-900 font-black px-4 py-1 rounded text-xs uppercase tracking-widest shadow-xl border border-amber-300">Mythic Drop</div>
             </div>
             <div class="w-full md:w-1/2 p-8 md:p-12 md:pl-0 relative z-20">
-                <span class="text-amber-400 text-xs font-bold uppercase tracking-widest mb-2 block">${heroStore}</span>
-                <h3 class="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">${heroDeal.title}</h3>
-                <div class="flex items-center gap-6 mb-8">
-                    <div class="bg-red-500 text-white font-black text-xl px-4 py-2 rounded-xl shadow-lg border border-red-400">-${Math.round(heroDeal.savings)}%</div>
+                <span class="text-amber-400 text-xs font-bold uppercase tracking-widest mb-2 block">${heroStore} Access Node</span>
+                <h3 class="text-3xl md:text-5xl font-black text-white mb-6 leading-tight uppercase tracking-tighter">${heroDeal.title}</h3>
+                <div class="flex items-center gap-6 mb-10 pb-6 border-b border-white/5">
+                    <div class="bg-red-600 text-white font-black text-2xl px-5 py-3 rounded border-2 border-red-400 shadow-xl shadow-red-500/20">-${Math.round(heroDeal.savings)}%</div>
                     <div>
-                        <div class="text-slate-400 line-through text-sm font-bold">$${heroDeal.normalPrice}</div>
-                        <div class="text-emerald-400 text-4xl font-black">$${heroDeal.salePrice}</div>
+                        <div class="text-slate-500 line-through text-base font-bold">$${heroDeal.normalPrice} USD</div>
+                        <div class="text-emerald-400 text-5xl font-black drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">$${heroDeal.salePrice}</div>
                     </div>
                 </div>
-                <a href="${heroUrl}" target="_blank" class="inline-block bg-amber-500 hover:bg-amber-400 text-slate-900 font-black py-4 px-10 rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(245,158,11,0.4)] uppercase tracking-widest">Claim Spotlight Deal</a>
+                <a href="${heroUrl}" target="_blank" class="inline-block bg-amber-500 hover:bg-white text-slate-900 font-black py-4 px-10 rounded hover:scale-105 transition-all shadow-[0_0_30px_rgba(245,158,11,0.3)] uppercase tracking-widest text-sm">CLAIM SPOTLIGHT LOOT</a>
             </div>
         </div>
 
-        <div class="bg-slate-800/40 border border-emerald-500/30 rounded-3xl p-8 mb-20 shadow-[0_0_40px_rgba(16,185,129,0.1)] relative overflow-hidden flex flex-col items-center text-center group">
-            <div class="absolute inset-0 bg-emerald-500/5"></div>
+        <div class="bg-gradient-to-b from-slate-900 to-black border border-emerald-500/20 rounded-3xl p-8 mb-20 shadow-[0_0_40px_rgba(16,185,129,0.1)] relative overflow-hidden flex flex-col items-center text-center group">
+            ${generateCorners('border-emerald-500/40')}
+            <div class="absolute inset-0 bg-emerald-500/5 group-hover:opacity-0 transition-opacity duration-500"></div>
             <div class="relative z-10 w-full">
-                <h3 class="text-2xl font-black text-white mb-2 uppercase tracking-widest">Don't know what to play?</h3>
-                <p class="text-slate-400 mb-8 text-sm">Spin the wheel. Open the Lootbox. We'll pick a highly-rated game on massive discount for you.</p>
+                <span class="bg-emerald-600/10 border border-emerald-500/30 text-emerald-400 text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest mb-4 inline-block shadow-lg">Interactive Simulation</span>
+                <h3 class="text-3xl font-black text-white mb-2 uppercase tracking-tighter">Initialize Random Drop?</h3>
+                <p class="text-slate-400 mb-10 text-base leading-relaxed max-w-md mx-auto">Don't know what to play, data-citizen? Initializing simulation will select one verified Mythic or Epic discount transmission for immediate decryption.</p>
                 
-                <div id="lootbox-container" class="cursor-pointer bg-slate-900 border-2 border-emerald-500 rounded-2xl w-full max-w-md mx-auto h-48 flex flex-col items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.2)] hover:bg-slate-800 transition-colors" onclick="openLootbox()">
-                    <div id="lootbox-idle">
-                        <div class="text-6xl mb-2">🎁</div>
-                        <div class="text-emerald-400 font-black uppercase tracking-widest text-lg">Click to Open Daily Drop</div>
+                <div id="lootbox-container" class="cursor-pointer bg-black/60 border-2 border-emerald-500 rounded-xl w-full max-w-lg mx-auto h-56 flex flex-col items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.2)] hover:border-emerald-400 transition-all duration-300" onclick="openLootbox()">
+                    <div id="lootbox-idle" class="flex flex-col items-center">
+                        <div class="text-7xl mb-4 drop-shadow-[0_0_15px_rgba(16,185,129,0.6)]">🎁</div>
+                        <div class="text-emerald-400 font-black uppercase tracking-[0.2em] text-sm bg-emerald-950 px-6 py-2 rounded-full border border-emerald-600">Authorize Mystery Decryption</div>
                     </div>
-                    <div id="lootbox-reveal" class="hidden w-full h-full p-4 flex flex-col items-center justify-between">
-                        <div class="flex items-center gap-4 w-full">
-                            <img id="lb-img" src="" class="h-20 w-auto rounded border border-slate-700">
+                    <div id="lootbox-reveal" class="hidden w-full h-full p-6 flex flex-col items-center justify-between">
+                        <div class="flex items-center gap-5 w-full">
+                            <img id="lb-img" src="" class="h-24 w-auto rounded border-2 border-slate-700 shadow-xl">
                             <div class="text-left flex-1">
-                                <h4 id="lb-title" class="text-white font-bold text-sm line-clamp-2 leading-tight mb-2"></h4>
-                                <div class="flex items-center gap-2">
-                                    <span id="lb-savings" class="bg-emerald-500 text-slate-900 font-black text-[10px] px-2 py-1 rounded"></span>
-                                    <span id="lb-price" class="text-emerald-400 font-black text-xl"></span>
+                                <h4 id="lb-title" class="text-white font-black text-lg line-clamp-2 leading-tight mb-3 uppercase tracking-tighter"></h4>
+                                <div class="flex items-center gap-3">
+                                    <span id="lb-savings" class="bg-red-600 text-white font-black text-xs px-2 py-1.5 rounded"></span>
+                                    <span id="lb-price" class="text-emerald-400 font-black text-3xl drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]"></span>
                                 </div>
                             </div>
                         </div>
-                        <a id="lb-url" href="#" target="_blank" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-black py-2 rounded-xl mt-3 uppercase text-xs tracking-widest shadow-lg transition-colors">Claim Mystery Deal</a>
+                        <a id="lb-url" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-white text-slate-900 font-black py-3 rounded-lg mt-4 uppercase text-xs tracking-widest shadow-xl transition-colors">Confirm Decryption & Claim</a>
                     </div>
                 </div>
             </div>
@@ -302,56 +340,53 @@ function generateHomePage(deals, storeMap, freeDeals, availableStoreIDs) {
                 const container = document.getElementById('lootbox-container');
                 const idle = document.getElementById('lootbox-idle');
                 const reveal = document.getElementById('lootbox-reveal');
-                
-                // Prevent double clicking
                 if(!idle.classList.contains('hidden') && !container.classList.contains('loot-shaking')) {
-                    // Start shaking animation
                     container.classList.add('loot-shaking');
-                    container.classList.remove('hover:bg-slate-800', 'cursor-pointer');
-                    
-                    // Simulate CS:GO Case Opening suspense
+                    container.classList.remove('cursor-pointer');
                     setTimeout(() => {
                         container.classList.remove('loot-shaking');
                         idle.classList.add('hidden');
                         reveal.classList.remove('hidden');
                         reveal.classList.add('flex');
-                        
-                        // Pick a random winner
                         const winner = topDeals[Math.floor(Math.random() * topDeals.length)];
-                        
-                        // Inject data
                         document.getElementById('lb-img').src = winner.thumb;
                         document.getElementById('lb-title').innerText = winner.title;
                         document.getElementById('lb-savings').innerText = '-' + winner.savings + '%';
                         document.getElementById('lb-price').innerText = '$' + winner.price;
                         document.getElementById('lb-url').href = winner.url;
-                        
-                        // Make it pop
                         container.classList.add('border-amber-400', 'shadow-[0_0_50px_rgba(251,191,36,0.3)]');
                         container.classList.remove('border-emerald-500');
-                        document.getElementById('lb-url').classList.replace('bg-emerald-500', 'bg-amber-500');
-                        document.getElementById('lb-url').classList.replace('hover:bg-emerald-400', 'hover:bg-amber-400');
-                        document.getElementById('lb-savings').classList.replace('bg-emerald-500', 'bg-red-500');
-                        document.getElementById('lb-savings').classList.replace('text-slate-900', 'text-white');
-                        
-                    }, 1200); // Shakes for 1.2 seconds before revealing
+                        document.getElementById('lb-url').classList.replace('bg-emerald-600', 'bg-amber-500');
+                        document.getElementById('lb-savings').classList.add('border-2', 'border-red-300');
+                    }, 1500);
                 }
             }
         </script>
 
-        <div class="bg-gradient-to-r from-violet-900/60 to-fuchsia-900/30 border border-fuchsia-500/30 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 mb-20 shadow-[0_0_40px_rgba(217,70,239,0.1)] relative overflow-hidden group">
-            <div class="absolute inset-0 bg-fuchsia-500/5 group-hover:bg-fuchsia-500/10 transition-colors duration-500"></div>
-            <div class="flex-1 relative z-10">
-                <span class="bg-fuchsia-600 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest mb-4 inline-block shadow-lg shadow-fuchsia-500/40">Browser Powerup</span>
-                <h3 class="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">Steal Steam's Traffic.<br>Find Cheaper Prices Instantly.</h3>
-                <p class="text-slate-300 mb-8 leading-relaxed text-lg">Install the LootDrop Companion. It secretly scans background prices while you browse Steam and drops a glowing banner if a game is cheaper on another store.</p>
-                <a href="https://github.com/SalvaperisR/game-deals-aggregator/archive/refs/heads/main.zip" class="inline-block bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-black py-4 px-10 rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] uppercase tracking-widest">Download Extension</a>
+        <div class="bg-gradient-to-br from-indigo-950 to-fuchsia-950 border-2 border-fuchsia-500 rounded-3xl p-10 md:p-14 flex flex-col md:flex-row items-center gap-10 mb-20 shadow-[0_0_50px_rgba(217,70,239,0.2)] relative overflow-hidden group">
+            ${generateCorners('border-fuchsia-500/40')}
+            <div class="absolute inset-0 bg-fuchsia-500/5 group-hover:opacity-0 transition-opacity duration-1000"></div>
+            <div class="flex-1 relative z-10 text-center md:text-left">
+                <span class="bg-fuchsia-600 text-white text-[10px] font-black px-3 py-1 rounded uppercase tracking-widest mb-4 inline-block shadow-lg border border-fuchsia-400">Authorization: Active</span>
+                <h3 class="text-4xl md:text-5xl font-black text-white mb-5 leading-none uppercase tracking-tighter">Initialize<br>Companion Protocol</h3>
+                <p class="text-fuchsia-100 mb-10 leading-relaxed text-lg max-w-xl">Inject the LootDrop Companion into your interface. This background-service scans visual target data while you browse Steam and drops a high-priority decryption alert if alternative corporate nodes offer superior value.</p>
+                <a href="https://github.com/SalvaperisR/game-deals-aggregator/archive/refs/heads/main.zip" class="inline-block bg-fuchsia-600 hover:bg-white text-white hover:text-slate-900 font-black py-4 px-10 rounded-lg hover:scale-105 transition-all shadow-[0_0_30px_rgba(217,70,239,0.4)] uppercase tracking-widest text-sm">INSTALL COMPANION PROTOCOL</a>
+            </div>
+            <div class="w-full md:w-1/3 relative z-10 hidden md:block">
+                <div class="bg-black/60 p-6 rounded-xl border border-white/10 shadow-2xl rotate-3 group-hover:rotate-0 transition-transform duration-500 backdrop-blur-sm relative">
+                    ${generateCorners('border-fuchsia-500/30')}
+                    <div class="h-4 bg-slate-800 rounded w-1/2 mb-4"></div>
+                    <div class="bg-gradient-to-r from-fuchsia-600 to-violet-600 text-white text-[11px] font-black p-4 rounded-lg shadow-lg text-center animate-pulse border border-fuchsia-400">
+                        ⚠️ SYSTEM ALERT: HIGH VALUE TARGET<br>Node GOG offers decryption for $9.99
+                    </div>
+                    <div class="h-20 bg-slate-800 rounded mt-4"></div>
+                </div>
             </div>
         </div>
 
         <div class="flex items-center justify-between mb-8 border-l-4 border-indigo-500 pl-6">
-            <h3 class="text-2xl font-black text-white uppercase tracking-tighter">Live Drops</h3>
-            <a href="browse.html" class="text-indigo-400 font-bold text-xs uppercase tracking-widest hover:text-white transition-colors">View All Deals →</a>
+            <h3 class="text-2xl font-black text-white uppercase tracking-tighter">Live Access Transmissions</h3>
+            <a href="browse.html" class="text-indigo-400 font-bold text-xs uppercase tracking-widest hover:text-white transition-colors">View All Transmissions →</a>
         </div>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
@@ -368,20 +403,21 @@ function generateBrowsePage(deals, storeMap, availableStoreIDs) {
     <div class="max-w-7xl mx-auto px-6">
         <div class="flex flex-col md:flex-row gap-8">
             <aside class="w-full md:w-64 flex-shrink-0">
-                <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 sticky top-36 shadow-xl">
-                    <h3 class="text-lg font-black text-white mb-4 uppercase tracking-wider">Filters</h3>
+                <div class="bg-slate-950/80 rounded-xl p-6 border border-slate-700/50 sticky top-36 shadow-xl backdrop-blur-sm relative">
+                    ${generateCorners()}
+                    <h3 class="text-lg font-black text-white mb-5 uppercase tracking-wider flex items-center gap-2"><svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg> Transmission Filters</h3>
                     <div class="mb-6">
-                        <input type="text" id="searchInput" placeholder="Find a game..." class="w-full bg-slate-900/80 border border-slate-600 rounded-lg px-4 py-3 text-sm text-white focus:border-indigo-500 focus:outline-none shadow-inner">
+                        <input type="text" id="searchInput" placeholder="TARGET DESIGNATION..." class="w-full bg-black/40 border-2 border-slate-700 rounded-lg px-4 py-3 text-sm text-white focus:border-indigo-500 focus:outline-none shadow-inner uppercase">
                     </div>
                     <div class="mb-6">
-                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Max Price</label>
-                        <input type="range" id="priceSlider" min="0" max="30" step="1" value="30" class="w-full accent-indigo-500">
-                        <div class="flex justify-between text-sm font-bold text-emerald-400 mt-2">
-                            <span>$0</span><span id="priceValue">Under $30</span>
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-3 block">Credits Limit (USD)</label>
+                        <input type="range" id="priceSlider" min="0" max="30" step="1" value="30" class="w-full accent-emerald-500">
+                        <div class="flex justify-between text-sm font-black text-emerald-400 mt-2">
+                            <span>$0</span><span id="priceValue">Under $30 USD</span>
                         </div>
                     </div>
                     <div>
-                        <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 block">Storefronts</label>
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-4 block">Target Nodes</label>
                         <div class="space-y-3" id="storeFilters">
                             ${availableStores.map(store => `
                             <label class="flex items-center gap-3 text-sm font-medium text-slate-300 cursor-pointer hover:text-white transition-colors">
@@ -394,16 +430,17 @@ function generateBrowsePage(deals, storeMap, availableStoreIDs) {
             </aside>
 
             <div class="flex-grow">
-                <div class="flex justify-between items-center border-b border-white/10 pb-4 mb-8">
-                    <h2 class="text-3xl font-black text-white uppercase tracking-tighter">All Deals</h2>
-                    <span class="text-sm font-black text-indigo-300 bg-indigo-900/50 px-4 py-1.5 rounded-full border border-indigo-500/30" id="resultsCount">${deals.length} results</span>
+                <div class="flex flex-col sm:flex-row gap-4 sm:items-center justify-between border-b border-white/5 pb-4 mb-8">
+                    <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Scanner Results</h2>
+                    <span class="text-sm font-black text-indigo-300 bg-indigo-900/40 px-4 py-2 rounded border border-indigo-500/30 uppercase tracking-wider" id="resultsCount">${deals.length} Transmissions Decrypted</span>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="dealsGrid">
                     ${deals.map(deal => generateCard(deal, storeMap)).join('')}
                 </div>
-                <div id="noResults" class="hidden text-center py-20">
-                    <h3 class="text-xl font-bold text-slate-400">No deals match your filters.</h3>
-                    <button onclick="resetFilters()" class="mt-4 text-indigo-400 hover:text-indigo-300 underline font-bold">Reset Filters</button>
+                <div id="noResults" class="hidden text-center py-24 bg-slate-900/50 rounded-2xl border-2 border-dashed border-slate-700">
+                    <div class="text-6xl mb-5">🚫</div>
+                    <h3 class="text-xl font-bold text-slate-400 uppercase tracking-widest">No matching transmissions found.</h3>
+                    <button onclick="resetFilters()" class="mt-5 bg-indigo-600 hover:bg-white text-white hover:text-slate-900 font-black py-3 px-8 rounded-lg uppercase tracking-widest text-xs transition-colors">Reset Filter Parameters</button>
                 </div>
             </div>
         </div>
@@ -435,16 +472,16 @@ function generateBrowsePage(deals, storeMap, availableStoreIDs) {
                     card.style.display = 'none';
                 }
             });
-            resultsCount.innerText = visibleCount + (visibleCount === 1 ? ' result' : ' results');
+            resultsCount.innerText = visibleCount + (visibleCount === 1 ? ' transmission decrypted' : ' transmissions decrypted');
             noResults.style.display = visibleCount === 0 ? 'block' : 'none';
         }
 
         searchInput.addEventListener('input', applyFilters);
-        priceSlider.addEventListener('input', (e) => { priceValue.innerText = 'Under $' + e.target.value; applyFilters(); });
+        priceSlider.addEventListener('input', (e) => { priceValue.innerText = 'Under $' + e.target.value + ' USD'; applyFilters(); });
         storeCheckboxes.forEach(cb => cb.addEventListener('change', applyFilters));
 
         window.resetFilters = function() {
-            searchInput.value = ''; priceSlider.value = 30; priceValue.innerText = 'Under $30';
+            searchInput.value = ''; priceSlider.value = 30; priceValue.innerText = 'Under $30 USD';
             storeCheckboxes.forEach(cb => cb.checked = true); applyFilters();
         };
     </script>
@@ -458,20 +495,24 @@ async function build() {
     const data = await fetchData();
     const availableStoreIDs = [...new Set(data.deals.map(d => d.storeID))];
     
-    console.log('🏗️ Building Full Static Matrix with RPG Visuals & Lootbox...');
+    console.log('🏗️ Building Static Matrix V3.0 (Elite Visuals Enabled)...');
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
     
     fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), generateHomePage(data.deals, data.storeMap, data.freeDeals, availableStoreIDs));
     fs.writeFileSync(path.join(OUTPUT_DIR, 'browse.html'), generateBrowsePage(data.deals, data.storeMap, availableStoreIDs));
     
-    const freeContent = `<div class="max-w-7xl mx-auto px-6"><h2 class="text-4xl font-black text-emerald-400 mb-12 uppercase tracking-tighter">100% Free Drops</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">${data.freeDeals.length > 0 ? data.freeDeals.map(d => generateCard(d, data.storeMap, true)).join('') : '<p class="text-slate-500">No free deals right now.</p>'}</div></div>`;
+    const freeContent = `<div class="max-w-7xl mx-auto px-6"><h2 class="text-5xl font-black text-emerald-400 mb-12 uppercase tracking-tighter drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">God Tier Transmissions (100% Free)</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">${data.freeDeals.length > 0 ? data.freeDeals.map(d => generateCard(d, data.storeMap, true)).join('') : '<p class="text-slate-500 font-bold uppercase tracking-widest text-sm py-10">No God Tier drops detected in current cycle.</p>'}</div></div>`;
     fs.writeFileSync(path.join(OUTPUT_DIR, 'free.html'), renderLayout('Free Drops', '100% Free PC games.', freeContent, 'free', data.storeMap, availableStoreIDs, data.deals));
 
     const aboutContent = `
-        <div class="max-w-3xl mx-auto px-6 py-12 text-slate-300">
-            <h2 class="text-4xl font-black text-white mb-6 border-b border-slate-800 pb-4 uppercase tracking-tighter">About LootDrop</h2>
-            <p class="text-lg mb-6 leading-relaxed">LootDrop is an automated system scanning digital storefronts every 24 hours to find elite price drops. Our engine aggregates data like Metacritic scores and Steam user ratings so you never buy a bad game.</p>
-            <p class="p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 italic font-medium">Affiliate Disclosure: We earn commissions on qualifying purchases to keep this engine running ad-free.</p>
+        <div class="max-w-3xl mx-auto px-6 py-16 text-slate-300 relative bg-slate-950/50 rounded-2xl border border-white/5 backdrop-blur-sm">
+            ${generateCorners()}
+            <h2 class="text-5xl font-black text-white mb-8 border-b border-slate-800 pb-5 uppercase tracking-tighter">System Disclosure: LootDrop</h2>
+            <div class="space-y-6 leading-relaxed text-slate-400">
+                <p>LootDrop is an automated core scrap engine scanning authorized digital target nodes every 24 standard hours. Its primary directive is to identify elite price-to-value discrepancies.</p>
+                <p>By aggregating verified data transmissions—including Metacritic synchronization and Steam user-base consensus data—the engine enables authorized data-citizens to claim loot with zero probability of purchasing sub-optimal software.</p>
+                <p class="p-5 bg-black/40 rounded-xl border border-indigo-500/20 italic font-medium text-indigo-300 shadow-inner">Protocol 7 Disclosure: The engine operates via dynamic monetization protocols. Authorized claims may generate data-commissions at zero additional cost to the data-citizen. This protocol ensures continuous ad-free scanner operation.</p>
+            </div>
         </div>`;
     fs.writeFileSync(path.join(OUTPUT_DIR, 'about.html'), renderLayout('About Us', 'LootDrop About Page.', aboutContent, 'about', data.storeMap, availableStoreIDs, data.deals));
 
@@ -479,13 +520,13 @@ async function build() {
         const sName = data.storeMap[id];
         const storeDeals = data.deals.filter(d => d.storeID === id);
         const slug = `store-${sName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.html`;
-        const html = renderLayout(`${sName} Deals`, `Current sales at ${sName}.`, `<div class="max-w-7xl mx-auto px-6"><h2 class="text-4xl font-black text-white mb-12 uppercase tracking-tighter">${sName} Deals</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">${storeDeals.map(d => generateCard(d, data.storeMap)).join('')}</div></div>`, 'seo', data.storeMap, availableStoreIDs, data.deals);
+        const html = renderLayout(`${sName} Deals`, `Current sales at ${sName}.`, `<div class="max-w-7xl mx-auto px-6"><h2 class="text-5xl font-black text-white mb-12 uppercase tracking-tighter">Transmission Node: ${sName}</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">${storeDeals.map(d => generateCard(d, data.storeMap)).join('')}</div></div>`, 'seo', data.storeMap, availableStoreIDs, data.deals);
         fs.writeFileSync(path.join(OUTPUT_DIR, slug), html);
     });
 
     const writePricePage = (limit, file) => {
         const deals = data.deals.filter(d => parseFloat(d.salePrice) <= limit);
-        const html = renderLayout(`Under $${limit}`, `Games under $${limit}.`, `<div class="max-w-7xl mx-auto px-6"><h2 class="text-4xl font-black text-white mb-12 uppercase tracking-tighter">Under $${limit}</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">${deals.map(d => generateCard(d, data.storeMap)).join('')}</div></div>`, 'seo', data.storeMap, availableStoreIDs, data.deals);
+        const html = renderLayout(`Under $${limit}`, `Games under $${limit}.`, `<div class="max-w-7xl mx-auto px-6"><h2 class="text-5xl font-black text-white mb-12 uppercase tracking-tighter">Credit Limit: < $${limit} USD</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">${deals.map(d => generateCard(d, data.storeMap)).join('')}</div></div>`, 'seo', data.storeMap, availableStoreIDs, data.deals);
         fs.writeFileSync(path.join(OUTPUT_DIR, file), html);
     };
     writePricePage(5, 'under-5.html');
@@ -505,7 +546,7 @@ async function build() {
     xml += `</urlset>`;
     fs.writeFileSync(path.join(OUTPUT_DIR, 'sitemap.xml'), xml);
 
-    console.log('✅ Success! Premium Visuals & Lootbox injected.');
+    console.log('✅ Success! Static Matrix V3.0 deployed.');
 }
 
 build();
