@@ -14,6 +14,8 @@
             .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
             .ticker-wrap { animation: scroll 60s linear infinite; width: max-content; }
             @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+            @keyframes pulse-slow { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .8; transform: scale(1.02); } }
+            .animate-pulse-slow { animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
             .mesh-gradient { background: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%); }
         </style>
     </head>
@@ -43,15 +45,15 @@
 
         <main class="flex-grow pt-40 pb-10">
             <div class="max-w-7xl mx-auto px-6"><h2 class="text-4xl font-black text-white mb-12 uppercase tracking-tighter">GreenManGaming Deals</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] shadow-lg shadow-amber-500/10 hover:-translate-y-2"
          data-title="watch dogs legion - deluxe edition (ubisoft)" data-price="9.45" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-amber-400 text-[8px] font-black uppercase tracking-widest">Mythic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-86%</div>
+            <div class="bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-1 rounded shadow-lg border border-amber-300">-86%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -69,21 +71,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$69.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$9.45</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$9.45</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=0lF%2BFktIUm7kcxRmUBoLBcTOwImEZX34GBDiw6vGI8w%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=0lF%2BFktIUm7kcxRmUBoLBcTOwImEZX34GBDiw6vGI8w%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] shadow-lg shadow-amber-500/10 hover:-translate-y-2"
          data-title="watch_dogs 2 gold edition" data-price="10.80" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-amber-400 text-[8px] font-black uppercase tracking-widest">Mythic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-86%</div>
+            <div class="bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-1 rounded shadow-lg border border-amber-300">-86%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -101,21 +103,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$79.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$10.80</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$10.80</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=yWC3u%2F4NAUAHNPA%2FSt3cyl4oFeF9qgFlY%2Blb9aVZzC8%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=yWC3u%2F4NAUAHNPA%2FSt3cyl4oFeF9qgFlY%2Blb9aVZzC8%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] shadow-lg shadow-amber-500/10 hover:-translate-y-2"
          data-title="far cry 5 gold edition" data-price="12.15" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-amber-400 text-[8px] font-black uppercase tracking-widest">Mythic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-86%</div>
+            <div class="bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-1 rounded shadow-lg border border-amber-300">-86%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -133,21 +135,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$89.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$12.15</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$12.15</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=vOuwU%2FhMPZN4mdwmHf6bhce%2Fme1p5slBPbAD2K%2BJ2E4%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=vOuwU%2FhMPZN4mdwmHf6bhce%2Fme1p5slBPbAD2K%2BJ2E4%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-fuchsia-500/50 hover:border-fuchsia-400 hover:shadow-[0_0_30px_rgba(217,70,239,0.3)] shadow-lg shadow-fuchsia-500/10 hover:-translate-y-2"
          data-title="nba 2k26 superstar edition" data-price="20.50" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-fuchsia-400 text-[8px] font-black uppercase tracking-widest">Epic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-79%</div>
+            <div class="bg-fuchsia-600 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg border border-fuchsia-400">-79%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -165,21 +167,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$99.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$20.50</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$20.50</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=tgtS9cklC8Vfzzht53SQX3LLhNNrAHj4YhRPV%2BBSpxg%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=tgtS9cklC8Vfzzht53SQX3LLhNNrAHj4YhRPV%2BBSpxg%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-fuchsia-500/50 hover:border-fuchsia-400 hover:shadow-[0_0_30px_rgba(217,70,239,0.3)] shadow-lg shadow-fuchsia-500/10 hover:-translate-y-2"
          data-title="nba 2k26" data-price="14.35" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-fuchsia-400 text-[8px] font-black uppercase tracking-widest">Epic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-79%</div>
+            <div class="bg-fuchsia-600 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg border border-fuchsia-400">-79%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -197,21 +199,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$69.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$14.35</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$14.35</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=6pmRsvlHIQkkLMR05d%2B69uKBgO%2FLIKJ2YDSPJLlv16Q%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=6pmRsvlHIQkkLMR05d%2B69uKBgO%2FLIKJ2YDSPJLlv16Q%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-fuchsia-500/50 hover:border-fuchsia-400 hover:shadow-[0_0_30px_rgba(217,70,239,0.3)] shadow-lg shadow-fuchsia-500/10 hover:-translate-y-2"
          data-title="tom clancys ghost recon wildlands year 2 gold edition" data-price="14.40" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-fuchsia-400 text-[8px] font-black uppercase tracking-widest">Epic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-82%</div>
+            <div class="bg-fuchsia-600 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg border border-fuchsia-400">-82%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -229,21 +231,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$79.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$14.40</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$14.40</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=CFnhU2uo%2FfNg2yyPDCXX9QNfxSCWbW7CQgEzKfQQUWs%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=CFnhU2uo%2FfNg2yyPDCXX9QNfxSCWbW7CQgEzKfQQUWs%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] shadow-lg shadow-amber-500/10 hover:-translate-y-2"
          data-title="the next penelope" data-price="1.30" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-amber-400 text-[8px] font-black uppercase tracking-widest">Mythic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
+            <div class="bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-1 rounded shadow-lg border border-amber-300">-90%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -261,21 +263,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$12.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$1.30</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$1.30</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=RLIVZdMkTtmX3JKwEguR2VK175nHtNS%2FpLo0hgDH0F0%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=RLIVZdMkTtmX3JKwEguR2VK175nHtNS%2FpLo0hgDH0F0%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-fuchsia-500/50 hover:border-fuchsia-400 hover:shadow-[0_0_30px_rgba(217,70,239,0.3)] shadow-lg shadow-fuchsia-500/10 hover:-translate-y-2"
          data-title="tom clancys ghost recon breakpoint gold edition" data-price="18.00" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-fuchsia-400 text-[8px] font-black uppercase tracking-widest">Epic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-82%</div>
+            <div class="bg-fuchsia-600 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg border border-fuchsia-400">-82%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -293,21 +295,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$99.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$18.00</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$18.00</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=%2B2HFYoaz%2BfHbvshGqurZ1jN9LfxsoNSEttDkNqvs8c0%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=%2B2HFYoaz%2BfHbvshGqurZ1jN9LfxsoNSEttDkNqvs8c0%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-fuchsia-500/50 hover:border-fuchsia-400 hover:shadow-[0_0_30px_rgba(217,70,239,0.3)] shadow-lg shadow-fuchsia-500/10 hover:-translate-y-2"
          data-title="watch dogs legion - gold edition (ubisoft)" data-price="18.00" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-fuchsia-400 text-[8px] font-black uppercase tracking-widest">Epic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-82%</div>
+            <div class="bg-fuchsia-600 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg border border-fuchsia-400">-82%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -325,21 +327,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$99.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$18.00</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$18.00</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=gItwbmcCMNai44rFGqxUP5jJV%2BqV16BgXEw0QePw3ik%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=gItwbmcCMNai44rFGqxUP5jJV%2BqV16BgXEw0QePw3ik%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] shadow-lg shadow-amber-500/10 hover:-translate-y-2"
          data-title="bury me, my love" data-price="0.50" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-amber-400 text-[8px] font-black uppercase tracking-widest">Mythic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
+            <div class="bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-1 rounded shadow-lg border border-amber-300">-90%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -357,21 +359,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$4.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$0.50</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$0.50</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=v4gO4eU%2B6N3DpAZkKKLFefbciwGDULVy0dorOzsgxJg%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=v4gO4eU%2B6N3DpAZkKKLFefbciwGDULVy0dorOzsgxJg%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] shadow-lg shadow-amber-500/10 hover:-translate-y-2"
          data-title="fly'n" data-price="1.00" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-amber-400 text-[8px] font-black uppercase tracking-widest">Mythic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
+            <div class="bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-1 rounded shadow-lg border border-amber-300">-90%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -389,21 +391,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$9.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$1.00</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$1.00</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=H8osCJy9%2B6RIIyZX4KZZvs4ytNCsMgfLS%2ByrGXJiEVg%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=H8osCJy9%2B6RIIyZX4KZZvs4ytNCsMgfLS%2ByrGXJiEVg%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-fuchsia-500/50 hover:border-fuchsia-400 hover:shadow-[0_0_30px_rgba(217,70,239,0.3)] shadow-lg shadow-fuchsia-500/10 hover:-translate-y-2"
          data-title="tom clancys ghost recon wildlands ultimate edition" data-price="21.60" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-fuchsia-400 text-[8px] font-black uppercase tracking-widest">Epic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-82%</div>
+            <div class="bg-fuchsia-600 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg border border-fuchsia-400">-82%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -421,21 +423,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$119.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$21.60</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$21.60</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=A5n7QZp7raoN%2FnNBft0NfIggsxDKaOqRIBemd2spgMg%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=A5n7QZp7raoN%2FnNBft0NfIggsxDKaOqRIBemd2spgMg%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-fuchsia-500/50 hover:border-fuchsia-400 hover:shadow-[0_0_30px_rgba(217,70,239,0.3)] shadow-lg shadow-fuchsia-500/10 hover:-translate-y-2"
          data-title="watch dogs legion - ultimate edition (ubisoft)" data-price="21.60" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-fuchsia-400 text-[8px] font-black uppercase tracking-widest">Epic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-82%</div>
+            <div class="bg-fuchsia-600 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg border border-fuchsia-400">-82%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -453,21 +455,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$119.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$21.60</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$21.60</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=eTQYOCGQ5PMgcSSs2G56I1nzyqh8NezErvyGFVph4VU%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=eTQYOCGQ5PMgcSSs2G56I1nzyqh8NezErvyGFVph4VU%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] shadow-lg shadow-amber-500/10 hover:-translate-y-2"
          data-title="shadowgrounds survivor" data-price="1.00" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-amber-400 text-[8px] font-black uppercase tracking-widest">Mythic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
+            <div class="bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-1 rounded shadow-lg border border-amber-300">-90%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -485,21 +487,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$9.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$1.00</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$1.00</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=UwY07Nnn0bw7ckk3zz%2FZAvyt%2BMD8Irg8xG%2BvlC5W%2Bg4%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=UwY07Nnn0bw7ckk3zz%2FZAvyt%2BMD8Irg8xG%2BvlC5W%2Bg4%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] shadow-lg shadow-amber-500/10 hover:-translate-y-2"
          data-title="impulsion" data-price="1.30" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-amber-400 text-[8px] font-black uppercase tracking-widest">Mythic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
+            <div class="bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-1 rounded shadow-lg border border-amber-300">-90%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -517,21 +519,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$12.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$1.30</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$1.30</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=s64jLObjeXu%2FfoqPpjn1KmzG5k8pw4zgc0r5qdnpt00%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=s64jLObjeXu%2FfoqPpjn1KmzG5k8pw4zgc0r5qdnpt00%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] shadow-lg shadow-amber-500/10 hover:-translate-y-2"
          data-title="anarcute" data-price="1.50" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-amber-400 text-[8px] font-black uppercase tracking-widest">Mythic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
+            <div class="bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-1 rounded shadow-lg border border-amber-300">-90%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -549,21 +551,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$14.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$1.50</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$1.50</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=O4wmHNvMORNctngHOOSuJkaW%2BLnn5NGQe6agsT%2FTOvM%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=O4wmHNvMORNctngHOOSuJkaW%2BLnn5NGQe6agsT%2FTOvM%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] shadow-lg shadow-amber-500/10 hover:-translate-y-2"
          data-title="splasher" data-price="1.50" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-amber-400 text-[8px] font-black uppercase tracking-widest">Mythic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
+            <div class="bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-1 rounded shadow-lg border border-amber-300">-90%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -581,21 +583,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$14.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$1.50</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$1.50</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=fzbMfkFSh7z1QL6f4eGgMKT3j1dP9l5iyoQppxInXaQ%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=fzbMfkFSh7z1QL6f4eGgMKT3j1dP9l5iyoQppxInXaQ%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] shadow-lg shadow-amber-500/10 hover:-translate-y-2"
          data-title="sunblaze" data-price="1.50" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-amber-400 text-[8px] font-black uppercase tracking-widest">Mythic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
+            <div class="bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-1 rounded shadow-lg border border-amber-300">-90%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -613,21 +615,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$14.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$1.50</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$1.50</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=z1ALs8Jx7bnVaBpZ2Fzbfqb8r1fvNwDh1z5A1HXifnc%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=z1ALs8Jx7bnVaBpZ2Fzbfqb8r1fvNwDh1z5A1HXifnc%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] shadow-lg shadow-amber-500/10 hover:-translate-y-2"
          data-title="the textorcist: the story of ray bibbia" data-price="1.50" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-amber-400 text-[8px] font-black uppercase tracking-widest">Mythic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
+            <div class="bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-1 rounded shadow-lg border border-amber-300">-90%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -645,21 +647,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$14.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$1.50</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$1.50</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=YZC7CbIAbEg380Mo9UpqPjv%2FBDaMp9enQSKne56U8ZA%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=YZC7CbIAbEg380Mo9UpqPjv%2FBDaMp9enQSKne56U8ZA%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-fuchsia-500/50 hover:border-fuchsia-400 hover:shadow-[0_0_30px_rgba(217,70,239,0.3)] shadow-lg shadow-fuchsia-500/10 hover:-translate-y-2"
          data-title="resident evil 7 gold edition and village gold edition" data-price="17.60" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-fuchsia-400 text-[8px] font-black uppercase tracking-widest">Epic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-78%</div>
+            <div class="bg-fuchsia-600 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg border border-fuchsia-400">-78%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -677,21 +679,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$79.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$17.60</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$17.60</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=l5sbf9ZKRsuldsz2HQpjwlFb43L5ltVwKjMVY2EUtyg%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=l5sbf9ZKRsuldsz2HQpjwlFb43L5ltVwKjMVY2EUtyg%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] shadow-lg shadow-amber-400/10 hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] shadow-lg shadow-amber-500/10 hover:-translate-y-2"
          data-title="floppy knights" data-price="1.20" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                <span class="bg-amber-500 text-slate-900 text-[8px] font-black px-1.5 rounded uppercase shadow-lg">S-Tier</span>
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-amber-400 text-[8px] font-black uppercase tracking-widest">Mythic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-85%</div>
+            <div class="bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-1 rounded shadow-lg border border-amber-300">-85%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -709,21 +711,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$7.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$1.20</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$1.20</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=mTy%2BK6FuZTP4g5qp6jbxTf4KGkmBgcZyfCzRo9kbTjo%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=mTy%2BK6FuZTP4g5qp6jbxTf4KGkmBgcZyfCzRo9kbTjo%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-slate-700/50 hover:border-indigo-500 hover:shadow-[0_0_30px_rgba(99,102,241,0.2)] hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-amber-400/60 hover:border-amber-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.3)] shadow-lg shadow-amber-500/10 hover:-translate-y-2"
          data-title="figment" data-price="2.00" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-amber-400 text-[8px] font-black uppercase tracking-widest">Mythic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-90%</div>
+            <div class="bg-amber-500 text-slate-900 text-[10px] font-black px-2 py-1 rounded shadow-lg border border-amber-300">-90%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -741,21 +743,21 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$19.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$2.00</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$2.00</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=wrj%2BcINCUOUoVCd0R1NIEmvYZPQoPEzX0rt0d5nklcY%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=wrj%2BcINCUOUoVCd0R1NIEmvYZPQoPEzX0rt0d5nklcY%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div>
-    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-slate-700/50 hover:border-indigo-500 hover:shadow-[0_0_30px_rgba(99,102,241,0.2)] hover:-translate-y-2"
+    <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col border-fuchsia-500/50 hover:border-fuchsia-400 hover:shadow-[0_0_30px_rgba(217,70,239,0.3)] shadow-lg shadow-fuchsia-500/10 hover:-translate-y-2"
          data-title="far cry 6 - deluxe edition" data-price="18.00" data-store="greenmangaming">
         
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">GreenManGaming</span>
-                
+                <div class="bg-slate-900/90 px-1.5 py-0.5 rounded border border-white/5 shadow-lg"><span class="text-fuchsia-400 text-[8px] font-black uppercase tracking-widest">Epic Drop</span></div>
             </div>
-            <div class="bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg">-77%</div>
+            <div class="bg-fuchsia-600 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg border border-fuchsia-400">-77%</div>
         </div>
 
         <div class="h-44 overflow-hidden bg-slate-900 relative">
@@ -773,9 +775,9 @@
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$79.99</span>
-                    <span class="text-xl font-black leading-none text-emerald-400">$18.00</span>
+                    <span class="text-xl font-black leading-none text-slate-200 group-hover:text-white transition-colors">$18.00</span>
                 </div>
-                <a href="https://www.cheapshark.com/redirect?dealID=G2v7XJYs2P6OLo6F0Y1q03fPrYaj3jgltQ7Ebw1DYFU%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-400 text-white font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-400/50 uppercase tracking-wide">Claim</a>
+                <a href="https://www.cheapshark.com/redirect?dealID=G2v7XJYs2P6OLo6F0Y1q03fPrYaj3jgltQ7Ebw1DYFU%3D&affiliate_id=default_tracker" target="_blank" rel="noopener noreferrer" class="bg-slate-700 hover:bg-white text-white hover:text-slate-900 font-black py-2 px-5 rounded-xl text-xs transition-all duration-300 shadow-lg uppercase tracking-wide">Loot</a>
             </div>
         </div>
     </div></div></div>
@@ -785,8 +787,8 @@
             <div class="absolute inset-0 bg-indigo-500/5 group-hover:bg-indigo-500/10 transition-colors duration-500"></div>
             <div class="relative z-10 max-w-2xl mx-auto">
                 <span class="bg-indigo-500 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest mb-6 inline-block shadow-lg shadow-indigo-500/40">Join The Army</span>
-                <h3 class="text-3xl md:text-5xl font-black text-white mb-4 uppercase tracking-tighter">Never Miss A Glitched Price</h3>
-                <p class="text-slate-300 mb-8 text-lg">Algorithms hide the best deals. We email them directly to you. Join the LootDrop list and get the top 5 S-Tier price drops sent to your inbox every Friday.</p>
+                <h3 class="text-3xl md:text-5xl font-black text-white mb-4 uppercase tracking-tighter">Never Miss A Mythic Drop</h3>
+                <p class="text-slate-300 mb-8 text-lg">Algorithms hide the best deals. We email them directly to you. Join the LootDrop list and get the top 5 price drops sent to your inbox every Friday.</p>
                 <form action="#" method="POST" id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" target="_blank">
                     <input type="email" name="EMAIL" placeholder="Enter your email address..." class="flex-1 bg-slate-900/80 border border-slate-600 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-indigo-400 placeholder-slate-500 font-medium shadow-inner" required>
                     <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white font-black py-4 px-8 rounded-xl transition-all shadow-lg shadow-indigo-500/30 uppercase tracking-widest hover:scale-105 active:scale-95">Subscribe</button>
