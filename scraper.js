@@ -151,7 +151,7 @@ function renderLayout(title, description, content, activePage, storeMap, availab
                     ${availableStoreIDs.slice(0, 8).map(id => {
                         const sName = storeMap[id];
                         const slug = `store-${sName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.html`;
-                        return `<li><a href="${slug}" class="hover:text-white transition-colors">${sName} Access Node</a></li>`;
+                        return `<li><a href="${slug}" class="hover:text-white transition-colors">${sName} Discounts</a></li>`;
                     }).join('')}
                 </ul>
             </div>
