@@ -41,7 +41,6 @@ function generateCard(deal, storeMap, isFree = false) {
     const storeName = storeMap[deal.storeID] || 'Store';
     const savings = Math.round(deal.savings);
     
-    // Data Badges
     let metaBadge = '';
     if (deal.metacriticScore && deal.metacriticScore > 0) {
         let mColor = deal.metacriticScore >= 80 ? 'text-emerald-400 border-emerald-500/30' : (deal.metacriticScore >= 65 ? 'text-amber-400 border-amber-500/30' : 'text-red-400 border-red-500/30');
@@ -54,7 +53,6 @@ function generateCard(deal, storeMap, isFree = false) {
         steamBadge = `<div class="bg-slate-900/80 px-2 py-0.5 rounded text-[9px] font-black border ${sColor} tracking-wider shadow-lg">STEAM ${deal.steamRatingPercent}%</div>`;
     }
 
-    // RPG Rarity Logic
     let cardStyle = 'border-blue-500/30 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] shadow-lg shadow-blue-500/5';
     let badge = `<div class="bg-blue-600 text-white text-[10px] font-black px-2 py-1 rounded shadow-lg border border-blue-400/50">-${savings}%</div>`;
     let rarityName = `<span class="text-blue-400 text-[8px] font-black uppercase tracking-widest">Rare Drop</span>`;
@@ -76,7 +74,6 @@ function generateCard(deal, storeMap, isFree = false) {
     return `
     <div class="deal-card group relative bg-slate-800/40 backdrop-blur-md rounded-2xl overflow-hidden border transition-all duration-500 flex flex-col ${cardStyle} hover:-translate-y-2"
          data-title="${deal.title.toLowerCase()}" data-price="${deal.salePrice}" data-store="${storeName.toLowerCase()}">
-        
         <div class="absolute top-3 left-3 right-3 z-10 flex justify-between items-start pointer-events-none">
             <div class="flex flex-col gap-1 items-start">
                 <span class="bg-slate-900/90 text-slate-300 text-[9px] font-bold uppercase px-2 py-1 rounded border border-white/5 shadow-lg">${storeName}</span>
@@ -84,19 +81,13 @@ function generateCard(deal, storeMap, isFree = false) {
             </div>
             ${badge}
         </div>
-
         <div class="h-44 overflow-hidden bg-slate-900 relative">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10 opacity-80"></div>
             <img src="${deal.thumb}" alt="${deal.title}" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" loading="lazy">
-            <div class="absolute bottom-2 left-3 z-20 flex gap-2">
-                ${steamBadge}
-                ${metaBadge}
-            </div>
+            <div class="absolute bottom-2 left-3 z-20 flex gap-2">${steamBadge}${metaBadge}</div>
         </div>
-
         <div class="p-5 flex-1 flex flex-col justify-between relative z-10 bg-gradient-to-b from-slate-900/50 to-transparent">
             <h3 class="text-sm font-bold text-white mb-4 line-clamp-2 leading-snug group-hover:text-indigo-300 transition-colors" title="${deal.title}">${deal.title}</h3>
-            
             <div class="mt-auto pt-3 border-t border-white/5 flex justify-between items-end">
                 <div class="flex flex-col">
                     <span class="text-[11px] text-slate-500 line-through leading-none mb-1 font-semibold">$${deal.normalPrice}</span>
@@ -115,7 +106,6 @@ function renderLayout(title, description, content, activePage, storeMap, availab
     const isHome = activePage === 'home' ? 'text-indigo-400' : 'text-slate-300 hover:text-white';
     const isBrowse = activePage === 'browse' ? 'text-indigo-400' : 'text-slate-300 hover:text-white';
     const isFree = activePage === 'free' ? 'text-emerald-400' : 'text-slate-300 hover:text-white';
-    
     const tickerItems = (deals || []).slice(0, 15).map(d => `<span class="mx-10 font-bold">💎 ${d.title}: <span class="text-emerald-400">$${d.salePrice}</span></span>`).join('');
 
     const newsletterSection = `
@@ -186,6 +176,8 @@ function renderLayout(title, description, content, activePage, storeMap, availab
             @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
             @keyframes pulse-slow { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .8; transform: scale(1.02); } }
             .animate-pulse-slow { animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+            @keyframes loot-shake { 0% { transform: rotate(0deg); } 25% { transform: rotate(-5deg) scale(1.05); } 50% { transform: rotate(5deg) scale(1.05); } 75% { transform: rotate(-5deg) scale(1.05); } 100% { transform: rotate(0deg); } }
+            .loot-shaking { animation: loot-shake 0.3s ease-in-out infinite; }
             .mesh-gradient { background: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%); }
         </style>
     </head>
@@ -231,12 +223,20 @@ function renderLayout(title, description, content, activePage, storeMap, availab
     `;
 }
 
-// --- PAGE GENERATORS ---
-
 function generateHomePage(deals, storeMap, freeDeals, availableStoreIDs) {
     const heroDeal = deals[0]; 
     const heroStore = storeMap[heroDeal.storeID] || 'Store';
     const heroUrl = `https://www.cheapshark.com/redirect?dealID=${heroDeal.dealID}${AFFILIATE_PARAM}`;
+
+    // NEW: Injecting Top 20 deals into the DOM for the Client-Side Lootbox to use
+    const topDealsJSON = JSON.stringify(deals.slice(1, 21).map(d => ({
+        title: d.title,
+        price: d.salePrice,
+        normalPrice: d.normalPrice,
+        savings: Math.round(d.savings),
+        thumb: d.thumb,
+        url: `https://www.cheapshark.com/redirect?dealID=${d.dealID}${AFFILIATE_PARAM}`
+    })));
 
     let content = `
     <div class="max-w-7xl mx-auto px-6">
@@ -268,6 +268,77 @@ function generateHomePage(deals, storeMap, freeDeals, availableStoreIDs) {
             </div>
         </div>
 
+        <div class="bg-slate-800/40 border border-emerald-500/30 rounded-3xl p-8 mb-20 shadow-[0_0_40px_rgba(16,185,129,0.1)] relative overflow-hidden flex flex-col items-center text-center group">
+            <div class="absolute inset-0 bg-emerald-500/5"></div>
+            <div class="relative z-10 w-full">
+                <h3 class="text-2xl font-black text-white mb-2 uppercase tracking-widest">Don't know what to play?</h3>
+                <p class="text-slate-400 mb-8 text-sm">Spin the wheel. Open the Lootbox. We'll pick a highly-rated game on massive discount for you.</p>
+                
+                <div id="lootbox-container" class="cursor-pointer bg-slate-900 border-2 border-emerald-500 rounded-2xl w-full max-w-md mx-auto h-48 flex flex-col items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.2)] hover:bg-slate-800 transition-colors" onclick="openLootbox()">
+                    <div id="lootbox-idle">
+                        <div class="text-6xl mb-2">🎁</div>
+                        <div class="text-emerald-400 font-black uppercase tracking-widest text-lg">Click to Open Daily Drop</div>
+                    </div>
+                    <div id="lootbox-reveal" class="hidden w-full h-full p-4 flex flex-col items-center justify-between">
+                        <div class="flex items-center gap-4 w-full">
+                            <img id="lb-img" src="" class="h-20 w-auto rounded border border-slate-700">
+                            <div class="text-left flex-1">
+                                <h4 id="lb-title" class="text-white font-bold text-sm line-clamp-2 leading-tight mb-2"></h4>
+                                <div class="flex items-center gap-2">
+                                    <span id="lb-savings" class="bg-emerald-500 text-slate-900 font-black text-[10px] px-2 py-1 rounded"></span>
+                                    <span id="lb-price" class="text-emerald-400 font-black text-xl"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <a id="lb-url" href="#" target="_blank" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-black py-2 rounded-xl mt-3 uppercase text-xs tracking-widest shadow-lg transition-colors">Claim Mystery Deal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            const topDeals = ${topDealsJSON};
+            function openLootbox() {
+                const container = document.getElementById('lootbox-container');
+                const idle = document.getElementById('lootbox-idle');
+                const reveal = document.getElementById('lootbox-reveal');
+                
+                // Prevent double clicking
+                if(!idle.classList.contains('hidden') && !container.classList.contains('loot-shaking')) {
+                    // Start shaking animation
+                    container.classList.add('loot-shaking');
+                    container.classList.remove('hover:bg-slate-800', 'cursor-pointer');
+                    
+                    // Simulate CS:GO Case Opening suspense
+                    setTimeout(() => {
+                        container.classList.remove('loot-shaking');
+                        idle.classList.add('hidden');
+                        reveal.classList.remove('hidden');
+                        reveal.classList.add('flex');
+                        
+                        // Pick a random winner
+                        const winner = topDeals[Math.floor(Math.random() * topDeals.length)];
+                        
+                        // Inject data
+                        document.getElementById('lb-img').src = winner.thumb;
+                        document.getElementById('lb-title').innerText = winner.title;
+                        document.getElementById('lb-savings').innerText = '-' + winner.savings + '%';
+                        document.getElementById('lb-price').innerText = '$' + winner.price;
+                        document.getElementById('lb-url').href = winner.url;
+                        
+                        // Make it pop
+                        container.classList.add('border-amber-400', 'shadow-[0_0_50px_rgba(251,191,36,0.3)]');
+                        container.classList.remove('border-emerald-500');
+                        document.getElementById('lb-url').classList.replace('bg-emerald-500', 'bg-amber-500');
+                        document.getElementById('lb-url').classList.replace('hover:bg-emerald-400', 'hover:bg-amber-400');
+                        document.getElementById('lb-savings').classList.replace('bg-emerald-500', 'bg-red-500');
+                        document.getElementById('lb-savings').classList.replace('text-slate-900', 'text-white');
+                        
+                    }, 1200); // Shakes for 1.2 seconds before revealing
+                }
+            }
+        </script>
+
         <div class="bg-gradient-to-r from-violet-900/60 to-fuchsia-900/30 border border-fuchsia-500/30 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 mb-20 shadow-[0_0_40px_rgba(217,70,239,0.1)] relative overflow-hidden group">
             <div class="absolute inset-0 bg-fuchsia-500/5 group-hover:bg-fuchsia-500/10 transition-colors duration-500"></div>
             <div class="flex-1 relative z-10">
@@ -275,15 +346,6 @@ function generateHomePage(deals, storeMap, freeDeals, availableStoreIDs) {
                 <h3 class="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">Steal Steam's Traffic.<br>Find Cheaper Prices Instantly.</h3>
                 <p class="text-slate-300 mb-8 leading-relaxed text-lg">Install the LootDrop Companion. It secretly scans background prices while you browse Steam and drops a glowing banner if a game is cheaper on another store.</p>
                 <a href="https://github.com/SalvaperisR/game-deals-aggregator/archive/refs/heads/main.zip" class="inline-block bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-black py-4 px-10 rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] uppercase tracking-widest">Download Extension</a>
-            </div>
-            <div class="w-full md:w-1/3 relative z-10 hidden md:block">
-                <div class="bg-slate-900/80 p-6 rounded-2xl border border-white/10 shadow-2xl rotate-3 group-hover:rotate-0 transition-transform duration-500 backdrop-blur-sm">
-                    <div class="h-4 bg-slate-800 rounded w-1/2 mb-4"></div>
-                    <div class="bg-gradient-to-r from-fuchsia-600 to-violet-600 text-white text-xs font-black p-3 rounded-lg shadow-lg text-center animate-pulse border border-fuchsia-400/50">
-                        ⚠️ ALERT: CHEAPER ON GOG FOR $9.99
-                    </div>
-                    <div class="h-20 bg-slate-800 rounded mt-4"></div>
-                </div>
             </div>
         </div>
 
@@ -396,7 +458,7 @@ async function build() {
     const data = await fetchData();
     const availableStoreIDs = [...new Set(data.deals.map(d => d.storeID))];
     
-    console.log('🏗️ Building Full Static Matrix with RPG Visuals...');
+    console.log('🏗️ Building Full Static Matrix with RPG Visuals & Lootbox...');
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
     
     fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), generateHomePage(data.deals, data.storeMap, data.freeDeals, availableStoreIDs));
@@ -443,7 +505,7 @@ async function build() {
     xml += `</urlset>`;
     fs.writeFileSync(path.join(OUTPUT_DIR, 'sitemap.xml'), xml);
 
-    console.log('✅ Success! Premium Visuals & RPG Cards injected.');
+    console.log('✅ Success! Premium Visuals & Lootbox injected.');
 }
 
 build();
