@@ -10,20 +10,40 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
-            body { font-family: 'Inter', sans-serif; background-color: #0b1120; }
-            .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+            body { 
+                font-family: 'Inter', sans-serif; 
+                background-color: #030712; 
+                /* VISUAL V3 UPGRADE: Background CRT Pattern Overlay */
+                background-image: 
+                    linear-gradient(rgba(100, 100, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(100, 100, 255, 0.03) 1px, transparent 1px);
+                background-size: 50px 50px;
+                background-attachment: fixed;
+            }
+            .glass { background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
             .ticker-wrap { animation: scroll 60s linear infinite; width: max-content; }
             @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
             @keyframes pulse-slow { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .8; transform: scale(1.02); } }
             .animate-pulse-slow { animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
             @keyframes loot-shake { 0% { transform: rotate(0deg); } 25% { transform: rotate(-5deg) scale(1.05); } 50% { transform: rotate(5deg) scale(1.05); } 75% { transform: rotate(-5deg) scale(1.05); } 100% { transform: rotate(0deg); } }
             .loot-shaking { animation: loot-shake 0.3s ease-in-out infinite; }
-            .mesh-gradient { background: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%); }
+            .mesh-gradient { background: radial-gradient(at 0% 0%, hsla(250, 40%, 10%, 1) 0, transparent 60%), radial-gradient(at 50% 0%, hsla(220, 40%, 15%, 1) 0, transparent 60%), radial-gradient(at 100% 0%, hsla(330, 40%, 15%, 1) 0, transparent 60%); }
+            .hero-mesh { background: radial-gradient(at 50% 0%, hsla(250, 60%, 20%, 0.4) 0, transparent 70%); }
+            
+            /* VISUAL V3 UPGRADE: CRT Line Overlay and subtle glow */
+            body::after {
+                content: "";
+                position: fixed; inset: 0;
+                background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+                background-size: 100% 4px;
+                z-index: 100; pointer-events: none;
+                opacity: 0.15;
+            }
         </style>
     </head>
-    <body class="text-slate-200 antialiased flex flex-col min-h-screen mesh-gradient">
+    <body class="text-slate-300 antialiased flex flex-col min-h-screen mesh-gradient relative">
         
-        <div class="bg-indigo-600/10 border-b border-white/5 py-2 overflow-hidden whitespace-nowrap text-[10px] uppercase tracking-[0.2em] text-indigo-300 z-[60] relative">
+        <div class="bg-indigo-600/10 border-b border-white/5 py-2 overflow-hidden whitespace-nowrap text-[9px] uppercase font-bold tracking-[0.3em] text-indigo-300 z-[60] relative">
             <div class="flex ticker-wrap">
                 <span class="mx-10 font-bold">💎 ALL WILL FALL: <span class="text-emerald-400">$28.58</span></span><span class="mx-10 font-bold">💎 Undead: Rise of the Betrayed King: <span class="text-emerald-400">$0.00</span></span><span class="mx-10 font-bold">💎 Xenonauts 2: <span class="text-emerald-400">$25.99</span></span><span class="mx-10 font-bold">💎 The Stone of Madness: <span class="text-emerald-400">$0.00</span></span><span class="mx-10 font-bold">💎 Xenonauts 2: <span class="text-emerald-400">$25.99</span></span><span class="mx-10 font-bold">💎 One Punch Man: A Hero Nobody Knows Deluxe Edition: <span class="text-emerald-400">$7.99</span></span><span class="mx-10 font-bold">💎 CODE VEIN Digital Deluxe Edition: <span class="text-emerald-400">$7.99</span></span><span class="mx-10 font-bold">💎 ONE PIECE World Seeker Deluxe Edition: <span class="text-emerald-400">$8.99</span></span><span class="mx-10 font-bold">💎 ONE PIECE BURNING BLOOD GOLD EDITION: <span class="text-emerald-400">$8.99</span></span><span class="mx-10 font-bold">💎 SCARLET NEXUS Deluxe Edition: <span class="text-emerald-400">$11.99</span></span><span class="mx-10 font-bold">💎 TEKKEN 7 - Originals Edition: <span class="text-emerald-400">$13.49</span></span><span class="mx-10 font-bold">💎 Neverwinter Nights: Enhanced Edition Digital Deluxe Edition: <span class="text-emerald-400">$6.85</span></span><span class="mx-10 font-bold">💎 Ni no Kuni II: Revenant Kingdom - The Prince's Edition: <span class="text-emerald-400">$11.99</span></span><span class="mx-10 font-bold">💎 Captain Tsubasa: Rise of New Champions - Deluxe Edition: <span class="text-emerald-400">$13.59</span></span><span class="mx-10 font-bold">💎 Dragon Ball Fighter Z  FighterZ Edition: <span class="text-emerald-400">$14.39</span></span> <span class="mx-10 font-bold">💎 ALL WILL FALL: <span class="text-emerald-400">$28.58</span></span><span class="mx-10 font-bold">💎 Undead: Rise of the Betrayed King: <span class="text-emerald-400">$0.00</span></span><span class="mx-10 font-bold">💎 Xenonauts 2: <span class="text-emerald-400">$25.99</span></span><span class="mx-10 font-bold">💎 The Stone of Madness: <span class="text-emerald-400">$0.00</span></span><span class="mx-10 font-bold">💎 Xenonauts 2: <span class="text-emerald-400">$25.99</span></span><span class="mx-10 font-bold">💎 One Punch Man: A Hero Nobody Knows Deluxe Edition: <span class="text-emerald-400">$7.99</span></span><span class="mx-10 font-bold">💎 CODE VEIN Digital Deluxe Edition: <span class="text-emerald-400">$7.99</span></span><span class="mx-10 font-bold">💎 ONE PIECE World Seeker Deluxe Edition: <span class="text-emerald-400">$8.99</span></span><span class="mx-10 font-bold">💎 ONE PIECE BURNING BLOOD GOLD EDITION: <span class="text-emerald-400">$8.99</span></span><span class="mx-10 font-bold">💎 SCARLET NEXUS Deluxe Edition: <span class="text-emerald-400">$11.99</span></span><span class="mx-10 font-bold">💎 TEKKEN 7 - Originals Edition: <span class="text-emerald-400">$13.49</span></span><span class="mx-10 font-bold">💎 Neverwinter Nights: Enhanced Edition Digital Deluxe Edition: <span class="text-emerald-400">$6.85</span></span><span class="mx-10 font-bold">💎 Ni no Kuni II: Revenant Kingdom - The Prince's Edition: <span class="text-emerald-400">$11.99</span></span><span class="mx-10 font-bold">💎 Captain Tsubasa: Rise of New Champions - Deluxe Edition: <span class="text-emerald-400">$13.59</span></span><span class="mx-10 font-bold">💎 Dragon Ball Fighter Z  FighterZ Edition: <span class="text-emerald-400">$14.39</span></span>
             </div>
@@ -32,58 +52,67 @@
         <header class="glass sticky top-0 w-full z-50 shadow-2xl transition-all duration-300">
             <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                 <a href="index.html" class="flex items-center gap-3 group">
-                    <div class="bg-indigo-600 p-1.5 rounded-lg shadow-lg shadow-indigo-500/40 group-hover:scale-110 transition-transform">
+                    <div class="bg-indigo-600 p-1.5 rounded w-8 h-8 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:scale-110 transition-transform">
                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
                     <h1 class="text-xl font-black text-white tracking-tighter uppercase">LootDrop</h1>
                 </a>
                 <nav class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest">
-                    <a href="index.html" class="text-slate-300 hover:text-white hover:text-white transition-colors">Home</a>
-                    <a href="browse.html" class="text-slate-300 hover:text-white hover:text-white transition-colors">Browse</a>
-                    <a href="free.html" class="text-slate-300 hover:text-white hover:text-emerald-400 transition-colors">Free Drops</a>
+                    <a href="index.html" class="text-slate-300 hover:text-white hover:text-white transition-colors">Home_Base</a>
+                    <a href="browse.html" class="text-slate-300 hover:text-white hover:text-white transition-colors">Browse_All</a>
+                    <a href="free.html" class="text-slate-300 hover:text-white hover:text-emerald-400 transition-colors">Free_Transmission</a>
                 </nav>
             </div>
         </header>
 
         <main class="flex-grow pt-12 pb-10">
             
-        <div class="max-w-3xl mx-auto px-6 py-12 text-slate-300">
-            <h2 class="text-4xl font-black text-white mb-6 border-b border-slate-800 pb-4 uppercase tracking-tighter">About LootDrop</h2>
-            <p class="text-lg mb-6 leading-relaxed">LootDrop is an automated system scanning digital storefronts every 24 hours to find elite price drops. Our engine aggregates data like Metacritic scores and Steam user ratings so you never buy a bad game.</p>
-            <p class="p-4 bg-slate-800/50 rounded-xl border border-slate-700/50 italic font-medium">Affiliate Disclosure: We earn commissions on qualifying purchases to keep this engine running ad-free.</p>
+        <div class="max-w-3xl mx-auto px-6 py-16 text-slate-300 relative bg-slate-950/50 rounded-2xl border border-white/5 backdrop-blur-sm">
+            
+    <div class="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-indigo-500/30 z-20 pointer-events-none group-hover:border-white transition-colors duration-300"></div>
+    <div class="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-indigo-500/30 z-20 pointer-events-none group-hover:border-white transition-colors duration-300"></div>
+    <div class="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-indigo-500/30 z-20 pointer-events-none group-hover:border-white transition-colors duration-300"></div>
+    <div class="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-indigo-500/30 z-20 pointer-events-none group-hover:border-white transition-colors duration-300"></div>
+    
+            <h2 class="text-5xl font-black text-white mb-8 border-b border-slate-800 pb-5 uppercase tracking-tighter">System Disclosure: LootDrop</h2>
+            <div class="space-y-6 leading-relaxed text-slate-400">
+                <p>LootDrop is an automated core scrap engine scanning authorized digital target nodes every 24 standard hours. Its primary directive is to identify elite price-to-value discrepancies.</p>
+                <p>By aggregating verified data transmissions—including Metacritic synchronization and Steam user-base consensus data—the engine enables authorized data-citizens to claim loot with zero probability of purchasing sub-optimal software.</p>
+                <p class="p-5 bg-black/40 rounded-xl border border-indigo-500/20 italic font-medium text-indigo-300 shadow-inner">Protocol 7 Disclosure: The engine operates via dynamic monetization protocols. Authorized claims may generate data-commissions at zero additional cost to the data-citizen. This protocol ensures continuous ad-free scanner operation.</p>
+            </div>
         </div>
             
         </main>
 
-        <footer class="bg-slate-950/80 pt-10 mt-auto">
+        <footer class="bg-black/60 pt-10 mt-auto border-t border-white/5 backdrop-blur-sm relative">
             
-        <div class="max-w-7xl mx-auto px-6 py-12 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="max-w-7xl mx-auto px-6 py-12 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
             <div>
-                <h4 class="text-white font-black mb-4 uppercase tracking-widest text-xs">Top Storefronts</h4>
-                <ul class="space-y-2 text-sm text-slate-300">
-                    <li><a href="store-steam.html" class="hover:text-white hover:underline transition-colors">Steam Deals</a></li><li><a href="store-epic-games-store.html" class="hover:text-white hover:underline transition-colors">Epic Games Store Deals</a></li><li><a href="store-fanatical.html" class="hover:text-white hover:underline transition-colors">Fanatical Deals</a></li><li><a href="store-humble-store.html" class="hover:text-white hover:underline transition-colors">Humble Store Deals</a></li><li><a href="store-gog.html" class="hover:text-white hover:underline transition-colors">GOG Deals</a></li><li><a href="store-greenmangaming.html" class="hover:text-white hover:underline transition-colors">GreenManGaming Deals</a></li><li><a href="store-gamersgate.html" class="hover:text-white hover:underline transition-colors">GamersGate Deals</a></li>
+                <h4 class="text-white font-black mb-5 uppercase tracking-widest text-xs flex items-center gap-2 justify-center md:justify-start"><span class="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-pulse"></span> Network Nodes</h4>
+                <ul class="space-y-2 text-sm text-slate-400 font-medium">
+                    <li><a href="store-steam.html" class="hover:text-white transition-colors">Steam Access Node</a></li><li><a href="store-epic-games-store.html" class="hover:text-white transition-colors">Epic Games Store Access Node</a></li><li><a href="store-fanatical.html" class="hover:text-white transition-colors">Fanatical Access Node</a></li><li><a href="store-humble-store.html" class="hover:text-white transition-colors">Humble Store Access Node</a></li><li><a href="store-gog.html" class="hover:text-white transition-colors">GOG Access Node</a></li><li><a href="store-greenmangaming.html" class="hover:text-white transition-colors">GreenManGaming Access Node</a></li><li><a href="store-gamersgate.html" class="hover:text-white transition-colors">GamersGate Access Node</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-black mb-4 uppercase tracking-widest text-xs">Price Drops</h4>
-                <ul class="space-y-2 text-sm text-slate-300">
-                    <li><a href="under-5.html" class="hover:text-white transition-colors">Games Under $5</a></li>
-                    <li><a href="under-10.html" class="hover:text-white transition-colors">Games Under $10</a></li>
-                    <li><a href="free.html" class="hover:text-white transition-colors underline decoration-emerald-400 font-bold">100% Free Games</a></li>
+                <h4 class="text-white font-black mb-5 uppercase tracking-widest text-xs flex items-center gap-2 justify-center md:justify-start"><span class="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-pulse"></span> Value Filters</h4>
+                <ul class="space-y-2 text-sm text-slate-400 font-medium">
+                    <li><a href="under-5.html" class="hover:text-white transition-colors">Games < $5 USD</a></li>
+                    <li><a href="under-10.html" class="hover:text-white transition-colors">Games < $10 USD</a></li>
+                    <li><a href="free.html" class="hover:text-emerald-400 transition-colors font-black uppercase tracking-widest text-[11px]">God Tier (100% Free)</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-black mb-4 uppercase tracking-widest text-xs">LootDrop</h4>
-                <p class="text-slate-300 text-xs mb-4">Your automated engine for the best PC gaming discounts.</p>
-                <ul class="space-y-2 text-sm text-slate-300">
-                    <li><a href="browse.html" class="hover:text-white transition-colors">All Deals</a></li>
-                    <li><a href="about.html" class="hover:text-white transition-colors">About & Disclosure</a></li>
+                <h4 class="text-white font-black mb-5 uppercase tracking-widest text-xs flex items-center gap-2 justify-center md:justify-start"><span class="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-pulse"></span> Engine Status</h4>
+                <p class="text-slate-400 text-xs mb-4 leading-relaxed">Automated scanner active. All systems nominal. Scraping target nodes every 24 hours.</p>
+                <ul class="space-y-2 text-sm text-slate-400 font-medium">
+                    <li><a href="browse.html" class="hover:text-white transition-colors">View All Transmissions</a></li>
+                    <li><a href="about.html" class="hover:text-white transition-colors">System Disclosure</a></li>
                 </ul>
             </div>
         </div>
-            <div class="border-t border-white/10 py-8 text-center bg-black/60">
-                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest">
-                    &copy; 2026 LootDrop. Automated Deal Engine. Affiliate Links Included.
+            <div class="border-t border-white/5 py-8 text-center bg-black/80">
+                <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest max-w-lg mx-auto leading-relaxed">
+                    &copy; 2026 LootDrop Core Engine. Automated Deal Aggregator V3.1. Affiliation Protocol Active: links may generate dynamic commission data.
                 </p>
             </div>
         </footer>
