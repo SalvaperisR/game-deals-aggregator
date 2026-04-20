@@ -244,14 +244,38 @@ function renderLayout(title, description, content, activePage, storeMap, availab
             ${activePage !== 'about' ? newsletterSection : ''}
         </main>
 
-        <footer class="bg-black/60 pt-10 mt-auto border-t border-white/5 backdrop-blur-sm relative">
-            ${seoFooter}
-            <div class="border-t border-white/5 py-8 text-center bg-black/80">
-                <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest max-w-lg mx-auto leading-relaxed">
-                    &copy; ${year} LootDrop Core Engine. Automated Deal Aggregator V3.1. Affiliation Protocol Active: links may generate dynamic commission data.
+        <footer class="mt-20 border-t border-indigo-500/30 pt-8 pb-12 text-center text-slate-400">
+            <div class="max-w-4xl mx-auto px-4">
+                <p class="text-xs mb-6 text-slate-500 italic">
+                    *LootDrop participa en programas de afiliación. Si compras a través de nuestros enlaces, podemos recibir una pequeña comisión sin coste adicional para ti. Esto ayuda a mantener los servidores funcionando.*
                 </p>
+                
+                <p class="mb-4">© ${year} LootDrop. Automated Deal Aggregator.</p>
+                
+                <div class="flex justify-center gap-4 text-sm mt-4 relative z-10">
+                    <a href="legal.html#aviso" class="hover:text-emerald-400 transition-colors">Aviso Legal</a>
+                    <a href="legal.html#privacidad" class="hover:text-emerald-400 transition-colors">Política de Privacidad</a>
+                    <a href="legal.html#cookies" class="hover:text-emerald-400 transition-colors">Política de Cookies</a>
+                </div>
             </div>
         </footer>
+
+        <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-slate-900 border-t border-emerald-500/50 p-4 z-50 transform translate-y-0 transition-transform duration-300">
+            <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-sm text-slate-300 text-center sm:text-left">
+                    <span class="text-emerald-400 font-bold">ALERTA DEL SISTEMA:</span> Usamos cookies de rastreo y afiliación para mejorar tu experiencia y mantener la web gratuita. <a href="legal.html#cookies" class="text-indigo-400 underline hover:text-indigo-300">Más info</a>.
+                </div>
+                <div class="flex gap-3 justify-center sm:justify-start">
+                    <button onclick="document.getElementById('cookie-banner').style.display='none'" class="px-4 py-2 text-sm text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded">
+                        Rechazar
+                    </button>
+                    <button onclick="document.getElementById('cookie-banner').style.display='none'" class="px-4 py-2 text-sm text-slate-900 bg-emerald-500 hover:bg-emerald-400 font-bold rounded">
+                        Aceptar Todo
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </body>
     </html>
     `;
@@ -547,7 +571,7 @@ async function build() {
     xml += `</urlset>`;
     fs.writeFileSync(path.join(OUTPUT_DIR, 'sitemap.xml'), xml);
 
-    console.log('✅ Success! Static Matrix V3.0 deployed.');
+    console.log('✅ Success! Static Matrix V3.0 deployed with Legal Compliance Protocol.');
 }
 
 build();
