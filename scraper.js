@@ -142,7 +142,7 @@ function renderLayout(title, description, content, activePage, storeMap, availab
     let seoFooter = '';
     if (availableStoreIDs && storeMap) {
         seoFooter = `
-        <div class="max-w-7xl mx-auto px-6 py-12 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+        <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
             <div>
                 <h4 class="text-white font-black mb-5 uppercase tracking-widest text-xs flex items-center gap-2 justify-center md:justify-start"><span class="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-pulse"></span> Network Nodes</h4>
                 <ul class="space-y-2 text-sm text-slate-400 font-medium">
@@ -187,7 +187,6 @@ function renderLayout(title, description, content, activePage, storeMap, availab
             body { 
                 font-family: 'Inter', sans-serif; 
                 background-color: #030712; 
-                /* VISUAL V3 UPGRADE: Background CRT Pattern Overlay */
                 background-image: 
                     linear-gradient(rgba(100, 100, 255, 0.03) 1px, transparent 1px),
                     linear-gradient(90deg, rgba(100, 100, 255, 0.03) 1px, transparent 1px);
@@ -204,7 +203,6 @@ function renderLayout(title, description, content, activePage, storeMap, availab
             .mesh-gradient { background: radial-gradient(at 0% 0%, hsla(250, 40%, 10%, 1) 0, transparent 60%), radial-gradient(at 50% 0%, hsla(220, 40%, 15%, 1) 0, transparent 60%), radial-gradient(at 100% 0%, hsla(330, 40%, 15%, 1) 0, transparent 60%); }
             .hero-mesh { background: radial-gradient(at 50% 0%, hsla(250, 60%, 20%, 0.4) 0, transparent 70%); }
             
-            /* VISUAL V3 UPGRADE: CRT Line Overlay and subtle glow */
             body::after {
                 content: "";
                 position: fixed; inset: 0;
@@ -241,22 +239,23 @@ function renderLayout(title, description, content, activePage, storeMap, availab
 
         <main class="flex-grow pt-12 pb-10">
             ${content}
-            ${activePage !== 'about' ? newsletterSection : ''}
+            ${activePage !== 'about' && activePage !== 'legal' ? newsletterSection : ''}
         </main>
 
-        <footer class="mt-20 border-t border-indigo-500/30 pt-8 pb-12 text-center text-slate-400">
-            <div class="max-w-4xl mx-auto px-4">
-                <p class="text-xs mb-6 text-slate-500 italic">
-                    *LootDrop participa en programas de afiliación. Si compras a través de nuestros enlaces, podemos recibir una pequeña comisión sin coste adicional para ti. Esto ayuda a mantener los servidores funcionando.*
+        <footer class="mt-20 border-t border-indigo-500/30 pt-8 pb-12 bg-slate-950/80 relative z-10">
+            ${seoFooter}
+            <div class="max-w-5xl mx-auto px-6 mt-12 pt-8 border-t border-white/5 text-center">
+                <p class="text-[10px] mb-6 text-slate-500 italic max-w-3xl mx-auto">
+                    *LootDrop participa en programas de afiliación. Si compras a través de nuestros enlaces, podemos recibir una pequeña comisión sin coste adicional para ti. Esto mantiene la simulación funcionando.*
                 </p>
-                
-                <p class="mb-4">© ${year} LootDrop. Automated Deal Aggregator.</p>
-                
-                <div class="flex justify-center gap-4 text-sm mt-4 relative z-10">
+                <div class="flex flex-wrap justify-center gap-6 text-[10px] font-black uppercase tracking-[0.2em] mb-6 text-slate-400">
                     <a href="legal.html#aviso" class="hover:text-emerald-400 transition-colors">Aviso Legal</a>
+                    <span class="text-slate-700">|</span>
                     <a href="legal.html#privacidad" class="hover:text-emerald-400 transition-colors">Política de Privacidad</a>
+                    <span class="text-slate-700">|</span>
                     <a href="legal.html#cookies" class="hover:text-emerald-400 transition-colors">Política de Cookies</a>
                 </div>
+                <p class="text-xs font-bold text-slate-600 uppercase tracking-widest">© ${year} LootDrop. Automated Engine.</p>
             </div>
         </footer>
 
@@ -266,10 +265,10 @@ function renderLayout(title, description, content, activePage, storeMap, availab
                     <span class="text-emerald-400 font-bold">ALERTA DEL SISTEMA:</span> Usamos cookies de rastreo y afiliación para mejorar tu experiencia y mantener la web gratuita. <a href="legal.html#cookies" class="text-indigo-400 underline hover:text-indigo-300">Más info</a>.
                 </div>
                 <div class="flex gap-3 justify-center sm:justify-start">
-                    <button onclick="document.getElementById('cookie-banner').style.display='none'" class="px-4 py-2 text-sm text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded">
+                    <button onclick="document.getElementById('cookie-banner').style.display='none'" class="px-4 py-2 text-sm text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded font-bold uppercase tracking-widest">
                         Rechazar
                     </button>
-                    <button onclick="document.getElementById('cookie-banner').style.display='none'" class="px-4 py-2 text-sm text-slate-900 bg-emerald-500 hover:bg-emerald-400 font-bold rounded">
+                    <button onclick="document.getElementById('cookie-banner').style.display='none'" class="px-4 py-2 text-sm text-slate-900 bg-emerald-500 hover:bg-emerald-400 font-black rounded uppercase tracking-widest shadow-[0_0_15px_rgba(16,185,129,0.4)]">
                         Aceptar Todo
                     </button>
                 </div>
@@ -548,6 +547,47 @@ async function build() {
         const html = renderLayout(`${sName} Deals`, `Current sales at ${sName}.`, `<div class="max-w-7xl mx-auto px-6"><h2 class="text-5xl font-black text-white mb-12 uppercase tracking-tighter">Transmission Node: ${sName}</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">${storeDeals.map(d => generateCard(d, data.storeMap)).join('')}</div></div>`, 'seo', data.storeMap, availableStoreIDs, data.deals);
         fs.writeFileSync(path.join(OUTPUT_DIR, slug), html);
     });
+    // --- LEGAL COMPLIANCE HUB GENERATOR ---
+    const legalContent = `
+        <div class="max-w-4xl mx-auto px-6 py-16 text-slate-300 relative bg-slate-950/50 rounded-2xl border border-white/5 backdrop-blur-sm">
+            ${generateCorners()}
+            <h2 class="text-4xl md:text-5xl font-black text-white mb-8 border-b border-slate-800 pb-5 uppercase tracking-tighter">Legal & Compliance Hub</h2>
+            
+            <div class="space-y-12 leading-relaxed text-sm text-slate-400">
+                <section id="aviso" class="scroll-mt-32">
+                    <h3 class="text-2xl font-black text-emerald-400 mb-4 uppercase tracking-widest flex items-center gap-3"><span class="w-2 h-2 bg-emerald-500 rounded-full"></span> Aviso Legal</h3>
+                    <p class="mb-3">En cumplimiento con el deber de información recogido en artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSICE):</p>
+                    <div class="bg-black/40 p-5 rounded-lg border border-white/5">
+                        <p><strong>Titular:</strong> Salva Peris</p>
+                        <p><strong>Email de contacto:</strong> salperdelrio@gmail.com</p>
+                        <p><strong>Finalidad del sitio web:</strong> Agregador de ofertas de videojuegos y marketing de afiliación.</p>
+                    </div>
+                </section>
+                
+                <section id="privacidad" class="scroll-mt-32">
+                    <h3 class="text-2xl font-black text-emerald-400 mb-4 uppercase tracking-widest flex items-center gap-3"><span class="w-2 h-2 bg-emerald-500 rounded-full"></span> Política de Privacidad</h3>
+                    <p class="mb-3">De conformidad con lo dispuesto en el Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD), te informamos de lo siguiente:</p>
+                    <ul class="list-disc pl-5 space-y-2 bg-black/40 p-5 rounded-lg border border-white/5">
+                        <li><strong>Responsable:</strong> Salva Peris.</li>
+                        <li><strong>Finalidad:</strong> Envío de newsletter con ofertas (vía Mailchimp) y gestión de comunidad.</li>
+                        <li><strong>Legitimación:</strong> Consentimiento explícito del usuario.</li>
+                        <li><strong>Destinatarios:</strong> Los datos se guardan en Mailchimp (Intuit Inc.), proveedor fuera de la UE pero acogido al Data Privacy Framework internacional.</li>
+                        <li><strong>Derechos:</strong> Puedes acceder, rectificar o suprimir tus datos dándote de baja en cualquier email o contactando por correo.</li>
+                    </ul>
+                </section>
+
+                <section id="cookies" class="scroll-mt-32">
+                    <h3 class="text-2xl font-black text-emerald-400 mb-4 uppercase tracking-widest flex items-center gap-3"><span class="w-2 h-2 bg-emerald-500 rounded-full"></span> Política de Cookies</h3>
+                    <p class="mb-3">Este sitio web utiliza cookies propias y de terceros para su correcto funcionamiento y para fines analíticos y de afiliación.</p>
+                    <ul class="list-disc pl-5 space-y-2 bg-black/40 p-5 rounded-lg border border-white/5">
+                        <li><strong>Cookies Técnicas:</strong> Estrictamente necesarias para la navegación y carga del entorno web.</li>
+                        <li><strong>Cookies de Afiliación (Redes externas):</strong> Permiten rastrear las compras realizadas a través de los enlaces de la web para asignar la comisión correspondiente (sin coste para ti).</li>
+                    </ul>
+                    <p class="mt-4 italic text-xs">Puedes rechazar o configurar el uso de cookies mediante el banner de advertencia situado en la página de inicio, o modificando la configuración de tu navegador web.</p>
+                </section>
+            </div>
+        </div>`;
+    fs.writeFileSync(path.join(OUTPUT_DIR, 'legal.html'), renderLayout('Legal & Compliance', 'Textos legales, privacidad y cookies.', legalContent, 'legal', data.storeMap, availableStoreIDs, data.deals));
 
     const writePricePage = (limit, file) => {
         const deals = data.deals.filter(d => parseFloat(d.salePrice) <= limit);
@@ -562,7 +602,7 @@ async function build() {
 
     const today = new Date().toISOString().split('T')[0];
     let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
-    const pages = ['index.html', 'browse.html', 'free.html', 'about.html', 'under-5.html', 'under-10.html'];
+    const pages = ['index.html', 'browse.html', 'free.html', 'about.html', 'legal.html', 'under-5.html', 'under-10.html'];
     availableStoreIDs.forEach(id => {
         const sName = data.storeMap[id];
         pages.push(`store-${sName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.html`);
