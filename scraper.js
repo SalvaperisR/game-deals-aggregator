@@ -242,18 +242,29 @@ function renderLayout(title, description, content, activePage, storeMap, availab
         </div>
 
         <header class="glass sticky top-0 w-full z-50 shadow-2xl transition-all duration-300">
-            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
                 <a href="index.html" class="flex items-center gap-3 group">
                     <div class="bg-indigo-600 p-1.5 rounded w-8 h-8 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:scale-110 transition-transform">
                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
                     <h1 class="text-xl font-black text-white tracking-tighter uppercase">LootDrop</h1>
                 </a>
-               <nav class="flex gap-6 overflow-x-auto no-scrollbar font-bold text-[10px] uppercase tracking-widest ml-4 pb-1 md:pb-0">
-    <a href="index.html" class="${isHome} whitespace-nowrap transition-colors">Home_Base</a>
-    <a href="browse.html" class="${isBrowse} whitespace-nowrap transition-colors">Browse_All</a>
-    <a href="free.html" class="${isFree} whitespace-nowrap transition-colors">Free_Transmission</a>
-</nav>
+                
+                <nav class="hidden md:flex gap-10 font-bold text-xs uppercase tracking-widest">
+                    <a href="index.html" class="${isHome} hover:text-white transition-colors">Home_Base</a>
+                    <a href="browse.html" class="${isBrowse} hover:text-white transition-colors">Browse_All</a>
+                    <a href="free.html" class="${isFree} hover:text-emerald-400 transition-colors">Free_Transmission</a>
+                </nav>
+
+                <button id="mobile-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full glass border-b border-indigo-500/30 flex-col items-center py-6 gap-6 font-bold text-xs uppercase tracking-widest shadow-2xl">
+                <a href="index.html" class="${isHome} hover:text-white transition-colors">Home_Base</a>
+                <a href="browse.html" class="${isBrowse} hover:text-white transition-colors">Browse_All</a>
+                <a href="free.html" class="${isFree} hover:text-emerald-400 transition-colors">Free_Transmission</a>
             </div>
         </header>
 
@@ -323,7 +334,15 @@ function renderLayout(title, description, content, activePage, storeMap, availab
                 }
             }
         </script>
-
+       <script>
+            // Mobile Menu Logic
+            const mobileBtn = document.getElementById('mobile-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+            });
+        </script>
     </body>
     </html>
     `;
@@ -393,18 +412,18 @@ function generateHomePage(deals, storeMap, freeDeals, availableStoreIDs) {
                         <div class="text-emerald-400 font-black uppercase tracking-[0.2em] text-sm bg-emerald-950 px-6 py-2 rounded-full border border-emerald-600">Authorize Mystery Decryption</div>
                     </div>
                     <div id="lootbox-reveal" class="hidden w-full h-full p-6 flex flex-col items-center justify-between">
-                        <div class="flex items-center gap-5 w-full">
-                            <img id="lb-img" src="" class="h-24 w-auto rounded border-2 border-slate-700 shadow-xl">
-                            <div class="text-left flex-1">
-                                <h4 id="lb-title" class="text-white font-black text-lg line-clamp-2 leading-tight mb-3 uppercase tracking-tighter"></h4>
-                                <div class="flex items-center gap-3">
-                                    <span id="lb-savings" class="bg-red-600 text-white font-black text-xs px-2 py-1.5 rounded"></span>
-                                    <span id="lb-price" class="text-emerald-400 font-black text-3xl drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <a id="lb-url" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-white text-slate-900 font-black py-3 rounded-lg mt-4 uppercase text-xs tracking-widest shadow-xl transition-colors">Confirm Decryption & Claim</a>
-                    </div>
+    <div class="flex items-center gap-5 w-full">
+        <img id="lb-img" src="" class="h-24 w-auto rounded border-2 border-slate-700 shadow-xl">
+        <div class="text-left flex-1 min-w-0">
+            <h4 id="lb-title" class="text-white font-black text-lg line-clamp-2 leading-tight mb-3 uppercase tracking-tighter"></h4>
+            <div class="flex flex-wrap items-center gap-3">
+                <span id="lb-savings" class="bg-red-600 text-white font-black text-xs px-2 py-1.5 rounded flex-shrink-0"></span>
+                <span id="lb-price" class="text-emerald-400 font-black text-2xl md:text-3xl drop-shadow-[0_0_10px_rgba(16,185,129,0.5)] truncate min-w-0"></span>
+            </div>
+        </div>
+    </div>
+    <a id="lb-url" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-white text-slate-900 font-black py-3 rounded-lg mt-4 uppercase text-xs tracking-widest shadow-xl transition-colors">Confirm Decryption & Claim</a>
+</div>
                 </div>
             </div>
         </div>
